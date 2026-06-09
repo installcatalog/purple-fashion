@@ -19,7 +19,7 @@ const APP_CONFIG = {
   },
 
   // API
-  scriptApi: "YOUR_APPS_SCRIPT_EXEC_URL",
+  scriptApi: "https://script.google.com/macros/s/AKfycbwMQr_bHsvXvDGC0isJS1KLeHzVwMQtcLMlnvW9QONHxh1JP6BXEygmwku_P7YuA3rz2g/exec",
 
   // Seller contact
   sellerWhatsApp: "919836697502",
