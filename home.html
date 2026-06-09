@@ -1,0 +1,3042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<link rel="preconnect" href="https://lh3.googleusercontent.com">
+<link rel="preconnect" href="https://drive.google.com">
+<link rel="dns-prefetch" href="https://script.google.com">
+<link rel="dns-prefetch" href="https://script.googleusercontent.com">
+<link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
+<link rel="dns-prefetch" href="https://drive.google.com">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1877F2">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f0f2f5;
+padding-bottom:90px;
+overflow-x:hidden;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+#welcome{
+font-size:15px;
+font-weight:bold;
+color:#1877F2;
+line-height:22px;
+}
+
+.right-header{
+display:flex;
+align-items:center;
+gap:12px;
+position:relative;
+}
+
+.brand{
+font-size:28px;
+font-weight:bold;
+color:#1877F2;
+}
+
+.profile-btn{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#f0f2f5;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+color:#1877F2;
+cursor:pointer;
+}
+
+#profileMenu{
+position:absolute;
+top:60px;
+right:0;
+background:white;
+padding:12px;
+border-radius:16px;
+box-shadow:0 2px 15px rgba(0,0,0,0.08);
+display:none;
+z-index:9999;
+}
+
+.search-section{
+padding:15px;
+}
+
+.search-box{
+background:white;
+border-radius:16px;
+padding:14px;
+display:flex;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.search-box i{
+color:#1877F2;
+margin-right:10px;
+}
+
+.search-box input{
+border:none;
+outline:none;
+width:100%;
+font-size:15px;
+background:none;
+}
+
+.banner-slider{
+margin:0 15px;
+overflow:hidden;
+border-radius:20px;
+position:relative;
+height:180px;
+background:#eef3f8;
+}
+
+.banner-slider::before,
+.skeleton{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,#eef3f8 0%,#f8fbff 45%,#eef3f8 90%);
+background-size:220% 100%;
+animation:loadingShimmer 1.1s linear infinite;
+}
+
+.banner-slider.has-images::before{
+display:none;
+}
+
+@keyframes loadingShimmer{
+0%{background-position:220% 0;}
+100%{background-position:-220% 0;}
+}
+
+.banner-slide{
+display:flex;
+transition:0.5s;
+height:100%;
+}
+
+.banner-img,
+.banner-slide img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:20px;
+flex-shrink:0;
+display:block;
+opacity:0;
+transition:opacity .3s ease;
+}
+
+.banner-img.loaded,
+.product-card img.loaded,
+.popup-images img.loaded{
+opacity:1;
+}
+
+.section-title{
+font-size:22px;
+font-weight:bold;
+padding:20px 15px 10px;
+color:#222;
+}
+
+.categories{
+display:flex;
+overflow-x:auto;
+padding:0 15px 10px;
+gap:12px;
+scrollbar-width:none;
+min-height:46px;
+}
+
+.categories::-webkit-scrollbar,
+.products::-webkit-scrollbar,
+.size-boxes::-webkit-scrollbar{
+display:none;
+}
+
+.category-btn{
+padding:10px 18px;
+border-radius:30px;
+background:white;
+white-space:nowrap;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+cursor:pointer;
+font-size:14px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.category-btn.active{
+background:#1877F2;
+color:white;
+}
+
+.category-skeleton{
+height:38px;
+min-width:110px;
+border-radius:30px;
+background:#e6edf6;
+position:relative;
+overflow:hidden;
+flex-shrink:0;
+}
+
+.category-section-title{
+font-size:22px;
+font-weight:bold;
+padding:20px 15px 12px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(2, minmax(0, 1fr));
+gap:14px;
+padding:0 14px 20px;
+overflow-x:hidden;
+}
+
+.product-card{
+width:100%;
+min-width:0;
+height:430px;
+background:rgba(255,255,255,0.96);
+border-radius:24px;
+padding:12px;
+box-shadow:0 8px 22px rgba(0,0,0,0.08),0 2px 8px rgba(24,119,242,0.08);
+display:flex;
+flex-direction:column;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.8);
+transition:0.3s ease;
+}
+
+.product-card:active{
+transform:scale(0.98);
+}
+
+.product-card img{
+width:100%;
+height:190px;
+object-fit:contain;
+border-radius:18px;
+background:#f8f9fb;
+display:block;
+padding:8px;
+opacity:0;
+transition:opacity .25s ease;
+}
+
+.product-id{
+font-size:12px;
+margin-top:10px;
+color:#666;
+}
+
+.product-name{
+font-size:16px;
+font-weight:700;
+margin-top:8px;
+color:#111;
+line-height:22px;
+min-height:44px;
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.product-price{
+font-size:22px;
+font-weight:800;
+color:#1877F2;
+margin-top:6px;
+}
+
+.product-desc{
+font-size:13px;
+color:#666;
+margin-top:6px;
+line-height:19px;
+flex:1;
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.cart-btn{
+margin-top:14px;
+width:100%;
+padding:14px;
+border:none;
+background:linear-gradient(135deg,#1877F2,#4e9cff);
+color:white;
+border-radius:18px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 6px 15px rgba(24,119,242,0.25);
+}
+
+.cart-btn:disabled,
+.add-btn:disabled{
+background:#e7eef8;
+color:#7b8aa0;
+box-shadow:none;
+border:1px solid #d8e4f3;
+cursor:not-allowed;
+}
+
+.product-skeleton{
+height:430px;
+background:white;
+border-radius:24px;
+padding:12px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+}
+
+.product-skeleton div{
+position:relative;
+overflow:hidden;
+background:#e9eef6;
+border-radius:12px;
+}
+
+.skeleton-img{height:190px;border-radius:18px!important;}
+.skeleton-line{height:14px;margin-top:12px;}
+.skeleton-line.short{width:48%;}
+.skeleton-line.medium{width:74%;}
+.skeleton-line.price{width:54%;height:24px;}
+.skeleton-button{height:48px;margin-top:28px;border-radius:18px!important;}
+.product-skeleton div::after,
+.category-skeleton::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.65),transparent);
+transform:translateX(-100%);
+animation:skeletonSweep 1.1s infinite;
+}
+
+@keyframes skeletonSweep{
+100%{transform:translateX(100%);}
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+box-shadow:0 -2px 10px rgba(0,0,0,0.08);
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+z-index:999;
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:12px;
+color:#555;
+position:relative;
+cursor:pointer;
+}
+
+.nav-item i{
+font-size:20px;
+margin-bottom:5px;
+}
+
+.nav-item.active{
+color:#1877F2;
+}
+
+.bottom-nav,
+.nav-item,
+.nav-item span,
+.nav-item i{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+touch-action:manipulation;
+}
+
+body,
+.product-card,
+.product-card *,
+.category-btn,
+.bottom-nav,
+.nav-item,
+button,
+img{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+}
+
+img{
+-webkit-user-drag:none;
+user-drag:none;
+pointer-events:auto;
+}
+
+input,
+textarea{
+user-select:text;
+-webkit-user-select:text;
+-webkit-touch-callout:default;
+}
+
+.cart-badge{
+position:absolute;
+top:-2px;
+right:8px;
+background:red;
+color:white;
+font-size:10px;
+width:18px;
+height:18px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+}
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#f0f2f5;
+z-index:5000;
+overflow-y:auto;
+transform:translateY(100%);
+transition:0.4s;
+}
+
+.popup.active{
+transform:translateY(0);
+}
+
+.popup-header{
+position:absolute;
+top:10px;
+left:10px;
+background:transparent;
+padding:0;
+z-index:200;
+display:flex;
+align-items:center;
+box-shadow:none;
+}
+
+.close-popup{
+width:46px;
+height:46px;
+border-radius:50%;
+background:rgba(255,255,255,0.9);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 4px 14px rgba(0,0,0,0.12);
+}
+
+.popup-slider{
+position:relative;
+overflow:hidden;
+margin:0;
+border-radius:0;
+background:white;
+box-shadow:0 8px 24px rgba(0,0,0,0.08);
+}
+ 
+.popup-images{
+display:flex;
+transition:0.4s;
+}
+
+.popup-images img{
+width:100%;
+height:520px;
+object-fit:cover;
+background:white;
+padding:0;
+flex-shrink:0;
+opacity:0;
+transition:opacity .25s ease;
+}
+
+.slide-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:42px;
+height:42px;
+border-radius:50%;
+background:rgba(255,255,255,0.9);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+cursor:pointer;
+z-index:10;
+}
+
+.slide-left{left:10px;}
+.slide-right{right:10px;}
+
+.dots{
+display:flex;
+justify-content:center;
+gap:8px;
+padding:12px;
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:#ccc;
+}
+
+.dot.active{
+background:#1877F2;
+}
+
+.popup-content{
+padding:18px;
+background:white;
+margin:0 12px 28px;
+border-radius:24px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+}
+
+.popup-id{
+font-size:13px;
+color:#666;
+}
+
+.popup-title{
+font-size:26px;
+line-height:32px;
+font-weight:bold;
+margin-top:10px;
+letter-spacing:0;
+}
+
+.popup-price{
+font-size:26px;
+font-weight:bold;
+color:#1877F2;
+margin-top:12px;
+}
+
+.popup-desc{
+margin-top:16px;
+font-size:15px;
+line-height:26px;
+color:#4d5662;
+white-space:pre-line;
+}
+
+.popup-stock{
+margin-top:18px;
+font-size:15px;
+font-weight:bold;
+}
+
+.in-stock{color:green;}
+.out-stock{color:red;}
+
+.offer-box{
+margin-top:18px;
+background:linear-gradient(180deg,#ffffff,#f3f8ff);
+padding:18px;
+border-radius:22px;
+border:1px solid #d6e7ff;
+box-shadow:
+0 10px 24px rgba(24,119,242,0.10),
+inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.old-price{
+text-decoration:line-through;
+color:#777;
+font-size:15px;
+}
+
+.offer-price{
+font-size:28px;
+font-weight:bold;
+color:#1877F2;
+margin-top:6px;
+}
+
+.offer-tag{
+display:inline-block;
+margin-top:12px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+padding:8px 14px;
+border-radius:30px;
+font-size:13px;
+font-weight:800;
+box-shadow:0 6px 14px rgba(24,119,242,0.24);
+}
+
+.review-box{
+margin-top:20px;
+background:linear-gradient(180deg,#ffffff,#f7f9fc);
+padding:16px;
+border-radius:20px;
+border:1px solid #edf1f7;
+box-shadow:0 8px 20px rgba(0,0,0,0.04);
+}
+
+.review{
+margin-bottom:12px;
+font-size:14px;
+line-height:23px;
+font-weight:600;
+color:#111827;
+}
+
+.popup-buttons{
+display:flex;
+gap:12px;
+position:sticky;
+bottom:0;
+z-index:30;
+margin:0;
+padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+box-shadow:0 -8px 22px rgba(0,0,0,0.08);
+}
+
+.popup-buttons button{
+flex:1;
+min-height:54px;
+padding:14px 12px;
+border-radius:16px;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+}
+
+.more-btn{
+background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%);
+color:#0f5fcb;
+border:1.5px solid #9fc6ff;
+box-shadow:
+0 10px 24px rgba(24,119,242,0.14),
+0 2px 6px rgba(15,95,203,0.10),
+inset 0 1px 0 rgba(255,255,255,0.95);
+}
+
+.more-btn:active{
+transform:scale(0.98);
+box-shadow:
+0 5px 14px rgba(24,119,242,0.12),
+inset 0 2px 4px rgba(24,119,242,0.08);
+}
+
+.add-btn{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border:1px solid #1877F2;
+box-shadow:0 8px 18px rgba(24,119,242,0.28);
+}
+
+.new-badge{
+position:absolute;
+top:22px;
+left:22px;
+min-width:50px;
+height:28px;
+padding:0 13px;
+background:linear-gradient(135deg,#ff4d6d,#ff1744);
+color:white;
+font-size:11px;
+line-height:1;
+font-weight:900;
+border-radius:999px;
+display:flex;
+align-items:center;
+justify-content:center;
+letter-spacing:0;
+z-index:5;
+box-shadow:0 6px 14px rgba(255,23,68,0.28);
+}
+
+.size-section{
+margin-top:18px;
+}
+
+.size-title{
+font-size:15px;
+font-weight:bold;
+margin-bottom:10px;
+color:#111;
+}
+
+.size-boxes{
+display:flex;
+gap:8px;
+flex-wrap:nowrap;
+overflow-x:auto;
+padding-bottom:4px;
+}
+
+.size-btn{
+min-width:44px;
+padding:9px 10px;
+border-radius:12px;
+border:1px solid #d8e0ef;
+background:white;
+color:#8a94a6;
+font-size:13px;
+font-weight:bold;
+text-align:center;
+flex-shrink:0;
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+cursor:default;
+}
+
+.size-btn.available{
+background:#eaf3ff;
+color:#1877F2;
+border-color:#b9d7ff;
+box-shadow:0 5px 12px rgba(24,119,242,0.10);
+cursor:pointer;
+}
+
+.size-btn.active,
+.size-btn.available.active{
+background:#1877F2;
+color:white;
+border-color:#1877F2;
+box-shadow:0 5px 12px rgba(24,119,242,0.25);
+}
+
+.home-size-toast{
+position:fixed;
+left:50%;
+bottom:122px;
+transform:translate(-50%,30px);
+width:calc(100% - 28px);
+max-width:430px;
+background:white;
+border-radius:20px;
+padding:14px 18px;
+display:flex;
+align-items:center;
+gap:14px;
+box-shadow:0 12px 30px rgba(24,119,242,0.22);
+z-index:9000;
+opacity:0;
+pointer-events:none;
+transition:0.35s ease;
+}
+
+.home-size-toast.show{
+opacity:1;
+transform:translate(-50%,0);
+}
+
+.home-size-toast-icon{
+width:50px;
+height:50px;
+border-radius:50%;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+flex-shrink:0;
+}
+
+.home-size-toast-text{
+font-size:16px;
+line-height:22px;
+color:#071d33;
+font-weight:900;
+}
+
+.order-toast{
+position:fixed;
+left:50%;
+bottom:92px;
+transform:translate(-50%,30px);
+width:calc(100% - 28px);
+max-width:430px;
+background:white;
+border-radius:18px;
+padding:12px 14px;
+display:flex;
+align-items:center;
+gap:10px;
+box-shadow:0 10px 28px rgba(0,0,0,0.16);
+z-index:3000;
+opacity:0;
+pointer-events:none;
+transition:0.35s ease;
+}
+
+.order-toast.show{
+opacity:1;
+transform:translate(-50%,0);
+}
+
+.order-toast-icon{
+width:38px;
+height:38px;
+border-radius:50%;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:16px;
+flex-shrink:0;
+}
+
+.order-toast-text{
+font-size:13px;
+line-height:19px;
+color:#222;
+font-weight:600;
+}
+
+.order-toast-text b{
+color:#1877F2;
+}
+
+.seller-pin-overlay{
+position:fixed;
+inset:0;
+background:rgba(15,23,42,0.46);
+z-index:9500;
+display:none;
+align-items:flex-end;
+justify-content:center;
+padding:16px 14px 92px;
+}
+
+.seller-pin-overlay.active{
+display:flex;
+}
+
+.seller-pin-box{
+width:100%;
+max-width:430px;
+background:linear-gradient(180deg,#ffffff,#f3f8ff);
+border:1px solid #d6e7ff;
+border-radius:26px;
+padding:20px;
+box-shadow:0 18px 45px rgba(0,0,0,0.22),0 8px 22px rgba(24,119,242,0.18);
+}
+
+.seller-pin-title{
+font-size:24px;
+font-weight:900;
+line-height:30px;
+color:#071d33;
+text-align:center;
+}
+
+.seller-pin-text{
+font-size:14px;
+font-weight:700;
+line-height:22px;
+color:#5d6673;
+text-align:center;
+margin:8px 0 16px;
+}
+
+.seller-pin-input{
+width:100%;
+height:54px;
+border-radius:18px;
+border:1px solid #d6e7ff;
+background:white;
+outline:none;
+text-align:center;
+font-size:24px;
+font-weight:900;
+letter-spacing:8px;
+color:#071d33;
+}
+
+.seller-pin-actions{
+display:flex;
+gap:10px;
+margin-top:14px;
+}
+
+.seller-pin-actions button{
+flex:1;
+height:52px;
+border-radius:16px;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+}
+
+.seller-pin-cancel{
+background:white;
+color:#1877F2;
+border:1px solid #b9d7ff;
+}
+
+.seller-pin-open{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border:none;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+}
+
+.install-overlay{
+position:fixed;
+inset:0;
+background:rgba(7,29,51,0.38);
+display:none;
+align-items:flex-end;
+justify-content:center;
+padding:18px 14px calc(112px + env(safe-area-inset-bottom));
+z-index:4500;
+backdrop-filter:blur(3px);
+}
+
+.install-overlay.show{
+display:flex;
+}
+
+.install-banner{
+width:100%;
+max-width:460px;
+background:rgba(255,255,255,0.98);
+border:1px solid rgba(24,119,242,0.12);
+border-radius:28px;
+box-shadow:0 22px 52px rgba(7,29,51,0.28);
+padding:22px 18px 18px;
+backdrop-filter:blur(12px);
+}
+
+.install-top{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.install-icon{
+width:64px;
+height:64px;
+border-radius:20px;
+background:linear-gradient(135deg,#2b92ff,#1877F2);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+flex-shrink:0;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+}
+
+.install-text{
+flex:1;
+min-width:0;
+}
+
+.install-title{
+font-size:22px;
+font-weight:900;
+color:#071d33;
+line-height:28px;
+}
+
+.install-subtitle{
+font-size:14px;
+font-weight:700;
+color:#607086;
+line-height:21px;
+margin-top:4px;
+}
+
+.install-actions{
+display:flex;
+gap:10px;
+margin-top:18px;
+}
+
+.install-actions button{
+border:none;
+border-radius:17px;
+height:52px;
+padding:0 16px;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+flex:1;
+}
+
+.install-later{
+background:#eef5ff;
+color:#1877F2;
+}
+
+.install-now{
+background:#1877F2;
+color:white;
+box-shadow:0 7px 14px rgba(24,119,242,0.20);
+}
+
+.install-now:disabled{
+opacity:0.78;
+cursor:not-allowed;
+}
+
+.install-status-overlay{
+position:fixed;
+inset:0;
+background:rgba(7,29,51,0.52);
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:12000;
+backdrop-filter:blur(6px);
+}
+
+.install-status-overlay.show{
+display:flex;
+}
+
+.install-status-card{
+width:100%;
+max-width:390px;
+background:rgba(255,255,255,0.98);
+border:1px solid rgba(24,119,242,0.14);
+border-radius:28px;
+padding:30px 24px;
+text-align:center;
+box-shadow:0 24px 60px rgba(7,29,51,0.32);
+}
+
+.install-status-spinner{
+width:66px;
+height:66px;
+border-radius:50%;
+border:6px solid #eaf3ff;
+border-top-color:#1877F2;
+margin:0 auto 18px;
+animation:installSpin 0.85s linear infinite;
+}
+
+.install-status-check{
+width:66px;
+height:66px;
+border-radius:50%;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+display:none;
+align-items:center;
+justify-content:center;
+font-size:28px;
+margin:0 auto 18px;
+box-shadow:0 10px 24px rgba(24,119,242,0.26);
+}
+
+.install-status-overlay.complete .install-status-spinner{
+display:none;
+}
+
+.install-status-overlay.complete .install-status-check{
+display:flex;
+}
+
+.install-status-overlay.complete .install-progress,
+.install-status-overlay.complete .install-percent{
+display:none;
+}
+
+.install-status-title{
+font-size:24px;
+line-height:30px;
+font-weight:900;
+color:#071d33;
+}
+
+.install-status-message{
+font-size:15px;
+line-height:22px;
+font-weight:800;
+color:#607086;
+margin-top:8px;
+}
+
+.install-percent{
+font-size:26px;
+line-height:32px;
+font-weight:900;
+color:#1877F2;
+margin-top:18px;
+}
+
+.install-progress{
+height:12px;
+background:#eaf3ff;
+border-radius:999px;
+overflow:hidden;
+margin-top:10px;
+box-shadow:inset 0 1px 4px rgba(24,119,242,0.10);
+}
+
+.install-progress-bar{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#1877F2,#4e9cff);
+border-radius:999px;
+transition:width 0.35s ease;
+}
+
+@keyframes installSpin{
+100%{transform:rotate(360deg);}
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+<div class="header">
+<div id="welcome"></div>
+<div class="right-header">
+<div class="brand">Purple Fashion</div>
+<div class="profile-btn" onclick="toggleProfileMenu()">
+<i class="fa-solid fa-user"></i>
+</div>
+<div id="profileMenu">
+<button onclick="logout()" style="border:none;background:#1877F2;color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
+</div>
+</div>
+</div>
+
+<div class="search-section">
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search Products..." id="searchInput" enterkeyhint="search">
+</div>
+</div>
+
+<div class="banner-slider" id="bannerSlider">
+<div class="banner-slide" id="bannerSlide"></div>
+</div>
+
+<h2 class="section-title">Categories</h2>
+<div class="categories" id="categories"></div>
+
+<div class="category-section-title" id="sectionTitle">New Arrivals</div>
+<div class="products" id="mainProducts"></div>
+
+<div class="home-size-toast" id="homeSizeToast">
+<div class="home-size-toast-icon">
+<i class="fa-solid fa-circle-exclamation"></i>
+</div>
+<div class="home-size-toast-text" id="homeSizeToastText">Please select a size</div>
+</div>
+
+<div class="order-toast" id="orderToast">
+<div class="order-toast-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</div>
+<div class="order-toast-text" id="orderToastText"></div>
+</div>
+
+<div class="install-overlay" id="installBanner">
+<div class="install-banner">
+<div class="install-top">
+<div class="install-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</div>
+<div class="install-text">
+<div class="install-title">Install Purple Fashion</div>
+<div class="install-subtitle" id="installSubtitle">For faster shopping and order tracking, add Purple Fashion to your home screen.</div>
+</div>
+</div>
+<div class="install-actions">
+<button class="install-later" id="installLaterBtn" onclick="hideInstallBanner(2,true)">Later</button>
+<button class="install-now" id="installNowBtn" onclick="installSellerApp()">Install App</button>
+</div>
+</div>
+</div>
+
+<div class="install-status-overlay" id="installStatusOverlay">
+<div class="install-status-card">
+<div class="install-status-spinner"></div>
+<div class="install-status-check"><i class="fa-solid fa-check"></i></div>
+<div class="install-status-title" id="installStatusTitle">Installing Purple Fashion...</div>
+<div class="install-status-message" id="installStatusMessage">Please wait while Purple Fashion is being added to your home screen.</div>
+<div class="install-percent" id="installPercent">0%</div>
+<div class="install-progress">
+<div class="install-progress-bar" id="installProgressBar"></div>
+</div>
+</div>
+</div>
+
+<div class="bottom-nav">
+<div class="nav-item active" onclick="handleHomeNavTap()"><i class="fa-solid fa-house"></i><span>Home</span></div>
+<div class="nav-item" onclick="window.location.href='products.html'"><i class="fa-solid fa-box"></i><span>Product</span></div>
+<div class="nav-item" onclick="window.location.href='cart.html'"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><div class="cart-badge" id="cartCount">0</div></div>
+<div class="nav-item" onclick="window.location.href='track.html'"><i class="fa-solid fa-truck"></i><span>Track</span></div>
+<div class="nav-item" onclick="window.location.href='grow.html'"><i class="fa-solid fa-chart-line"></i><span>Grow</span></div>
+</div>
+
+<div class="seller-pin-overlay" id="sellerPinOverlay">
+<div class="seller-pin-box">
+<div class="seller-pin-title" id="sellerPinTitle">Seller Access</div>
+<div class="seller-pin-text" id="sellerPinText">Enter PIN to open seller users.</div>
+<input class="seller-pin-input" id="sellerPinInput" type="tel" inputmode="numeric" maxlength="4" placeholder="PIN" oninput="this.value=this.value.replace(/\D/g,'').slice(0,4)">
+<div class="seller-pin-actions">
+<button class="seller-pin-cancel" onclick="closeSellerPin()">Cancel</button>
+<button class="seller-pin-open" onclick="openSellerUsers()">Open</button>
+</div>
+</div>
+</div>
+
+<div class="popup" id="popup">
+<div class="popup-header">
+<div class="close-popup" onclick="closePopup()">x</div>
+</div>
+<div class="popup-slider">
+<div class="slide-btn slide-left" onclick="changeSlide(-1)">&#10094;</div>
+<div class="popup-images" id="popupImages"></div>
+<div class="slide-btn slide-right" onclick="changeSlide(1)">&#10095;</div>
+</div>
+<div class="dots" id="dots"></div>
+<div class="popup-content">
+<div class="popup-id" id="popupId"></div>
+<div class="popup-title" id="popupName"></div>
+<div class="popup-price" id="popupPrice"></div>
+<div id="offerSection"></div>
+<div id="popupStock"></div>
+<div class="size-section">
+<div class="size-title">Select Size</div>
+<div class="size-boxes" id="popupSize"></div>
+</div>
+<div class="popup-desc" id="popupDesc"></div>
+<div class="review-box" id="reviewBox"></div>
+</div>
+<div class="popup-buttons">
+<button class="more-btn" id="moreBtn">More Like This</button>
+<button class="add-btn" onclick="popupAddToCart()">Add To Cart</button>
+</div>
+</div>
+
+<script>
+const PRODUCT_API = APP_CONFIG.scriptApi;
+const CACHE_KEY = "purpleFashionProductsCacheV1";
+const SELLER_WHATSAPP = APP_CONFIG.sellerWhatsApp;
+
+let allProducts = [];
+let visibleProducts = [];
+let globalSale = null;
+let currentProduct = null;
+let currentSlide = 0;
+let selectedPopupSize = "";
+let viewingTimer = null;
+
+let banners = [];
+let currentBanner = 0;
+let bannerTimer = null;
+let orderToastTimer = null;
+let orderToastHideTimer = null;
+let homeNavTapCount = 0;
+let homeNavTapTimer = null;
+let deferredInstallPrompt = null;
+let installCompleted = false;
+let installReminderTimer = null;
+let installCompleteTimer = null;
+let installProgressTimer = null;
+
+function isStandaloneApp(){
+return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+}
+
+function isIosDevice(){
+return /iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+
+function canShowInstallBanner(){
+let laterUntil = Number(localStorage.getItem("purpleFashionInstallLaterUntil")) || 0;
+return !isStandaloneApp() && Date.now() > laterUntil;
+}
+
+function showInstallBanner(){
+let banner = document.getElementById("installBanner");
+
+if(banner && canShowInstallBanner()){
+banner.classList.add("show");
+}
+}
+
+function scheduleInstallReminder(delay){
+if(installReminderTimer){
+clearTimeout(installReminderTimer);
+}
+
+if(isStandaloneApp() || installCompleted){
+return;
+}
+
+installReminderTimer = setTimeout(showInstallBanner,delay);
+}
+
+function hideInstallBanner(minutes,showReminder){
+let banner = document.getElementById("installBanner");
+
+if(minutes){
+localStorage.setItem("purpleFashionInstallLaterUntil",String(Date.now() + (minutes * 60 * 1000)));
+}
+
+if(banner){
+banner.classList.remove("show");
+}
+
+if(showReminder){
+showHomeCartToast("For better experience, install Purple Fashion");
+}
+
+scheduleInstallReminder((minutes || 2) * 60 * 1000);
+}
+
+function setInstallLoading(isLoading){
+let btn = document.getElementById("installNowBtn");
+let later = document.getElementById("installLaterBtn");
+let subtitle = document.getElementById("installSubtitle");
+
+if(!btn || !later || !subtitle){
+return;
+}
+
+if(isLoading){
+btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Installing...`;
+btn.disabled = true;
+later.disabled = true;
+subtitle.innerText = "Tap Install to Start App Setup";
+}
+else{
+btn.innerHTML = "Install App";
+btn.disabled = false;
+later.disabled = false;
+subtitle.innerText = "For faster shopping and order tracking, add Purple Fashion to your home screen.";
+}
+}
+
+function showInstallStatus(type){
+let overlay = document.getElementById("installStatusOverlay");
+let title = document.getElementById("installStatusTitle");
+let message = document.getElementById("installStatusMessage");
+let percent = document.getElementById("installPercent");
+let progress = document.getElementById("installProgressBar");
+
+if(!overlay || !title || !message || !percent || !progress){
+return;
+}
+
+overlay.classList.remove("complete");
+
+if(type === "complete"){
+overlay.classList.add("complete");
+title.innerText = "Installation Complete";
+message.innerText = "Purple Fashion is now on your home screen.";
+percent.innerText = "100%";
+progress.style.width = "100%";
+}
+else{
+title.innerText = "Installing Purple Fashion...";
+message.innerText = "Please wait while Purple Fashion is being added to your home screen.";
+percent.innerText = "0%";
+progress.style.width = "0%";
+}
+
+overlay.classList.add("show");
+}
+
+function setInstallProgress(value){
+let percent = document.getElementById("installPercent");
+let progress = document.getElementById("installProgressBar");
+let safeValue = Math.max(0,Math.min(100,Math.round(value)));
+
+if(percent){
+percent.innerText = safeValue + "%";
+}
+
+if(progress){
+progress.style.width = safeValue + "%";
+}
+}
+
+function startInstallProgress(duration,done){
+let startTime = Date.now();
+
+if(installProgressTimer){
+clearInterval(installProgressTimer);
+}
+
+setInstallProgress(0);
+
+installProgressTimer = setInterval(function(){
+let elapsed = Date.now() - startTime;
+let progress = Math.min(elapsed / duration,1);
+let eased = 1 - Math.pow(1 - progress,2);
+let value = Math.min(99,eased * 100);
+
+setInstallProgress(value);
+
+if(progress >= 1){
+clearInterval(installProgressTimer);
+installProgressTimer = null;
+setInstallProgress(100);
+
+if(done){
+done();
+}
+}
+},450);
+}
+
+function stopInstallProgress(){
+if(installProgressTimer){
+clearInterval(installProgressTimer);
+installProgressTimer = null;
+}
+}
+
+function hideInstallStatus(){
+let overlay = document.getElementById("installStatusOverlay");
+
+stopInstallProgress();
+
+if(overlay){
+overlay.classList.remove("show");
+overlay.classList.remove("complete");
+}
+}
+
+function installSellerApp(){
+if(deferredInstallPrompt){
+setInstallLoading(true);
+deferredInstallPrompt.prompt();
+deferredInstallPrompt.userChoice.then(function(choice){
+deferredInstallPrompt = null;
+
+if(choice.outcome === "accepted"){
+localStorage.setItem("purpleFashionInstallLaterUntil",String(Date.now() + (24 * 60 * 60 * 1000)));
+hideInstallBanner(30);
+showInstallStatus("installing");
+}
+else{
+setInstallLoading(false);
+hideInstallStatus();
+showHomeCartToast("Install cancelled. You can install later.");
+hideInstallBanner(2);
+}
+}).catch(function(){
+deferredInstallPrompt = null;
+setInstallLoading(false);
+hideInstallStatus();
+showHomeCartToast("Install cancelled. You can install later.");
+hideInstallBanner(2);
+});
+return;
+}
+
+if(isIosDevice()){
+showHomeCartToast("Tap Share, then Add to Home Screen");
+}
+else{
+showHomeCartToast("Open Chrome menu and tap Install app");
+}
+}
+
+window.addEventListener("beforeinstallprompt",function(event){
+event.preventDefault();
+deferredInstallPrompt = event;
+scheduleInstallReminder(2500);
+});
+
+window.addEventListener("appinstalled",function(){
+installCompleted = true;
+if(installReminderTimer){
+clearTimeout(installReminderTimer);
+}
+setInstallLoading(false);
+hideInstallBanner(1440);
+showInstallStatus("installing");
+
+if(installCompleteTimer){
+clearTimeout(installCompleteTimer);
+}
+
+startInstallProgress(40000,function(){
+showInstallStatus("complete");
+setTimeout(hideInstallStatus,3500);
+});
+});
+
+window.addEventListener("load",function(){
+if("serviceWorker" in navigator){
+navigator.serviceWorker.register("sw.js").catch(function(){});
+}
+
+scheduleInstallReminder(2500);
+});
+
+let user = localStorage.getItem("user");
+if(!user){
+window.location.replace("login.html");
+}
+
+window.addEventListener("pageshow", function(){
+if(!localStorage.getItem("user")){
+window.location.replace("login.html");
+}
+});
+
+let hour = new Date().getHours();
+let greeting = "";
+if(hour < 12){
+greeting = "Good Morning";
+}
+else if(hour < 17){
+greeting = "Good Afternoon";
+}
+else{
+greeting = "Good Evening";
+}
+document.getElementById("welcome").innerText = greeting + ", " + user;
+
+function logout(){
+localStorage.removeItem("user");
+sessionStorage.setItem("purpleFashionLoggedOut","yes");
+window.location.replace("login.html?logout=1");
+}
+
+function toggleProfileMenu(){
+let menu = document.getElementById("profileMenu");
+menu.style.display = menu.style.display == "block" ? "none" : "block";
+}
+
+function handleHomeNavTap(){
+homeNavTapCount++;
+
+if(homeNavTapTimer){
+clearTimeout(homeNavTapTimer);
+}
+
+homeNavTapTimer = setTimeout(function(){
+homeNavTapCount = 0;
+},1800);
+
+if(homeNavTapCount >= 5){
+homeNavTapCount = 0;
+openSellerPin();
+}
+}
+
+function openSellerPin(){
+let overlay = document.getElementById("sellerPinOverlay");
+let input = document.getElementById("sellerPinInput");
+
+if(!overlay || !input){
+return;
+}
+
+overlay.classList.add("active");
+input.value = "";
+setTimeout(function(){
+input.focus();
+},100);
+}
+
+function closeSellerPin(){
+let overlay = document.getElementById("sellerPinOverlay");
+
+if(overlay){
+overlay.classList.remove("active");
+}
+}
+
+function adminLogin(pin){
+return fetch(PRODUCT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"adminLogin",
+pin:pin,
+page:"users",
+deviceId:getAdminDeviceId()
+})
+}).then(res=>res.json());
+}
+
+function getAdminDeviceId(){
+let key = "purpleFashionAdminDeviceId";
+let deviceId = localStorage.getItem(key);
+
+if(!deviceId){
+deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+localStorage.setItem(key,deviceId);
+}
+
+return deviceId;
+}
+
+function getSellerSessionId(){
+let key = "purpleFashionSessionId";
+let sessionId = sessionStorage.getItem(key);
+
+if(!sessionId){
+sessionId = "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+sessionStorage.setItem(key,sessionId);
+}
+
+return sessionId;
+}
+
+function getSellerUserPhone(){
+let loginPhone = String(localStorage.getItem("purpleFashionUserPhone") || "").replace(/\D/g,"");
+
+if(loginPhone){
+return loginPhone;
+}
+
+try{
+let address = JSON.parse(localStorage.getItem("purpleFashionDeliveryAddress")) || {};
+return String(address.phone || "").replace(/\D/g,"");
+}
+catch(error){
+return "";
+}
+}
+
+function getStockRequestId(product){
+return "SR" + Date.now() + "_" + String(product["Product ID"] || "").replace(/\W/g,"");
+}
+
+function getStockRequestKey(product){
+let productId = String(product && product["Product ID"] ? product["Product ID"] : "").trim();
+let userKey = getSellerUserPhone() || String(localStorage.getItem("user") || "").trim().toLowerCase() || "guest";
+return "purpleFashionStockRequest_" + productId + "_" + userKey;
+}
+
+function hasStockRequest(product){
+return localStorage.getItem(getStockRequestKey(product)) === "Waiting";
+}
+
+function markStockRequest(product){
+localStorage.setItem(getStockRequestKey(product),"Waiting");
+}
+
+function clearStockRequest(product){
+localStorage.removeItem(getStockRequestKey(product));
+}
+
+function saveStockRequest(product){
+return fetch(PRODUCT_API,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify({
+type:"stockRequest",
+requestId:getStockRequestId(product),
+dateTime:new Date().toISOString(),
+username:localStorage.getItem("user") || "",
+phone:getSellerUserPhone(),
+productId:product["Product ID"] || "",
+productName:product["Product Name"] || "",
+status:"Waiting"
+})
+}).catch(function(){});
+}
+
+function openAvailabilityWhatsApp(product){
+let username = localStorage.getItem("user") || "Customer";
+let message =
+"Hi Purple Fashion,\n" +
+"I am " + username + " interested in this product.\n\n" +
+"Product Name: " + (product["Product Name"] || "") + "\n" +
+"Product ID: " + (product["Product ID"] || "") + "\n\n" +
+"Please inform me when it is available again.";
+
+window.location.href = "https://wa.me/" + SELLER_WHATSAPP + "?text=" + encodeURIComponent(message);
+}
+
+function requestProductAvailability(product){
+if(!product){
+return;
+}
+
+if(hasStockRequest(product)){
+showHomeCartToast("Request already sent");
+return;
+}
+
+markStockRequest(product);
+saveStockRequest(product);
+showHomeCartToast("Opening WhatsApp");
+setTimeout(function(){
+openAvailabilityWhatsApp(product);
+},250);
+}
+
+function trackUserEvent(action,product){
+if(!product){
+return;
+}
+
+fetch(PRODUCT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"userEvent",
+dateTime:new Date().toISOString(),
+username:localStorage.getItem("user") || "",
+phone:getSellerUserPhone(),
+productId:product["Product ID"] || product.id || "",
+productName:product["Product Name"] || product.name || "",
+category:product["Category"] || product.category || "",
+action:action,
+sessionId:getSellerSessionId(),
+deviceId:getAdminDeviceId()
+})
+}).catch(function(){});
+}
+
+function showSecurityModal(title,message,icon){
+let existing = document.getElementById("adminSecurityModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "adminSecurityModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
+<div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showAdminLoginMessage(result){
+if(result && result.code === "warning"){
+showSecurityModal("Warning",result.message || "One more wrong PIN will block seller access for 24 hours.","triangle-exclamation");
+return true;
+}
+
+if(result && result.code === "blocked"){
+showSecurityModal("Access Blocked",result.message || "Try again after 24 hours.","lock");
+return true;
+}
+
+return false;
+}
+
+function openSellerUsers(){
+let input = document.getElementById("sellerPinInput");
+let pin = input ? input.value.trim() : "";
+
+showHomeCartToast("Checking PIN");
+
+adminLogin(pin).then(function(result){
+if(!(result && result.success && result.token)){
+if(showAdminLoginMessage(result)){
+return;
+}
+
+showHomeCartToast(result && result.message ? result.message : "Wrong PIN");
+return;
+}
+
+sessionStorage.setItem("purpleFashionAdminToken",result.token);
+sessionStorage.setItem("purpleFashionUsersUnlocked","yes");
+window.location.href = "users.html";
+}).catch(function(){
+showHomeCartToast("Login server error");
+});
+}
+
+function normalizeImageUrl(url){
+if(!url){
+return "";
+}
+
+let cleanUrl = String(url).trim();
+let driveMatch =
+cleanUrl.match(/drive\.google\.com\/file\/d\/([^/]+)/) ||
+cleanUrl.match(/[?&]id=([^&]+)/);
+
+if(driveMatch && driveMatch[1]){
+return "https://lh3.googleusercontent.com/d/" + driveMatch[1];
+}
+
+return cleanUrl;
+}
+
+function imageLoaded(img){
+img.classList.add("loaded");
+}
+
+function renderLoadingState(){
+let categoryHTML = "";
+for(let i = 0; i < 4; i++){
+categoryHTML += `<div class="category-skeleton"></div>`;
+}
+document.getElementById("categories").innerHTML = categoryHTML;
+
+let productHTML = "";
+for(let i = 0; i < 4; i++){
+productHTML += `
+<div class="product-skeleton">
+<div class="skeleton-img"></div>
+<div class="skeleton-line short"></div>
+<div class="skeleton-line medium"></div>
+<div class="skeleton-line price"></div>
+<div class="skeleton-line"></div>
+<div class="skeleton-button"></div>
+</div>
+`;
+}
+document.getElementById("mainProducts").innerHTML = productHTML;
+}
+
+function loadDynamicBanners(data){
+let firstRow = data[0] || {};
+banners = [
+firstRow["Banner 1"],
+firstRow["Banner 2"],
+firstRow["Banner 3"]
+].map(normalizeImageUrl).filter(img => img && img.trim() !== "");
+
+let bannerHTML = "";
+banners.forEach((img,index)=>{
+bannerHTML += `
+<img
+src="${img}"
+class="banner-img"
+fetchpriority="${index === 0 ? "high" : "low"}"
+loading="${index === 0 ? "eager" : "lazy"}"
+decoding="async"
+onload="imageLoaded(this)"
+alt="Purple Fashion offer banner"
+>
+`;
+});
+
+document.getElementById("bannerSlide").innerHTML = bannerHTML;
+document.getElementById("bannerSlider").classList.toggle("has-images", banners.length > 0);
+
+if(bannerTimer){
+clearInterval(bannerTimer);
+}
+
+if(banners.length > 1){
+bannerTimer = setInterval(()=>{
+currentBanner++;
+if(currentBanner >= banners.length){
+currentBanner = 0;
+}
+document.getElementById("bannerSlide").style.transform = `translateX(-${currentBanner * 100}%)`;
+},5000);
+}
+}
+
+function prepareVisibleProducts(data){
+return data.filter(product => {
+let showValue = (product["Show"] || "").toString().trim().toLowerCase();
+return showValue === "yes" || showValue === "new";
+});
+}
+
+function findGlobalSale(data){
+let saleColumns = [
+{key:"Big Day Sale", label:"Big Day Sale"},
+{key:"Festive Discount", label:"Festive Discount"},
+{key:"Flat Discount", label:"Flat Discount"}
+];
+
+for(let sale of saleColumns){
+
+let rowWithSale = data.find(item => Number(item[sale.key]) > 0);
+
+if(rowWithSale){
+return {
+label:sale.label,
+percent:Number(rowWithSale[sale.key])
+};
+}
+
+}
+
+return null;
+}
+
+function renderStore(data, fromCache){
+allProducts = prepareVisibleProducts(data);
+
+if(!allProducts.length && Array.isArray(data) && data.length){
+allProducts = data.filter(product => {
+let name = (product["Product Name"] || "").toString().trim();
+let id = (product["Product ID"] || "").toString().trim();
+let showValue = (product["Show"] || "").toString().trim().toLowerCase();
+return (name || id) && showValue !== "no";
+});
+}
+
+if(!allProducts.length){
+document.getElementById("categories").innerHTML = "";
+document.getElementById("mainProducts").innerHTML =
+"<div style='padding:30px;color:#666;'>Products are not available right now. Please check the Sheet Show column.</div>";
+return;
+}
+
+globalSale = findGlobalSale(data);
+ 
+loadDynamicBanners(data);
+let categories = getOrderedCategories(allProducts);
+loadCategories(categories);
+
+let defaultCategory = categories[0] || "New Arrivals";
+let defaultProducts = defaultCategory
+? allProducts.filter(item => (item.Category || "").trim() === defaultCategory)
+: [];
+
+loadMainProducts(defaultProducts.length ? defaultProducts : allProducts, defaultCategory);
+startOrderToast();
+
+if(!fromCache){
+localStorage.setItem(CACHE_KEY, JSON.stringify({
+savedAt: Date.now(),
+data: data
+}));
+}
+}
+
+function loadCachedStore(){
+let cached = localStorage.getItem(CACHE_KEY);
+if(!cached){
+return false;
+}
+
+try{
+let parsed = JSON.parse(cached);
+if(Array.isArray(parsed.data)){
+renderStore(parsed.data, true);
+return true;
+}
+}
+catch(error){
+localStorage.removeItem(CACHE_KEY);
+}
+
+return false;
+}
+
+renderLoadingState();
+loadCachedStore();
+
+fetch(PRODUCT_API)
+.then(res => res.json())
+.then(data => {
+renderStore(data, false);
+})
+.catch(() => {
+if(!allProducts.length){
+document.getElementById("mainProducts").innerHTML =
+"<div style='padding:30px;color:#666;'>Products are loading slowly. Please check your internet and refresh.</div>";
+}
+});
+
+function loadMainProducts(data,title){
+document.getElementById("sectionTitle").innerText = title;
+visibleProducts = data;
+let html = "";
+
+if(data.length === 0){
+document.getElementById("mainProducts").innerHTML =
+"<div style='padding:30px;color:#666;'>No products available</div>";
+return;
+}
+
+data.forEach((product,index)=>{
+let imageUrl = normalizeImageUrl(product["Image Url"] || "");
+let inStock = isProductInStock(product);
+if(inStock){
+clearStockRequest(product);
+}
+let requested = !inStock && hasStockRequest(product);
+let cartButtonText = inStock ? "Add To Cart" : (requested ? "Request Sent" : "Check Availability");
+let cartButtonDisabled = requested ? "disabled" : "";
+html += `
+<div class="product-card" onclick="openPopupByIndex(${index})">
+${String(product["Category"] || "").trim().toLowerCase() === "new arrivals" ? '<div class="new-badge">NEW</div>' : ''}
+<img
+src="${imageUrl}"
+loading="${index < 4 ? "eager" : "lazy"}"
+fetchpriority="${index < 4 ? "high" : "auto"}"
+decoding="async"
+onload="imageLoaded(this)"
+alt="${product["Product Name"] || "Purple Fashion product"}"
+>
+<div class="product-id">${product["Product ID"] || ""}</div>
+<div class="product-name">${product["Product Name"] || ""}</div>
+<div class="product-price">Rs  ${product["Price"] || ""}</div>
+<div class="product-desc">${product["Description1"] || ""}</div>
+<button class="cart-btn" ${cartButtonDisabled} onclick="event.stopPropagation();openPopupByIndex(${index})">${cartButtonText}</button>
+</div>
+`;
+});
+
+document.getElementById("mainProducts").innerHTML = html;
+}
+
+function getOrderedCategories(data){
+let categories = [];
+
+data.forEach(item=>{
+let category = (item.Category || "").trim();
+
+if(category && !categories.includes(category)){
+categories.push(category);
+}
+});
+
+let newArrivals = categories.find(cat => cat.toLowerCase() === "new arrivals");
+
+if(newArrivals){
+categories = [
+newArrivals,
+...categories.filter(cat => cat.toLowerCase() !== "new arrivals")
+];
+}
+
+return categories;
+}
+
+function loadCategories(categories){
+let html = "";
+categories.forEach((cat,index)=>{
+html += `
+<div class="category-btn ${index==0 ? "active" : ""}" onclick="filterCategory('${cat}',this)">
+${cat}
+</div>
+`;
+});
+
+document.getElementById("categories").innerHTML = html;
+}
+
+function filterCategory(category,el){
+let searchInput = document.getElementById("searchInput");
+if(searchInput){
+searchInput.value = "";
+}
+
+document.querySelectorAll(".category-btn").forEach(btn=>btn.classList.remove("active"));
+el.classList.add("active");
+scrollCategoryButtonIntoView(el);
+let filtered = allProducts.filter(item => item.Category == category);
+loadMainProducts(filtered,category);
+}
+
+function scrollCategoryButtonIntoView(button){
+if(!button){
+return;
+}
+
+let container = document.getElementById("categories");
+
+if(!container){
+return;
+}
+
+let targetScroll = button.offsetLeft - (container.clientWidth / 2) + (button.offsetWidth / 2);
+
+container.scrollTo({
+left:Math.max(targetScroll,0),
+behavior:"smooth",
+});
+}
+
+function updateCategoryActiveFromSearch(value){
+let matchedButton = null;
+
+document.querySelectorAll(".category-btn").forEach(btn=>{
+let categoryText = btn.innerText.trim().toLowerCase();
+btn.classList.remove("active");
+
+if(!matchedButton && value && categoryText.includes(value)){
+matchedButton = btn;
+}
+});
+
+if(matchedButton){
+matchedButton.classList.add("active");
+scrollCategoryButtonIntoView(matchedButton);
+}
+}
+
+function openPopupByIndex(index){
+let product = visibleProducts[index];
+
+if(product){
+openPopup(product);
+}
+}
+
+function cleanPrice(value){
+let priceText = String(value || "0").replace(/[^\d.]/g,"");
+return Number(priceText) || 0;
+}
+
+function isProductInStock(product){
+let stock = String(product && product["Stock"] ? product["Stock"] : "").trim().toLowerCase();
+return stock === "yes" || stock === "in stock";
+}
+
+function getFinalPrice(product){
+let price = cleanPrice(product["Price"]);
+let todayOffer = cleanPrice(product["Today Offer"]);
+let isInStock = isProductInStock(product);
+
+if(globalSale && isInStock && price > 0){
+return Math.round(price - ((price * globalSale.percent) / 100));
+}
+
+if(todayOffer > 0 && price > 0){
+return Math.max(price - todayOffer, 0);
+}
+
+return price;
+}
+
+function getDefaultSize(product){
+let sizeValue = String(product["Size"] || "Free Size").trim();
+
+if(sizeValue.toLowerCase() === "free size" || sizeValue.toLowerCase() === "standard size"){
+return sizeValue;
+}
+
+return sizeValue.replace(/\s+/g,"").toUpperCase().split(",")[0] || "Free Size";
+}
+
+function showHomeCartToast(message){
+let toast = document.getElementById("homeSizeToast");
+let text = document.getElementById("homeSizeToastText");
+
+if(!toast){
+return;
+}
+
+if(text){
+text.innerHTML = message;
+}
+
+toast.classList.add("show");
+setTimeout(function(){
+toast.classList.remove("show");
+},1800);
+}
+
+function saveProductToCart(product,size){
+if(!isProductInStock(product)){
+return;
+}
+
+let cart = [];
+
+try{
+cart = JSON.parse(localStorage.getItem("cart")) || [];
+}
+catch(error){
+cart = [];
+}
+
+let selectedSize = size || getDefaultSize(product);
+let id = product["Product ID"] || "";
+let existing = cart.find(item => String(item.id) === String(id) && String(item.size) === String(selectedSize));
+
+if(existing){
+existing.quantity = (Number(existing.quantity) || 1) + 1;
+existing.selected = true;
+}
+else{
+cart.push({
+id:id,
+name:product["Product Name"] || "Purple Fashion Product",
+price:cleanPrice(product["Price"]),
+finalPrice:getFinalPrice(product),
+image:normalizeImageUrl(product["Image Url"] || ""),
+size:selectedSize,
+quantity:1,
+selected:true
+});
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+trackUserEvent("addToCart",product);
+updateCartCount();
+}
+
+function addToCart(id,name,price){
+let product = allProducts.find(item => String(item["Product ID"]) === String(id));
+
+if(product){
+saveProductToCart(product,getDefaultSize(product));
+return;
+}
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.push({
+id:id,
+name:name || "Purple Fashion Product",
+price:cleanPrice(price),
+finalPrice:cleanPrice(price),
+image:"",
+size:"Free Size",
+quantity:1,
+selected:true
+});
+localStorage.setItem("cart",JSON.stringify(cart));
+trackUserEvent("addToCart",{
+id:id,
+name:name || "Purple Fashion Product",
+category:""
+});
+updateCartCount();
+}
+
+function popupAddToCart(){
+if(!currentProduct){
+return;
+}
+
+if(!isProductInStock(currentProduct)){
+requestProductAvailability(currentProduct);
+return;
+}
+
+let sizeValue = String(currentProduct["Size"] || "Free Size").trim();
+let isFreeSize = sizeValue.toLowerCase() === "free size" || sizeValue.toLowerCase() === "standard size";
+
+if(!isFreeSize && !selectedPopupSize){
+showHomeCartToast("Please select a size");
+return;
+}
+
+saveProductToCart(currentProduct,selectedPopupSize || getDefaultSize(currentProduct));
+window.location.href = "cart.html";
+ }
+
+function updateCartCount(){
+let cart = [];
+
+try{
+cart = JSON.parse(localStorage.getItem("cart")) || [];
+}
+catch(error){
+cart = [];
+}
+
+let count = cart.reduce((total,item)=>total + (Number(item.quantity) || 1),0);
+document.getElementById("cartCount").innerText = count;
+}
+updateCartCount();
+
+document.getElementById("searchInput").addEventListener("input",function(){
+let value = this.value.toLowerCase().trim();
+
+if(value === ""){
+let categories = getOrderedCategories(allProducts);
+let defaultCategory = categories[0] || "New Arrivals";
+let defaultProducts = defaultCategory
+? allProducts.filter(item => (item.Category || "").trim() === defaultCategory)
+: [];
+
+let firstCategoryButton = null;
+document.querySelectorAll(".category-btn").forEach((btn,index)=>{
+btn.classList.toggle("active", index === 0);
+
+if(index === 0){
+firstCategoryButton = btn;
+}
+});
+
+scrollCategoryButtonIntoView(firstCategoryButton);
+loadMainProducts(defaultProducts.length ? defaultProducts : allProducts, defaultCategory);
+return;
+}
+
+let filtered = allProducts.filter(item => {
+let name = (item["Product Name"] || "").toLowerCase();
+let category = (item["Category"] || "").toLowerCase();
+let desc = (item["Description1"] || "").toLowerCase();
+let id = (item["Product ID"] || "").toLowerCase();
+return name.includes(value) || category.includes(value) || desc.includes(value) || id.includes(value);
+});
+
+updateCategoryActiveFromSearch(value);
+loadMainProducts(filtered,"Search Results");
+});
+
+document.getElementById("searchInput").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+this.blur();
+}
+});
+
+document.getElementById("sellerPinInput").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+openSellerUsers();
+}
+});
+
+const reviewLinesByCategory = {
+"saree":[
+"Soft drape feels graceful and easy",
+"Border work gives a premium look",
+"Perfect choice for festive styling",
+"Colour looks rich in real view",
+"Fabric feels light and elegant",
+"Traditional look feels very classy",
+"Good pick for family occasions",
+"Design looks neat and beautiful"
+],
+"kurti":[
+"Soft fabric feels comfortable daily",
+"Fitting looks neat and easy",
+"Print gives a fresh stylish look",
+"Good choice for everyday ethnic wear",
+"Comfort and style feel balanced",
+"Colour looks smart for daily use",
+"Stitching finish feels clean",
+"Easy to style with leggings"
+],
+"tops":[
+"Comfortable fit for casual outings",
+"Colour looks fresh and modern",
+"Easy to pair with jeans",
+"Fabric feels light for daily wear",
+"Simple style looks very smart",
+"Good pick for regular fashion",
+"Design feels trendy and clean",
+"Comfort level feels really nice"
+],
+"palazzo":[
+"Soft fabric gives easy movement",
+"Comfortable fit for daily styling",
+"Pairs well with kurti and tops",
+"Relaxed design feels practical",
+"Good comfort for long wear",
+"Modern look feels simple and smart",
+"Fabric fall looks neat",
+"Easy choice for everyday use"
+],
+"salwar":[
+"Ethnic look feels elegant and neat",
+"Comfortable choice for daily wear",
+"Design feels graceful for occasions",
+"Fabric finish looks clean",
+"Traditional style looks very smart",
+"Good pick for family functions",
+"Colour combination feels classy",
+"Comfort and elegance work well"
+],
+"gown":[
+"Party look feels graceful and premium",
+"Design gives a beautiful festive feel",
+"Perfect choice for special moments",
+"Flow and finish look elegant",
+"Colour looks rich for celebrations",
+"Style feels classy and confident",
+"Good pick for evening wear",
+"Overall look feels very polished"
+],
+"nighty":[
+"Soft fabric feels relaxed for night",
+"Comfortable choice for daily rest",
+"Lightweight feel is very practical",
+"Easy fit makes it comfortable",
+"Good choice for home comfort",
+"Fabric feels soft on skin",
+"Simple design feels useful",
+"Comfort level looks very nice"
+],
+"western":[
+"Modern look feels stylish and clean",
+"Good choice for casual outings",
+"Comfortable fit for everyday fashion",
+"Design feels smart and confident",
+"Easy to style for daily wear",
+"Fresh look feels very trendy",
+"Fabric and finish look neat",
+"Overall style feels premium"
+],
+"kids":[
+"Soft fabric feels comfortable for kids",
+"Cute design looks bright and happy",
+"Easy wear choice for daily use",
+"Comfortable fit for playful movement",
+"Good pick for small occasions",
+"Colour looks fresh and cheerful",
+"Fabric feels gentle and light",
+"Design feels practical for kids"
+],
+"bedsheet":[
+"Fabric feels soft for daily use",
+"Print gives bedroom a fresh look",
+"Colour looks bright and clean",
+"Finish feels practical for home",
+"Good choice for regular bedding",
+"Soft feel looks comfortable",
+"Design adds a fresh room style",
+"Material looks useful for daily rest"
+],
+"trendz":[
+"Fresh style feels modern and smart",
+"Good pick for daily fashion",
+"Design looks clean and premium",
+"Colour and finish feel stylish",
+"Comfort and look feel balanced",
+"Easy choice for regular use",
+"Overall quality looks very nice",
+"Style feels simple and practical"
+]
+};
+
+function getReviewCategory(product){
+let category = String(product["Product Type"] || product["Category"] || "").trim().toLowerCase();
+return reviewLinesByCategory[category] ? category : "trendz";
+}
+
+function getReviewPrice(product){
+let priceText = String(product["Price"] || "0").replace(/[^\d.]/g,"");
+return Number(priceText) || 0;
+}
+
+function getDynamicReviews(product){
+let category = getReviewCategory(product);
+let reviews = [...reviewLinesByCategory[category]];
+let price = getReviewPrice(product);
+let todayOffer = Number(product["Today Offer"]) || 0;
+
+if(price && price < 300){
+reviews.push("Good quality feels strong at this price");
+}
+else if(price >= 900){
+reviews.push("Premium finish feels worth the price");
+}
+
+if(todayOffer > 0){
+reviews.push("Offer price makes it a smart buy");
+}
+
+let productName = String(product["Product Name"] || "").trim();
+if(productName){
+let simpleName = productName.split(/\s+/).slice(-2).join(" ").toLowerCase();
+reviews.push("This " + simpleName + " looks useful and stylish");
+}
+
+let seed = hashText((product["Product ID"] || "") + productName + category);
+let sorted = reviews
+.map(function(review,index){
+return {
+review:review,
+score:seededRandom(seed + index + 1)
+};
+})
+.sort(function(a,b){
+return a.score - b.score;
+})
+.map(function(item){
+return item.review;
+});
+
+return sorted.slice(0,3);
+}
+
+function getProductPriceForViewer(product){
+let priceText = String(product["Price"] || "0").replace(/[^\d.]/g,"");
+let price = Number(priceText) || 0;
+return price;
+}
+
+function getViewerSettingsByPrice(price){
+if(price < 200){
+return {
+min:1,
+max:250,
+step:5
+};
+}
+
+if(price >= 200 && price <= 500){
+return {
+min:80,
+max:650,
+step:9
+};
+}
+
+if(price >= 501 && price <= 800){
+return {
+min:180,
+max:1100,
+step:14
+};
+}
+
+return {
+min:300,
+max:1800,
+step:22
+};
+}
+
+function getShoppingTimePower(){
+let hour = new Date().getHours();
+
+if(hour >= 2 && hour < 6){
+return 0.25;
+}
+
+if(hour >= 6 && hour < 9){
+return 0.45;
+}
+
+if(hour >= 9 && hour < 12){
+return 0.65;
+}
+
+if(hour >= 12 && hour < 16){
+return 0.75;
+}
+
+if(hour >= 16 && hour < 20){
+return 0.9;
+}
+
+if(hour >= 20 && hour < 23){
+return 1;
+}
+
+return 0.6;
+}
+
+function hashText(text){
+let hash = 0;
+text = String(text || "");
+
+for(let i = 0; i < text.length; i++){
+hash = ((hash << 5) - hash) + text.charCodeAt(i);
+hash = hash & hash;
+}
+
+return Math.abs(hash);
+}
+
+function seededRandom(seed){
+let value = Math.sin(seed) * 10000;
+return value - Math.floor(value);
+}
+
+function getStartingViewerCount(product){
+let price = getProductPriceForViewer(product);
+let settings = getViewerSettingsByPrice(price);
+
+let productKey =
+(product["Product ID"] || "") +
+(product["Product Name"] || "") +
+(product["Category"] || "");
+
+let timeBlock = Math.floor(Date.now() / (3 * 60 * 1000));
+let seed = hashText(productKey + timeBlock);
+
+let randomValue = seededRandom(seed);
+let timePower = getShoppingTimePower();
+
+let adjustedRandom = (randomValue * 0.65) + (timePower * 0.35);
+
+let count = Math.floor(
+settings.min + adjustedRandom * (settings.max - settings.min)
+);
+
+return {
+count:count,
+settings:settings
+};
+}
+
+function startViewingCounter(product){
+if(viewingTimer){
+clearInterval(viewingTimer);
+}
+
+let viewerData = getStartingViewerCount(product);
+let viewCount = viewerData.count;
+let settings = viewerData.settings;
+
+function updateViewingText(){
+document.getElementById("popupDesc").innerText =
+(product["Description2"] || "") +
+"\n\nFree Shipping on Prepaid" +
+"\n\nNow " + viewCount + " people viewing this product";
+}
+
+updateViewingText();
+
+viewingTimer = setInterval(function(){
+let movement = Math.floor(Math.random() * (settings.step * 2 + 1)) - settings.step;
+
+if(movement === 0){
+movement = 1;
+}
+
+viewCount = viewCount + movement;
+
+if(viewCount < settings.min){
+viewCount = settings.min + Math.floor(Math.random() * settings.step);
+}
+
+if(viewCount > settings.max){
+viewCount = settings.max - Math.floor(Math.random() * settings.step);
+}
+
+updateViewingText();
+},4000);
+}
+
+const orderPlaces = [
+"Sonarpur","Rajpur","Narendrapur","Garia","Kamalgazi","Baruipur","Subhasgram","Champahati","Harinavi","Kodalia",
+"Boral","Mahamayatala","Patuli","Baishnabghata","Baghajatin","Jadavpur","Tollygunge","Netaji Nagar","Ranikuthi","Bijoygarh",
+"Regent Park","Golf Green","Dhakuria","Lake Gardens","Jodhpur Park","Kasba","Ruby","Anandapur","Mukundapur","Kalighat",
+"Behala","Thakurpukur","Joka","Barisha","New Alipore","Ballygunge","Gariahat","Rashbehari","Kalitala","Pratapgarh",
+"Malanchapara","Dakshin Jagaddal","Chakbaria","Ramchandrapur","Rajpur Bazar","Sonarpur Station","Garia Station","Kavi Nazrul","Shahid Khudiram",
+"Kolkata","North Kolkata","South Kolkata","Central Kolkata","Salt Lake","New Town","Rajarhat","Dumdum","Lake Town","Bangur",
+"Baguiati","Kaikhali","Teghoria","Ultadanga","Maniktala","Shyambazar","Hatibagan","Belgachia","Sealdah","Park Circus",
+"Bhawanipore","Alipore","Chetla","Esplanade","Dharmatala","Chandni Chowk","Burrabazar","Bowbazar","College Street","Shobhabazar",
+"Bagbazar","Howrah","Santragachi","Deshapriya Park","Hindustan Park","Golpark","Lake Terrace","Southern Avenue","Hazra","Elgin",
+"Lansdowne","Minto Park","Quest Mall","Beckbagan","Bondel Gate","Picnic Garden","Tiljala","Topsia","Beniapukur","Entally",
+"Park Street","Camac Street","Shakespeare Sarani","Rabindra Sadan","Exide","Prince Anwar Shah Road","Fern Road","Broad Street","Ekbalpur",
+"Dhakuria Station","Ballygunge Station","Kasba Bosepukur","Rajdanga","Durgapur","Asansol","Siliguri","Darjeeling","Kalimpong","Kurseong",
+"Jalpaiguri","Alipurduar","Cooch Behar","Raiganj","Balurghat","Malda","Baharampur","Murshidabad","Krishnanagar","Nabadwip",
+"Kalyani","Barrackpore","Barasat","Madhyamgram","Chandannagar","Chinsurah","Serampore","Uttarpara","Bandel","Burdwan",
+"Katwa","Kalna","Bolpur","Santiniketan","Suri","Rampurhat","Bankura","Bishnupur","Purulia","Midnapore",
+"Kharagpur","Jhargram","Haldia","Tamluk","Digha","Contai","Diamond Harbour","Canning","New Garia","Panchasayar",
+"Chak Garia","Survey Park","Santoshpur","Ajoy Nagar","Hiland Park","Garfa","Naktala","Bagha Jatin","Bansdroni","Usha",
+"Kudghat","Haridevpur","Muchipara","Metiabruz","Garden Reach","Kidderpore","Mominpur","Watgunge","Khidirpur","Maheshtala",
+"Budge Budge","Pujali","Amta","Uluberia","Bagnan","Domjur","Liluah","Belur","Bally","Salkia",
+"Shibpur","Andul","Ranaghat","Chakdaha","Habra","Ashoknagar","Bangaon","Basirhat","Taki","Hasnabad",
+"Minakhan","Haroa","Deganga","Baduria","Basanti","Gosaba","Kakdwip","Namkhana","Sagar","Falta",
+"Usthi","Mograhat","Jaynagar","Mathurapur"
+];
+
+const orderToastTimes = [
+"just now",
+"2 minutes ago",
+"5 minutes ago",
+"8 minutes ago"
+];
+
+function getTodayKey(){
+let date = new Date();
+return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+}
+
+function getUsedToastProducts(){
+let key = "purpleFashionUsedToastProducts_" + getTodayKey();
+return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+function saveUsedToastProduct(productId){
+let key = "purpleFashionUsedToastProducts_" + getTodayKey();
+let used = getUsedToastProducts();
+
+if(!used.includes(productId)){
+used.push(productId);
+}
+
+localStorage.setItem(key, JSON.stringify(used));
+}
+
+function pickToastProduct(){
+let used = getUsedToastProducts();
+
+let inStockProducts = allProducts.filter(product => {
+let stock = (product["Stock"] || "").toLowerCase();
+let id = product["Product ID"] || product["Product Name"];
+return (stock === "yes" || stock === "in stock") && !used.includes(id);
+});
+
+let availableProducts = inStockProducts.length ? inStockProducts : allProducts.filter(product => {
+let id = product["Product ID"] || product["Product Name"];
+return !used.includes(id);
+});
+
+if(!availableProducts.length){
+localStorage.removeItem("purpleFashionUsedToastProducts_" + getTodayKey());
+availableProducts = allProducts;
+}
+
+if(!availableProducts.length){
+return null;
+}
+
+let product = availableProducts[Math.floor(Math.random() * availableProducts.length)];
+let productId = product["Product ID"] || product["Product Name"];
+saveUsedToastProduct(productId);
+
+return product;
+}
+
+function getNextToastDelay(){
+let chance = Math.random();
+
+if(chance < 0.5){
+return 70000 + Math.floor(Math.random() * 20000);
+}
+
+if(chance < 0.8){
+return 160000 + Math.floor(Math.random() * 60000);
+}
+
+return 300000 + Math.floor(Math.random() * 120000);
+}
+
+function showOrderToast(){
+let popup = document.getElementById("popup");
+if(popup && popup.classList.contains("active")){
+scheduleNextOrderToast();
+return;
+}
+
+let product = pickToastProduct();
+if(!product){
+scheduleNextOrderToast();
+return;
+}
+
+let place = orderPlaces[Math.floor(Math.random() * orderPlaces.length)];
+let time = orderToastTimes[Math.floor(Math.random() * orderToastTimes.length)];
+let productName = product["Product Name"] || "a product";
+
+document.getElementById("orderToastText").innerHTML =
+`Someone from <b>${place}</b> ordered <b>${productName}</b> ${time}`;
+
+let toast = document.getElementById("orderToast");
+toast.classList.add("show");
+
+let visibleTime = 5000 + Math.floor(Math.random() * 2000);
+
+if(orderToastHideTimer){
+clearTimeout(orderToastHideTimer);
+}
+
+orderToastHideTimer = setTimeout(function(){
+toast.classList.remove("show");
+scheduleNextOrderToast();
+},visibleTime);
+}
+
+function scheduleNextOrderToast(){
+if(orderToastTimer){
+clearTimeout(orderToastTimer);
+}
+
+orderToastTimer = setTimeout(showOrderToast, getNextToastDelay());
+}
+
+function startOrderToast(){
+if(orderToastTimer || !allProducts.length){
+return;
+}
+
+let firstDelay = 20000 + Math.floor(Math.random() * 5000);
+orderToastTimer = setTimeout(showOrderToast, firstDelay);
+}
+
+function selectPopupSize(size,el){
+if(!el.classList.contains("available")){
+return;
+}
+
+selectedPopupSize = size;
+document.querySelectorAll("#popupSize .size-btn").forEach(btn=>btn.classList.remove("active"));
+el.classList.add("active");
+}
+
+function openPopup(product){
+let reviewHTML = "";
+let dynamicReviews = getDynamicReviews(product);
+dynamicReviews.forEach(review=>{
+reviewHTML += `<div class="review">&#10004; ${review}</div>`;
+
+});
+document.getElementById("reviewBox").innerHTML = reviewHTML;
+ 
+currentProduct = product;
+
+let images = [
+product["Image Url"],
+product["Image Url2"],
+product["Image Url3"],
+product["Image Url4"]
+].map(normalizeImageUrl).filter(img => img && img.trim() != "");
+
+let imageHTML = "";
+let dotsHTML = "";
+images.forEach((img,index)=>{
+imageHTML += `<img src="${img}" loading="${index === 0 ? "eager" : "lazy"}" fetchpriority="${index === 0 ? "high" : "auto"}" decoding="async" onload="imageLoaded(this)" alt="${product["Product Name"] || "Purple Fashion product image"}">`;
+dotsHTML += `<div class="dot ${index==0 ? "active" : ""}"></div>`;
+});
+
+document.getElementById("popupImages").innerHTML = imageHTML;
+document.getElementById("dots").innerHTML = dotsHTML;
+document.getElementById("popupId").innerText = product["Product ID"];
+document.getElementById("popupName").innerText = product["Product Name"];
+
+let price = Number(product["Price"]) || 0;
+let todayOffer = Number(product["Today Offer"]) || 0;
+let stock = (product["Stock"] || "").toLowerCase();
+let isInStock = isProductInStock(product);
+
+if(globalSale && isInStock && price > 0){
+
+let discountPercent = globalSale.percent;
+let finalPrice = Math.round(price - ((price * discountPercent) / 100));
+
+document.getElementById("popupPrice").style.display = "none";
+
+document.getElementById("offerSection").innerHTML = `
+<div class="offer-box">
+<div class="old-price">Rs  ${price}</div>
+<div class="offer-price">Rs  ${finalPrice}</div>
+<div class="offer-tag">${globalSale.label} - ${discountPercent}% OFF</div>
+</div>
+`;
+
+}
+else if(todayOffer > 0 && price > 0){
+
+let finalPrice = Math.max(price - todayOffer, 0);
+let discountPercent = Math.round((todayOffer / price) * 100);
+
+document.getElementById("popupPrice").style.display = "none";
+
+document.getElementById("offerSection").innerHTML = `
+<div class="offer-box">
+<div class="old-price">Rs  ${price}</div>
+<div class="offer-price">Rs  ${finalPrice}</div>
+<div class="offer-tag">Today Offer - ${discountPercent}% OFF</div>
+</div>
+`;
+
+}
+else{
+
+document.getElementById("offerSection").innerHTML = "";
+document.getElementById("popupPrice").style.display = "block";
+document.getElementById("popupPrice").innerText = "Rs  " + price;
+
+}
+
+if(isInStock){
+document.getElementById("popupStock").innerHTML = `<div class="popup-stock in-stock">In Stock</div>`;
+}
+else{
+document.getElementById("popupStock").innerHTML = `<div class="popup-stock out-stock">Out Of Stock</div>`;
+}
+
+let popupCartButton = document.querySelector("#popup .add-btn");
+if(popupCartButton){
+if(isInStock){
+clearStockRequest(product);
+}
+let requested = !isInStock && hasStockRequest(product);
+popupCartButton.disabled = requested;
+popupCartButton.innerText = isInStock ? "Add To Cart" : (requested ? "Request Sent" : "Check Availability");
+}
+
+let sizeValue = (product["Size"] || "Free Size").trim();
+let popupSizeHTML = "";
+selectedPopupSize = "";
+
+if(sizeValue.toLowerCase() === "free size" || sizeValue.toLowerCase() === "standard size"){
+selectedPopupSize = sizeValue;
+popupSizeHTML = `<div class="size-btn active">${sizeValue}</div>`;
+}
+else{
+let availableSizes = sizeValue.replace(/\s+/g,"").toUpperCase().split(",");
+let standardSizes = ["S","M","L","XL","XXL","XXXL"];
+
+standardSizes.forEach(size=>{
+if(availableSizes.includes(size)){
+popupSizeHTML += `<div class="size-btn available" onclick="selectPopupSize('${size}',this)">${size}</div>`;
+}
+else{
+popupSizeHTML += `<div class="size-btn">${size}</div>`;
+}
+});
+}
+
+document.getElementById("popupSize").innerHTML = popupSizeHTML;
+startViewingCounter(product);
+
+document.getElementById("moreBtn").onclick = function(){
+closePopup();
+let related = allProducts.filter(item => item.Category == product.Category);
+loadMainProducts(related,product.Category);
+window.scrollTo({
+top:document.getElementById("mainProducts").offsetTop - 80,
+behavior:"smooth"
+});
+};
+
+currentSlide = 0;
+updateSlider();
+document.getElementById("popup").classList.add("active");
+document.body.style.overflow = "hidden";
+}
+
+function closePopup(){
+document.getElementById("popup").classList.remove("active");
+document.body.style.overflow = "auto";
+
+if(viewingTimer){
+clearInterval(viewingTimer);
+viewingTimer = null;
+}
+}
+
+function changeSlide(direction){
+let total = document.querySelectorAll("#popupImages img").length;
+if(!total){
+return;
+}
+
+currentSlide += direction;
+if(currentSlide < 0){
+currentSlide = total - 1;
+}
+if(currentSlide >= total){
+currentSlide = 0;
+}
+updateSlider();
+}
+
+function updateSlider(){
+document.getElementById("popupImages").style.transform = `translateX(-${currentSlide * 100}%)`;
+let dots = document.querySelectorAll(".dot");
+dots.forEach(dot=>dot.classList.remove("active"));
+if(dots[currentSlide]){
+dots[currentSlide].classList.add("active");
+}
+}
+
+function isEditableTarget(target){
+return target && target.closest && target.closest("input, textarea");
+}
+
+document.addEventListener("contextmenu", function(e){
+if(!isEditableTarget(e.target)){
+e.preventDefault();
+}
+});
+
+document.addEventListener("selectstart", function(e){
+if(!isEditableTarget(e.target)){
+e.preventDefault();
+}
+});
+
+document.addEventListener("dragstart", function(e){
+e.preventDefault();
+});
+
+document.querySelectorAll("img").forEach(function(img){
+img.setAttribute("draggable","false");
+});
+
+history.pushState(null, "", location.href);
+window.addEventListener("popstate", function () {
+history.pushState(null, "", location.href);
+});
+</script>
+</body>
+</html>
+
+
+
+
