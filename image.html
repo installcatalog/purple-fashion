@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion Image Tools</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f0f2f5;
+color:#071d33;
+padding-bottom:26px;
+overflow-x:hidden;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:20;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(12px);
+padding:16px 18px;
+display:flex;
+align-items:center;
+gap:14px;
+box-shadow:0 2px 12px rgba(7,29,51,0.08);
+}
+
+.back-btn{
+width:46px;
+height:46px;
+border:none;
+border-radius:50%;
+background:#eef5ff;
+color:#1877F2;
+font-size:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+flex-shrink:0;
+}
+
+.brand-title{
+font-size:24px;
+font-weight:900;
+line-height:28px;
+}
+
+.brand-subtitle{
+font-size:13px;
+font-weight:800;
+color:#607086;
+margin-top:2px;
+}
+
+.page{
+padding:18px 14px;
+max-width:680px;
+margin:0 auto;
+}
+
+.hero-card,
+.tool-card{
+background:white;
+border-radius:28px;
+padding:22px;
+box-shadow:0 12px 30px rgba(7,29,51,0.08);
+border:1px solid #dcecff;
+}
+
+.hero-card{
+background:linear-gradient(180deg,#ffffff 0%,#eef6ff 100%);
+}
+
+.hero-icon{
+width:62px;
+height:62px;
+border-radius:20px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+box-shadow:0 10px 22px rgba(24,119,242,0.24);
+}
+
+.hero-title{
+font-size:30px;
+line-height:36px;
+font-weight:900;
+margin-top:16px;
+}
+
+.hero-text{
+font-size:15px;
+line-height:23px;
+font-weight:800;
+color:#607086;
+margin-top:8px;
+}
+
+.flow{
+margin-top:16px;
+display:flex;
+align-items:center;
+gap:8px;
+overflow-x:auto;
+padding-bottom:2px;
+scrollbar-width:none;
+}
+
+.flow::-webkit-scrollbar{
+display:none;
+}
+
+.flow-chip{
+white-space:nowrap;
+border-radius:999px;
+padding:10px 14px;
+background:white;
+color:#0f5fcb;
+border:1px solid #cfe4ff;
+font-size:13px;
+font-weight:900;
+box-shadow:0 6px 14px rgba(24,119,242,0.08);
+}
+
+.flow-arrow{
+color:#8aa7ca;
+font-weight:900;
+}
+
+.tool-card{
+margin-top:18px;
+}
+
+.section-kicker{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:8px 12px;
+border-radius:999px;
+background:#eaf3ff;
+color:#1877F2;
+font-size:13px;
+font-weight:900;
+}
+
+.tool-title{
+font-size:28px;
+line-height:34px;
+font-weight:900;
+margin-top:14px;
+}
+
+.tool-text{
+font-size:15px;
+line-height:23px;
+font-weight:800;
+color:#607086;
+margin-top:8px;
+}
+
+.setting-box{
+margin-top:18px;
+background:#f8fbff;
+border:1px solid #dcecff;
+border-radius:22px;
+padding:16px;
+}
+
+.setting-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:14px;
+padding:12px 0;
+border-bottom:1px solid #e6eef8;
+}
+
+.setting-row:last-child{
+border-bottom:none;
+}
+
+.setting-label{
+font-size:15px;
+font-weight:900;
+color:#607086;
+}
+
+.setting-value{
+font-size:18px;
+font-weight:900;
+color:#071d33;
+text-align:right;
+}
+
+.setting-value.blue{
+color:#1877F2;
+}
+
+.steps{
+margin-top:18px;
+display:grid;
+gap:10px;
+}
+
+.step{
+display:flex;
+gap:11px;
+align-items:flex-start;
+font-size:14px;
+line-height:20px;
+font-weight:800;
+color:#344256;
+}
+
+.step-number{
+width:26px;
+height:26px;
+border-radius:50%;
+background:#1877F2;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:900;
+flex-shrink:0;
+}
+
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:22px;
+}
+
+.action-btn{
+min-height:54px;
+border-radius:17px;
+border:1px solid #b9d7ff;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:9px;
+}
+
+.action-btn.primary{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border-color:#1877F2;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+}
+
+.action-btn.secondary{
+background:#eef5ff;
+color:#1877F2;
+}
+
+.note{
+margin-top:14px;
+font-size:13px;
+line-height:19px;
+font-weight:800;
+color:#718096;
+background:#fbfdff;
+border:1px solid #e3edf8;
+border-radius:16px;
+padding:12px;
+}
+
+.toast{
+position:fixed;
+left:16px;
+right:16px;
+bottom:22px;
+max-width:430px;
+margin:auto;
+background:white;
+color:#071d33;
+border-radius:18px;
+padding:14px 16px;
+font-size:14px;
+font-weight:900;
+box-shadow:0 12px 28px rgba(7,29,51,0.18);
+border:1px solid #d6e7ff;
+z-index:100;
+opacity:0;
+transform:translateY(20px);
+pointer-events:none;
+transition:0.3s ease;
+text-align:center;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:520px){
+.actions{
+grid-template-columns:1fr;
+}
+
+.hero-title,
+.tool-title{
+font-size:26px;
+line-height:32px;
+}
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+<div class="header">
+<button class="back-btn" onclick="window.location.href='cart.html'">
+<i class="fa-solid fa-arrow-left"></i>
+</button>
+<div>
+<div class="brand-title">Purple Fashion Image Tools</div>
+<div class="brand-subtitle">Resize product images</div>
+</div>
+</div>
+
+<main class="page">
+<section class="hero-card">
+<div class="hero-icon">
+<i class="fa-solid fa-image"></i>
+</div>
+<div class="hero-title">Prepare images for Purple Fashion</div>
+<div class="hero-text">Use this page as a simple guide before adding image URLs in product upload.</div>
+
+<div class="flow">
+<div class="flow-chip">Resize</div>
+<div class="flow-arrow">-></div>
+<div class="flow-chip">Compress</div>
+<div class="flow-arrow">-></div>
+<div class="flow-chip">Cloudinary</div>
+<div class="flow-arrow">-></div>
+<div class="flow-chip">Upload Product</div>
+</div>
+</section>
+
+<section class="tool-card">
+<div class="section-kicker">
+<i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+Step 1
+</div>
+<div class="tool-title">Resize Image</div>
+<div class="tool-text">Make product images app ready before compress and upload.</div>
+
+<div class="setting-box">
+<div class="setting-row">
+<div class="setting-label">Width</div>
+<div class="setting-value blue">800 px</div>
+</div>
+<div class="setting-row">
+<div class="setting-label">Height</div>
+<div class="setting-value blue">1000 px</div>
+</div>
+<div class="setting-row">
+<div class="setting-label">Resize option</div>
+<div class="setting-value">By pixels</div>
+</div>
+<div class="setting-row">
+<div class="setting-label">Maintain aspect ratio</div>
+<div class="setting-value">Off</div>
+</div>
+</div>
+
+<div class="steps">
+<div class="step"><div class="step-number">1</div><div>Open Resize Tool and upload product images.</div></div>
+<div class="step"><div class="step-number">2</div><div>Select <b>By pixels</b>.</div></div>
+<div class="step"><div class="step-number">3</div><div>Set width <b>800</b> and height <b>1000</b>.</div></div>
+<div class="step"><div class="step-number">4</div><div>Turn <b>Maintain aspect ratio</b> off, then resize and download.</div></div>
+</div>
+
+<div class="actions">
+<button class="action-btn primary" onclick="openResizeTool()">
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+Open Resize Tool
+</button>
+<button class="action-btn secondary" onclick="copySize()">
+<i class="fa-solid fa-copy"></i>
+Copy 800 x 1000
+</button>
+</div>
+
+<div class="note">
+If an image looks stretched, use a better vertical image and resize again. Keep all product images in the same size for a clean app look.
+</div>
+</section>
+
+<section class="tool-card">
+<div class="section-kicker">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+Step 3
+</div>
+<div class="tool-title">Cloudinary Upload</div>
+<div class="tool-text">Upload compressed images, copy each image URL, then paste them in Purple Fashion product upload.</div>
+
+<div class="steps">
+<div class="step"><div class="step-number">1</div><div>Open Cloudinary after resize and compress are complete.</div></div>
+<div class="step"><div class="step-number">2</div><div>Upload all product images in Media Library.</div></div>
+<div class="step"><div class="step-number">3</div><div>Copy one image URL at a time.</div></div>
+<div class="step"><div class="step-number">4</div><div>Paste the URLs in Purple Fashion Upload image boxes.</div></div>
+</div>
+
+<div class="actions">
+<button class="action-btn primary" onclick="openCloudinary()">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+Open Cloudinary
+</button>
+<button class="action-btn secondary" onclick="openUploadProduct()">
+<i class="fa-solid fa-box-open"></i>
+Upload Product
+</button>
+</div>
+
+<div class="note">
+Copy the real image URL from Cloudinary. A good URL usually starts with https://res.cloudinary.com/
+</div>
+</section>
+</main>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+let toastTimer = null;
+
+function showToast(message){
+let toast = document.getElementById("toast");
+toast.innerText = message;
+toast.classList.add("show");
+
+if(toastTimer){
+clearTimeout(toastTimer);
+}
+
+toastTimer = setTimeout(function(){
+toast.classList.remove("show");
+},1800);
+}
+
+function openResizeTool(){
+window.open("https://www.iloveimg.com/resize-image","_blank");
+}
+
+function openCloudinary(){
+window.open("https://cloudinary.com/console/media_library","_blank");
+}
+
+function openUploadProduct(){
+window.location.href = "upload.html";
+}
+
+function copySize(){
+let text = "800 x 1000";
+
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){
+showToast("Copied 800 x 1000");
+}).catch(function(){
+showToast("Size 800 x 1000");
+});
+return;
+}
+
+showToast("Size 800 x 1000");
+}
+</script>
+</body>
+</html>
+
