@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion Label</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f0f2f5;
+color:#111;
+min-height:100vh;
+padding:16px;
+}
+
+.page{
+max-width:760px;
+margin:auto;
+}
+
+.top-title{
+font-size:32px;
+font-weight:900;
+color:#1877F2;
+margin:12px 0 18px;
+}
+
+.card{
+background:white;
+border-radius:24px;
+padding:18px;
+box-shadow:0 8px 22px rgba(0,0,0,0.08);
+margin-bottom:16px;
+}
+
+.input-title{
+font-size:16px;
+font-weight:900;
+margin-bottom:10px;
+color:#071d33;
+}
+
+.input-box{
+height:58px;
+border:1px solid #d8e0ef;
+background:#f8f9fb;
+border-radius:18px;
+display:flex;
+align-items:center;
+gap:12px;
+padding:0 15px;
+}
+
+.input-box i{
+color:#1877F2;
+font-size:20px;
+}
+
+.input-box input{
+width:100%;
+height:100%;
+border:none;
+outline:none;
+background:none;
+font-size:17px;
+font-weight:800;
+color:#111;
+}
+
+.action-btn{
+width:100%;
+min-height:58px;
+margin-top:14px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+font-size:17px;
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+cursor:pointer;
+box-shadow:0 8px 18px rgba(24,119,242,0.26);
+}
+
+.action-btn i{
+font-size:20px;
+}
+
+.secondary-btn{
+background:#f3f8ff;
+color:#1877F2;
+border:1px solid #b9d7ff;
+box-shadow:none;
+}
+
+.download-btn{
+background:linear-gradient(135deg,#16a34a,#22c55e);
+box-shadow:0 8px 18px rgba(34,197,94,0.24);
+}
+
+.share-btn{
+background:linear-gradient(135deg,#25D366,#16a34a);
+box-shadow:0 8px 18px rgba(37,211,102,0.24);
+}
+
+.toast{
+position:fixed;
+left:16px;
+right:16px;
+bottom:22px;
+height:54px;
+max-width:760px;
+margin:auto;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+opacity:0;
+pointer-events:none;
+transition:0.25s;
+z-index:9999;
+text-align:center;
+padding:0 12px;
+}
+
+.toast.show{
+opacity:1;
+}
+
+.label-wrap{
+display:none;
+}
+
+.label{
+width:100%;
+max-width:420px;
+background:white;
+border:2px solid #111;
+padding:14px;
+margin:0 auto 16px;
+color:#111;
+}
+
+.label-head{
+display:flex;
+justify-content:space-between;
+gap:12px;
+align-items:flex-start;
+border-bottom:2px solid #111;
+padding-bottom:10px;
+margin-bottom:10px;
+}
+
+.brand{
+font-size:30px;
+font-weight:900;
+color:#1877F2;
+line-height:32px;
+}
+
+.label-small{
+font-size:11px;
+line-height:16px;
+color:#333;
+font-weight:700;
+}
+
+.qr{
+width:96px;
+height:96px;
+border:1px solid #ddd;
+padding:3px;
+object-fit:contain;
+}
+
+.block{
+border-bottom:1px dashed #999;
+padding:9px 0;
+}
+
+.block:last-child{
+border-bottom:none;
+}
+
+.block-title{
+font-size:13px;
+font-weight:900;
+letter-spacing:0.4px;
+margin-bottom:6px;
+background:#111;
+color:white;
+display:inline-block;
+padding:4px 8px;
+border-radius:6px;
+}
+
+.line{
+font-size:14px;
+line-height:22px;
+display:flex;
+gap:6px;
+}
+
+.line b{
+min-width:92px;
+font-weight:900;
+}
+
+.big{
+font-size:17px;
+font-weight:900;
+line-height:24px;
+}
+
+.total{
+font-size:22px;
+font-weight:900;
+color:#1877F2;
+}
+
+.print-row{
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
+max-width:420px;
+margin:0 auto 18px;
+}
+
+button,
+[role="button"]{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+pointer-events:auto;
+}
+
+@media(min-width:520px){
+.print-row{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media print{
+html,
+body{
+background:white;
+padding:0;
+margin:0;
+width:100%;
+height:auto;
+overflow:visible;
+}
+
+.no-print{
+display:none!important;
+}
+
+.page{
+max-width:none;
+margin:0;
+padding:0;
+}
+
+.label-wrap{
+display:block!important;
+width:100%;
+margin:0;
+padding:0;
+break-inside:avoid;
+page-break-inside:avoid;
+}
+
+.label{
+width:86mm;
+max-width:none;
+margin:0 auto;
+border:1.5px solid #111;
+padding:8px;
+box-shadow:none;
+page-break-inside:avoid;
+break-inside:avoid;
+page-break-before:avoid;
+page-break-after:avoid;
+transform:scale(0.92);
+transform-origin:top center;
+}
+
+.label-head{
+padding-bottom:6px;
+margin-bottom:6px;
+border-bottom:1.5px solid #111;
+}
+
+.brand{
+font-size:22px;
+line-height:24px;
+}
+
+.label-small{
+font-size:8.5px;
+line-height:12px;
+}
+
+.qr{
+width:66px;
+height:66px;
+padding:2px;
+}
+
+.block{
+padding:5px 0;
+}
+
+.block-title{
+font-size:9px;
+padding:3px 6px;
+border-radius:4px;
+margin-bottom:4px;
+}
+
+.line{
+font-size:10px;
+line-height:15px;
+gap:4px;
+}
+
+.line b{
+min-width:70px;
+}
+
+.big{
+font-size:11px;
+line-height:16px;
+}
+
+.total{
+font-size:16px;
+}
+
+@page{
+size:Letter;
+margin:5mm;
+}
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="no-print">
+<div class="top-title">Purple Fashion Label</div>
+
+<div class="card" id="pinCard">
+<div class="input-title">Seller PIN</div>
+<div class="input-box">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="sellerPin" placeholder="Enter seller PIN" inputmode="numeric" autocomplete="off">
+</div>
+<button class="action-btn" type="button" id="unlockBtn">
+<i class="fa-solid fa-unlock"></i>
+Open Label Tool
+</button>
+</div>
+
+<div class="card" id="searchCard" style="display:none;">
+<div class="input-title">Search by Order ID or Phone</div>
+<div class="input-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" id="searchInput" placeholder="Order ID or phone number" autocomplete="off">
+</div>
+<button class="action-btn" type="button" id="findBtn">
+<i class="fa-solid fa-print"></i>
+Find Label
+</button>
+</div>
+</div>
+
+<div class="label-wrap" id="labelWrap">
+<div class="label" id="printLabel"></div>
+
+<div class="print-row no-print">
+<button class="action-btn download-btn" type="button" id="downloadBtn">
+<i class="fa-solid fa-download"></i>
+Download
+</button>
+
+<button class="action-btn share-btn" type="button" id="shareBtn">
+<i class="fa-brands fa-whatsapp"></i>
+Share WhatsApp
+</button>
+
+<button class="action-btn" type="button" id="printBtn">
+<i class="fa-solid fa-print"></i>
+Print
+</button>
+
+<button class="action-btn secondary-btn" type="button" id="clearBtn">
+<i class="fa-solid fa-rotate-left"></i>
+Search
+</button>
+</div>
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SCRIPT_API = APP_CONFIG.scriptApi;
+
+let allOrders = [];
+let currentOrderId = "purpleFashion-label";
+
+function getAdminToken(){
+return sessionStorage.getItem("purpleFashionAdminToken") || "";
+}
+
+function getAdminOrdersUrl(){
+return SCRIPT_API + "?type=adminOrders&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function getAdminDeviceId(){
+let key = "purpleFashionAdminDeviceId";
+let deviceId = localStorage.getItem(key);
+
+if(!deviceId){
+deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+localStorage.setItem(key,deviceId);
+}
+
+return deviceId;
+}
+
+function adminLogin(pin){
+return fetch(SCRIPT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"adminLogin",
+pin:pin,
+page:"label",
+deviceId:getAdminDeviceId()
+})
+}).then(res=>res.json());
+}
+
+function showSecurityModal(title,message,icon){
+let existing = document.getElementById("adminSecurityModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "adminSecurityModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
+<div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showAdminLoginMessage(result){
+if(result && result.code === "warning"){
+showSecurityModal("Warning",result.message || "One more wrong PIN will block seller access for 24 hours.","triangle-exclamation");
+return true;
+}
+
+if(result && result.code === "blocked"){
+showSecurityModal("Access Blocked",result.message || "Try again after 24 hours.","lock");
+return true;
+}
+
+return false;
+}
+
+function showToast(message){
+let toast = document.getElementById("toast");
+toast.innerText = message;
+toast.classList.add("show");
+
+setTimeout(function(){
+toast.classList.remove("show");
+},2200);
+}
+
+function unlockSeller(){
+let pin = document.getElementById("sellerPin").value.trim();
+
+showToast("Checking PIN");
+
+adminLogin(pin).then(function(result){
+if(!(result && result.success && result.token)){
+if(showAdminLoginMessage(result)){
+return;
+}
+
+showToast(result && result.message ? result.message : "Wrong PIN");
+return;
+}
+
+sessionStorage.setItem("purpleFashionSellerUnlocked","yes");
+sessionStorage.setItem("purpleFashionAdminToken",result.token);
+document.getElementById("pinCard").style.display = "none";
+document.getElementById("searchCard").style.display = "block";
+setTimeout(function(){
+document.getElementById("searchInput").focus();
+},200);
+}).catch(function(){
+showToast("Login server error");
+});
+}
+
+function getField(order,names){
+for(let i = 0; i < names.length; i++){
+if(order[names[i]] !== undefined && order[names[i]] !== null){
+return order[names[i]];
+}
+}
+return "";
+}
+
+function countListItems(value){
+let text = String(value || "").trim();
+
+if(!text){
+return 0;
+}
+
+return text.split(",").map(item=>item.trim()).filter(item=>item).length;
+}
+
+function recoverDateLikeQuantities(value, order){
+let text = String(value || "").trim();
+
+if(!/^\d{4}-\d{2}-\d{2}T/.test(text)){
+return "";
+}
+
+let date = new Date(text);
+
+if(Number.isNaN(date.getTime())){
+return "";
+}
+
+let monthValue = date.getMonth() + 1;
+let dayValue = date.getDate();
+let productCount = Math.max(
+countListItems(getField(order,["Product IDs","productIds"])),
+countListItems(getField(order,["Product Names","productNames"]))
+);
+
+if(productCount === 2 && monthValue > 0 && dayValue > 0){
+return monthValue + ", " + dayValue;
+}
+
+return "";
+}
+
+function cleanQuantities(value, order){
+let recovered = recoverDateLikeQuantities(value, order);
+
+if(recovered){
+return recovered;
+}
+
+let text = String(value || "").trim();
+
+if(!text){
+return "";
+}
+
+return text
+.replace(/\bquantity\s*/gi,"")
+.replace(/\bqty\s*/gi,"")
+.replace(/\bpcs?\b/gi,"")
+.replace(/\s*,\s*/g,", ")
+.replace(/\s+/g," ")
+.trim();
+}
+
+function normalizeOrder(order){
+return {
+orderId:getField(order,["Order ID","orderId"]),
+dateTime:getField(order,["Date Time","dateTime"]),
+name:getField(order,["Customer Name","customerName"]),
+phone:String(getField(order,["Phone Number","phoneNumber"])).replace(/\D/g,""),
+village:getField(order,["Village","village"]),
+postOffice:getField(order,["Post Office","postOffice"]),  
+policeStation:getField(order,["Police Station","policeStation"]),
+district:getField(order,["District","district"]),
+pinCode:getField(order,["Pin Code","pinCode"]),
+landmark:getField(order,["Landmark","landmark"]),
+productIds:getField(order,["Product IDs","productIds"]),
+productNames:getField(order,["Product Names","productNames"]),
+sizes:getField(order,["Sizes","sizes"]),
+quantities:cleanQuantities(getField(order,["Quantities","quantities","Qty","qty","Quantity","quantity","Product Quantities","productQuantities"]), order),
+productPrices:getField(order,["Product Prices","productPrices"]),
+shipping:getField(order,["Shipping","shipping"]),
+orderTotal:getField(order,["Order Total","orderTotal"]),
+status:getField(order,["Status","status"])
+};
+}
+
+function orderSortValue(order){
+return Number(String(order.orderId || "").replace(/\D/g,"")) || 0;
+}
+
+async function loadOrders(){
+let response = await fetch(getAdminOrdersUrl());
+let data = await response.json();
+
+if(Array.isArray(data)){
+allOrders = data.map(normalizeOrder);
+}
+else if(Array.isArray(data.orders)){
+allOrders = data.orders.map(normalizeOrder);
+}
+else if(Array.isArray(data.data)){
+allOrders = data.data.map(normalizeOrder);
+}
+else{
+allOrders = [];
+}
+}
+
+function money(value){
+let number = Number(String(value || "0").replace(/[^\d.]/g,"")) || 0;
+return "Rs " + Math.round(number).toLocaleString("en-IN");
+}
+
+async function findOrder(){
+let query = document.getElementById("searchInput").value.trim();
+let btn = document.getElementById("findBtn");
+btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Label...`;
+if(!query){
+showToast("Enter Order ID or Phone");
+btn.innerHTML = `<i class="fa-solid fa-print"></i> Find Label`;  
+return;
+}
+
+if(!allOrders.length){
+try{
+showToast("Loading orders...");
+await loadOrders();
+}
+catch(error){
+showToast("Could not load orders");
+btn.innerHTML = `<i class="fa-solid fa-print"></i> Find Label`;  
+return;
+}
+}
+
+let cleanQuery = query.replace(/\D/g,"").toLowerCase();
+let textQuery = query.toLowerCase();
+
+let matched = allOrders.filter(order=>{
+return String(order.orderId).toLowerCase().includes(textQuery) || order.phone.includes(cleanQuery);
+});
+
+matched.sort((a,b)=>orderSortValue(b) - orderSortValue(a));
+
+if(!matched.length){
+showToast("No order found");
+btn.innerHTML = `<i class="fa-solid fa-print"></i> Find Label`;  
+return;
+}
+
+renderLabel(matched[0]);
+btn.innerHTML = `<i class="fa-solid fa-print"></i> Find Label`;  
+}
+
+function renderLabel(order){
+currentOrderId = order.orderId || "purpleFashion-label";
+
+let qrText = [
+"Purple Fashion",
+"Order ID: " + order.orderId,
+"Phone: " + order.phone,
+"Total: " + money(order.orderTotal)
+].join(" | ");
+
+let qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + encodeURIComponent(qrText);
+
+document.getElementById("printLabel").innerHTML = `
+<div class="label-head">
+<div>
+<div class="brand">Purple Fashion</div>
+<div class="label-small">Fashion Order Parcel Label</div>
+<div class="label-small">Order ID: ${order.orderId || "-"}</div>
+<div class="label-small">${order.dateTime || ""}</div>
+</div>
+<img class="qr" src="${qrUrl}" crossorigin="anonymous">
+</div>
+
+<div class="block">
+<div class="block-title">SHIP TO</div>
+<div class="line big"><b>Name:</b><span>${order.name || "-"}</span></div>
+<div class="line big"><b>Phone:</b><span>${order.phone || "-"}</span></div>
+<div class="line"><b>Village:</b><span>${order.village || "-"}</span></div>
+<div class="line"><b>Post Office:</b><span>${order.postOffice || "-"}</span></div>
+<div class="line"><b>Police Station:</b><span>${order.policeStation || "-"}</span></div>
+<div class="line"><b>District:</b><span>${order.district || "-"}</span></div>
+<div class="line"><b>Pin Code:</b><span>${order.pinCode || "-"}</span></div>
+<div class="line"><b>Landmark:</b><span>${order.landmark || "-"}</span></div>
+</div>
+
+<div class="block">
+<div class="block-title">ORDER DETAILS</div>
+<div class="line"><b>Product ID:</b><span>${order.productIds || "-"}</span></div>
+<div class="line"><b>Product:</b><span>${order.productNames || "-"}</span></div>
+<div class="line"><b>Size:</b><span>${order.sizes || "-"}</span></div>
+<div class="line"><b>Qty:</b><span>${order.quantities || "-"}</span></div>
+<div class="line"><b>Price:</b><span>${order.productPrices || "-"}</span></div>
+</div>
+
+<div class="block">
+<div class="line"><b>Shipping:</b><span>${order.shipping || "Free"}</span></div>
+<div class="line"><b>Status:</b><span>${order.status || "-"}</span></div>
+<div class="line"><b>Total:</b><span class="total">${money(order.orderTotal)}</span></div>
+</div>
+
+<div class="label-small" style="text-align:center;margin-top:8px;">
+Thank you for shopping with Purple Fashion
+</div>
+`;
+
+document.getElementById("labelWrap").style.display = "block";
+showToast("Label ready");
+}
+
+async function downloadLabel(){
+let label = document.getElementById("printLabel");
+
+if(!label.innerHTML.trim()){
+showToast("Find an order first");
+return;
+}
+
+if(typeof html2canvas === "undefined"){
+showToast("Download tool loading. Try again.");
+return;
+}
+
+showToast("Preparing label image...");
+
+try{
+let canvas = await html2canvas(label, {
+backgroundColor:"#ffffff",
+scale:2,
+useCORS:true
+});
+
+let link = document.createElement("a");
+link.download = currentOrderId + "_seller_label.png";
+link.href = canvas.toDataURL("image/png");
+link.click();
+
+showToast("Label downloaded");
+}
+catch(error){
+showToast("Download failed. Use Print option.");
+}
+}
+
+function shareWhatsApp(){
+let message = "Please print this parcel label. Order ID: " + currentOrderId;
+let url = "https://wa.me/?text=" + encodeURIComponent(message);
+window.location.href = url;
+}
+
+function clearLabel(){
+document.getElementById("labelWrap").style.display = "none";
+document.getElementById("searchInput").value = "";
+document.getElementById("searchInput").focus();
+}
+
+document.getElementById("unlockBtn").addEventListener("click", unlockSeller);
+document.getElementById("findBtn").addEventListener("click", findOrder);
+document.getElementById("downloadBtn").addEventListener("click", downloadLabel);
+document.getElementById("shareBtn").addEventListener("click", shareWhatsApp);
+document.getElementById("printBtn").addEventListener("click", function(){
+window.print();
+});
+document.getElementById("clearBtn").addEventListener("click", clearLabel);
+
+document.getElementById("sellerPin").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+unlockSeller();
+}
+});
+
+document.getElementById("searchInput").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+findOrder();
+}
+});
+
+if(sessionStorage.getItem("purpleFashionSellerUnlocked") === "yes" && getAdminToken()){
+document.getElementById("pinCard").style.display = "none";
+document.getElementById("searchCard").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+
+
+
+
