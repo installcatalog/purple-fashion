@@ -1,0 +1,3258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<link rel="dns-prefetch" href="https://script.google.com">
+<link rel="dns-prefetch" href="https://script.googleusercontent.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion Upload</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1877F2">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f0f2f5;
+color:#071d33;
+padding-bottom:24px;
+overflow-x:hidden;
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+}
+
+button,
+.chip,
+.icon-btn,
+.panel,
+.stage-title,
+.helper,
+.review-card,
+.summary-row,
+.edit-card,
+.start-card,
+.stage-pill,
+.header{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+}
+
+input,
+textarea{
+user-select:text;
+-webkit-user-select:text;
+-webkit-touch-callout:default;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:50;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(12px);
+padding:14px 16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 2px 12px rgba(7,29,51,0.08);
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.back-btn{
+width:42px;
+height:42px;
+border:none;
+border-radius:50%;
+background:#eef5ff;
+color:#1877F2;
+font-size:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+}
+
+.brand-title{
+font-size:20px;
+font-weight:900;
+line-height:24px;
+}
+
+.brand-subtitle{
+font-size:12px;
+font-weight:800;
+color:#607086;
+line-height:17px;
+}
+
+.draft-btn{
+border:none;
+border-radius:14px;
+background:#fff2f2;
+color:#d62828;
+height:40px;
+padding:0 12px;
+font-weight:900;
+font-size:12px;
+cursor:pointer;
+}
+
+.draft-btn.soft{
+background:#eef5ff;
+color:#1877F2;
+}
+
+.pin-screen{
+min-height:100vh;
+display:none;
+align-items:center;
+justify-content:center;
+padding:22px;
+background:linear-gradient(180deg,#eef6ff,#f7fbff);
+}
+
+.pin-card{
+width:100%;
+max-width:380px;
+background:white;
+border-radius:26px;
+padding:24px;
+box-shadow:0 18px 42px rgba(7,29,51,0.14);
+border:1px solid #d6e7ff;
+}
+
+.pin-icon{
+width:68px;
+height:68px;
+border-radius:22px;
+background:linear-gradient(135deg,#2b92ff,#1877F2);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+margin:0 auto 14px;
+box-shadow:0 10px 22px rgba(24,119,242,0.24);
+}
+
+.pin-title{
+text-align:center;
+font-size:26px;
+font-weight:900;
+}
+
+.pin-text{
+text-align:center;
+font-size:14px;
+font-weight:700;
+line-height:21px;
+color:#607086;
+margin-top:8px;
+}
+
+.pin-input{
+width:100%;
+height:58px;
+border:1px solid #d6e7ff;
+border-radius:18px;
+margin-top:18px;
+background:#f8fbff;
+outline:none;
+text-align:center;
+font-size:24px;
+font-weight:900;
+letter-spacing:8px;
+color:#071d33;
+}
+
+.pin-actions{
+display:flex;
+gap:10px;
+margin-top:14px;
+}
+
+.pin-actions button{
+flex:1;
+height:52px;
+border-radius:16px;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+}
+
+.secondary-btn{
+background:white;
+color:#1877F2;
+border:1px solid #b9d7ff;
+}
+
+.primary-btn{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border:none;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+}
+
+.app{
+display:none;
+}
+
+.hero{
+padding:18px 16px 12px;
+background:linear-gradient(180deg,#ffffff,#eef6ff);
+}
+
+.progress-card{
+background:white;
+border:1px solid #d6e7ff;
+border-radius:24px;
+padding:16px;
+box-shadow:0 12px 28px rgba(24,119,242,0.10);
+}
+
+.step-meta{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+}
+
+.step-name{
+font-size:24px;
+font-weight:900;
+}
+
+.step-count{
+font-size:12px;
+font-weight:900;
+color:#1877F2;
+background:#eef5ff;
+border-radius:999px;
+padding:8px 11px;
+white-space:nowrap;
+}
+
+.progress-track{
+height:9px;
+background:#e7eef8;
+border-radius:999px;
+overflow:hidden;
+margin-top:14px;
+}
+
+.progress-fill{
+height:100%;
+width:12.5%;
+background:linear-gradient(135deg,#1877F2,#2b92ff);
+border-radius:999px;
+transition:0.25s ease;
+}
+
+.stage-labels{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding-top:12px;
+scrollbar-width:none;
+}
+
+.stage-labels::-webkit-scrollbar{
+display:none;
+}
+
+.stage-pill{
+flex:0 0 auto;
+border-radius:999px;
+background:#edf2f8;
+color:#7a8798;
+font-size:11px;
+font-weight:900;
+padding:8px 10px;
+}
+
+.stage-pill.done{
+background:#e8f8ef;
+color:#10883f;
+}
+
+.stage-pill.active{
+background:#1877F2;
+color:white;
+}
+
+.content{
+padding:14px 16px 100px;
+}
+
+.panel{
+background:white;
+border-radius:24px;
+padding:16px;
+box-shadow:0 10px 26px rgba(7,29,51,0.08);
+border:1px solid rgba(24,119,242,0.08);
+}
+
+.review-tabs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:12px;
+}
+
+.review-tab{
+border:1px solid #d6e7ff;
+background:#f8fbff;
+color:#607086;
+border-radius:18px;
+min-height:48px;
+font-size:14px;
+font-weight:900;
+cursor:pointer;
+}
+
+.review-tab.active{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border-color:#1877F2;
+box-shadow:0 8px 18px rgba(24,119,242,0.20);
+}
+
+.review-panel{
+display:none;
+}
+
+.review-panel.active{
+display:block;
+}
+
+.panel + .panel{
+margin-top:14px;
+}
+
+.stage-title{
+font-size:22px;
+font-weight:900;
+margin-bottom:8px;
+}
+
+.helper{
+font-size:13px;
+font-weight:700;
+line-height:20px;
+color:#607086;
+margin-bottom:14px;
+}
+
+.chip-grid{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.chip{
+border:1px solid #d6e7ff;
+background:#f8fbff;
+color:#071d33;
+border-radius:16px;
+min-height:46px;
+padding:0 14px;
+font-size:14px;
+font-weight:900;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(7,29,51,0.04);
+}
+
+.chip.active{
+background:#1877F2;
+color:white;
+border-color:#1877F2;
+box-shadow:0 8px 18px rgba(24,119,242,0.22);
+}
+
+.chip.danger.active{
+background:#dc3545;
+border-color:#dc3545;
+}
+
+.input-group{
+margin-top:14px;
+}
+
+.input-label{
+font-size:13px;
+font-weight:900;
+color:#071d33;
+margin-bottom:8px;
+display:flex;
+justify-content:space-between;
+gap:10px;
+}
+
+.input-label button{
+border:none;
+background:#eef5ff;
+color:#1877F2;
+border-radius:999px;
+font-size:11px;
+font-weight:900;
+padding:6px 9px;
+cursor:pointer;
+}
+
+.input-actions{
+display:flex;
+gap:8px;
+margin-top:8px;
+flex-wrap:wrap;
+}
+
+.mini-btn{
+border:1px solid #b9d7ff;
+background:#eef5ff;
+color:#1877F2;
+border-radius:999px;
+font-size:12px;
+font-weight:900;
+min-height:34px;
+padding:0 11px;
+cursor:pointer;
+}
+
+.mini-btn.primary{
+background:#1877F2;
+color:white;
+border-color:#1877F2;
+box-shadow:0 6px 14px rgba(24,119,242,0.18);
+}
+
+.mini-btn.danger{
+background:#fff2f2;
+color:#d62828;
+border-color:#ffd2d2;
+}
+
+.mini-btn.success{
+background:#e8f8ef;
+color:#10883f;
+border-color:#bcf0cf;
+}
+
+.field,
+.textarea{
+width:100%;
+border:1px solid #d6e7ff;
+background:#f8fbff;
+border-radius:18px;
+outline:none;
+font-size:16px;
+font-weight:800;
+color:#071d33;
+padding:14px 15px;
+}
+
+.field{
+height:54px;
+}
+
+.textarea{
+min-height:112px;
+resize:vertical;
+line-height:22px;
+}
+
+.field[readonly],
+.textarea[readonly]{
+background:#f3f7fc;
+color:#071d33;
+}
+
+.custom-row{
+display:none;
+margin-top:12px;
+}
+
+.custom-row.active{
+display:block;
+}
+
+.warning-box{
+margin-top:14px;
+background:#fff8e5;
+border:1px solid #ffe0a3;
+border-radius:18px;
+padding:12px;
+font-size:13px;
+line-height:20px;
+font-weight:800;
+color:#795100;
+}
+
+.edit-search{
+display:flex;
+gap:10px;
+}
+
+.edit-filters{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding:10px 0 2px;
+scrollbar-width:none;
+}
+
+.edit-filters::-webkit-scrollbar{
+display:none;
+}
+
+.edit-search input{
+flex:1;
+}
+
+.edit-list{
+margin-top:14px;
+display:grid;
+gap:10px;
+max-height:360px;
+overflow:auto;
+padding-right:2px;
+}
+
+.edit-card{
+background:#f8fbff;
+border:1px solid #d6e7ff;
+border-radius:18px;
+padding:12px;
+display:grid;
+grid-template-columns:64px 1fr auto;
+gap:12px;
+align-items:center;
+}
+
+.edit-card img{
+width:64px;
+height:64px;
+object-fit:contain;
+border-radius:14px;
+background:white;
+}
+
+.no-image-thumb{
+width:64px;
+height:64px;
+border-radius:14px;
+background:#eef5ff;
+color:#1877F2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+}
+
+.edit-card-title{
+font-size:14px;
+font-weight:900;
+line-height:20px;
+}
+
+.edit-card-meta{
+font-size:12px;
+font-weight:800;
+color:#607086;
+line-height:18px;
+margin-top:2px;
+}
+
+.status-badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+border-radius:999px;
+font-size:11px;
+line-height:16px;
+font-weight:900;
+padding:5px 9px;
+margin-top:6px;
+}
+
+.status-badge.visible{
+background:#e8f8ef;
+color:#10883f;
+}
+
+.status-badge.hidden{
+background:#fff2e8;
+color:#c24b00;
+}
+
+.review-card{
+display:grid;
+grid-template-columns:92px 1fr;
+gap:12px;
+align-items:start;
+}
+
+.review-img{
+width:92px;
+height:118px;
+object-fit:contain;
+border-radius:18px;
+background:#f8fbff;
+border:1px solid #d6e7ff;
+padding:6px;
+}
+
+.review-title{
+font-size:20px;
+font-weight:900;
+line-height:25px;
+}
+
+.review-meta{
+font-size:13px;
+font-weight:800;
+line-height:21px;
+color:#607086;
+margin-top:6px;
+}
+
+.review-price{
+font-size:24px;
+font-weight:900;
+color:#1877F2;
+margin-top:8px;
+}
+
+.summary-grid{
+margin-top:14px;
+display:grid;
+gap:8px;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+gap:12px;
+padding:10px 0;
+border-bottom:1px solid #eef2f7;
+font-size:14px;
+line-height:20px;
+}
+
+.summary-row b{
+color:#071d33;
+min-width:112px;
+}
+
+.summary-row span{
+text-align:right;
+font-weight:800;
+color:#607086;
+word-break:break-word;
+flex:1;
+}
+
+.summary-edit{
+border:none;
+background:#eef5ff;
+color:#1877F2;
+border-radius:999px;
+font-size:12px;
+font-weight:900;
+padding:7px 10px;
+cursor:pointer;
+align-self:flex-start;
+}
+
+.image-slot{
+border:1px solid #d6e7ff;
+border-radius:18px;
+padding:12px;
+margin-top:12px;
+background:#f8fbff;
+}
+
+.image-preview{
+display:none;
+margin-top:10px;
+align-items:center;
+gap:10px;
+}
+
+.image-preview.show{
+display:flex;
+}
+
+.image-preview img{
+width:64px;
+height:64px;
+object-fit:contain;
+border-radius:14px;
+background:white;
+border:1px solid #d6e7ff;
+}
+
+.image-state{
+font-size:12px;
+font-weight:900;
+line-height:18px;
+color:#607086;
+}
+
+.image-state.good{
+color:#10883f;
+}
+
+.image-state.bad{
+color:#d62828;
+}
+
+.banner-advanced{
+margin-top:14px;
+border:1px solid #d6e7ff;
+border-radius:18px;
+padding:12px;
+background:#fbfdff;
+}
+
+.banner-advanced summary{
+font-size:14px;
+font-weight:900;
+color:#1877F2;
+cursor:pointer;
+}
+
+.modal-overlay{
+position:fixed;
+inset:0;
+background:rgba(7,29,51,0.42);
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:9500;
+backdrop-filter:blur(5px);
+}
+
+.modal-overlay.show{
+display:flex;
+}
+
+.modal-card{
+width:100%;
+max-width:360px;
+background:white;
+border-radius:24px;
+padding:20px;
+box-shadow:0 20px 48px rgba(7,29,51,0.24);
+border:1px solid #d6e7ff;
+}
+
+.modal-title{
+font-size:22px;
+line-height:28px;
+font-weight:900;
+text-align:center;
+}
+
+.modal-message{
+font-size:14px;
+line-height:21px;
+font-weight:800;
+color:#607086;
+text-align:center;
+margin-top:8px;
+}
+
+.modal-actions{
+display:flex;
+gap:10px;
+margin-top:18px;
+}
+
+.modal-actions button{
+flex:1;
+height:50px;
+border-radius:16px;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+}
+
+.warning-btn{
+width:100%;
+min-height:54px;
+border-radius:18px;
+border:1.5px solid #ffd89a;
+background:#fff4df;
+color:#9a5a00;
+font-size:15px;
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+cursor:pointer;
+box-shadow:0 8px 18px rgba(154,90,0,0.10);
+}
+
+.warning-btn:active{
+transform:scale(0.98);
+}
+
+.modal-actions .warning-confirm{
+background:linear-gradient(135deg,#f59e0b,#d97706);
+color:white;
+border:1px solid #d97706;
+box-shadow:0 8px 18px rgba(217,119,6,0.22);
+}
+
+.danger-zone{
+margin-top:14px;
+padding-top:14px;
+border-top:1px solid #edf2f8;
+}
+
+.success-overlay{
+position:fixed;
+inset:0;
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+background:rgba(7,29,51,0.38);
+backdrop-filter:blur(6px);
+z-index:9800;
+}
+
+.success-overlay.show{
+display:flex;
+}
+
+.success-card{
+width:100%;
+max-width:380px;
+background:white;
+border-radius:28px;
+padding:28px 22px;
+text-align:center;
+box-shadow:0 22px 52px rgba(7,29,51,0.24);
+border:1px solid #d6e7ff;
+}
+
+.success-icon{
+width:78px;
+height:78px;
+border-radius:50%;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+margin:0 auto 18px;
+box-shadow:0 12px 26px rgba(22,163,74,0.28);
+}
+
+.success-icon.blue{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+box-shadow:0 12px 26px rgba(24,119,242,0.28);
+}
+
+.success-icon.info{
+background:linear-gradient(135deg,#60a5fa,#1877F2);
+box-shadow:0 12px 26px rgba(24,119,242,0.22);
+}
+
+.success-title{
+font-size:24px;
+line-height:31px;
+font-weight:900;
+color:#071d33;
+}
+
+.success-message{
+margin-top:10px;
+font-size:15px;
+line-height:22px;
+font-weight:800;
+color:#607086;
+}
+
+.toast.warning{
+background:linear-gradient(135deg,#fff7ed,#ffffff);
+color:#9a3412;
+}
+
+.stage{
+display:none;
+}
+
+.stage.active{
+display:block;
+}
+
+.start-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:14px;
+}
+
+.start-card{
+border:1px solid #d6e7ff;
+background:linear-gradient(180deg,#ffffff,#f5f9ff);
+border-radius:24px;
+padding:18px;
+min-height:170px;
+text-align:left;
+box-shadow:0 10px 24px rgba(7,29,51,0.08);
+cursor:pointer;
+}
+
+.start-icon{
+width:54px;
+height:54px;
+border-radius:18px;
+background:#eef5ff;
+color:#1877F2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+margin-bottom:14px;
+}
+
+.start-card.primary .start-icon{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+}
+
+.start-title{
+font-size:20px;
+font-weight:900;
+line-height:25px;
+}
+
+.start-text{
+margin-top:8px;
+font-size:13px;
+font-weight:800;
+line-height:20px;
+color:#607086;
+}
+
+@media(max-width:560px){
+.start-grid{
+grid-template-columns:1fr;
+}
+}
+
+.footer-actions{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(12px);
+box-shadow:0 -8px 22px rgba(7,29,51,0.08);
+display:flex;
+gap:10px;
+padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+z-index:40;
+}
+
+.footer-actions button{
+flex:1;
+height:56px;
+border-radius:17px;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+}
+
+.footer-back{
+background:white;
+border:1px solid #b9d7ff;
+color:#1877F2;
+}
+
+.footer-next,
+.footer-upload,
+.footer-skip{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+border:none;
+color:white;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+}
+
+.footer-skip{
+background:#eef5ff;
+color:#1877F2;
+box-shadow:none;
+border:1px solid #b9d7ff;
+}
+
+.footer-upload:disabled{
+opacity:0.72;
+cursor:not-allowed;
+}
+
+.toast{
+position:fixed;
+left:16px;
+right:16px;
+bottom:88px;
+max-width:430px;
+margin:auto;
+background:white;
+border-radius:18px;
+box-shadow:0 12px 30px rgba(24,119,242,0.22);
+min-height:56px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:12px 16px;
+font-size:15px;
+font-weight:900;
+z-index:9000;
+opacity:0;
+pointer-events:none;
+transform:translateY(18px);
+transition:0.25s ease;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+<div class="pin-screen" id="pinScreen">
+<div class="pin-card">
+<div class="pin-icon"><i class="fa-solid fa-upload"></i></div>
+<div class="pin-title">Upload Product</div>
+<div class="pin-text">Enter seller PIN to upload or edit Purple Fashion products.</div>
+<input class="pin-input" id="pinInput" type="tel" inputmode="numeric" maxlength="4" placeholder="PIN" oninput="digitsOnly(this,4)">
+<div class="pin-actions">
+<button class="secondary-btn" onclick="window.location.href='products.html'">Back</button>
+<button class="primary-btn" onclick="unlockUpload()">Open</button>
+</div>
+</div>
+</div>
+
+<div class="app" id="app">
+<div class="header">
+<div class="header-left">
+<button class="back-btn" onclick="window.location.href='products.html'"><i class="fa-solid fa-arrow-left"></i></button>
+<div>
+<div class="brand-title">Purple Fashion Upload</div>
+<div class="brand-subtitle" id="modeText">New product</div>
+</div>
+</div>
+<button class="draft-btn" onclick="openClearConfirm()">Clear</button>
+</div>
+
+<div class="hero">
+<div class="progress-card">
+<div class="step-meta">
+<div class="step-name" id="stepName">Size</div>
+<div class="step-count" id="stepCount">Step 1 of 8</div>
+</div>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<div class="stage-labels" id="stageLabels"></div>
+</div>
+</div>
+
+<div class="content">
+<div class="stage active" data-stage="start">
+<div class="panel">
+<div class="stage-title">Choose Work</div>
+<div class="helper">Start a new product upload or edit an old product. Choose one path first.</div>
+<div class="start-grid">
+<button class="start-card primary" onclick="startNewUpload()">
+<div class="start-icon"><i class="fa-solid fa-plus"></i></div>
+<div class="start-title">New Product Upload</div>
+<div class="start-text">Add a new product with size price image and review.</div>
+</button>
+<button class="start-card" onclick="startOldProductEdit()">
+<div class="start-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+<div class="start-title">Edit Old Product</div>
+<div class="start-text">Find an uploaded product and update only what is needed.</div>
+</button>
+</div>
+</div>
+</div>
+
+<div class="stage" data-stage="size">
+<div class="panel">
+<div class="stage-title">Select Size</div>
+<div class="helper">Choose Free Size, Standard Size, or multiple clothing sizes. Free/Standard cannot mix with S/M/L.</div>
+<div class="chip-grid" id="sizeButtons"></div>
+</div>
+</div>
+
+<div class="stage" data-stage="category">
+<div class="panel">
+<div class="stage-title">Select Category</div>
+<div class="helper">Category controls product section. New Arrivals automatically gets the NEW badge.</div>
+<div class="chip-grid" id="categoryButtons"></div>
+<div class="input-group" id="newTypeBox" style="display:none;">
+<div class="input-label">Product type for New Arrivals</div>
+<div class="chip-grid" id="newTypeButtons"></div>
+</div>
+</div>
+</div>
+
+<div class="stage" data-stage="info">
+<div class="panel">
+<div class="stage-title">Product Info</div>
+<div class="helper">Name is auto-generated from category. You can edit it if needed.</div>
+<div class="input-group">
+<div class="input-label">Product ID <button onclick="regenerateProductId()">Regenerate</button></div>
+<input class="field" id="productId" placeholder="Auto Product ID" readonly>
+</div>
+<div class="input-group">
+<div class="input-label">Product Name <button onclick="generateName(true)">Generate Again</button></div>
+<input class="field" id="productName" placeholder="Auto product name" oninput="syncProductName(this)">
+</div>
+<div class="input-group">
+<div class="input-label">Show</div>
+<div class="chip-grid" id="showButtons"></div>
+</div>
+</div>
+</div>
+
+<div class="stage" data-stage="price">
+<div class="panel">
+<div class="stage-title">Price & Offer</div>
+<div class="helper">Select common price and Today Offer. Today Offer subtracts from price.</div>
+<div class="input-group">
+<div class="input-label">Price</div>
+<div class="chip-grid" id="priceButtons"></div>
+<div class="custom-row" id="customPriceRow">
+<input class="field" id="customPrice" type="tel" inputmode="numeric" placeholder="Custom price" oninput="setCustomPrice(this.value)">
+</div>
+</div>
+<div class="input-group">
+<div class="input-label">Today Offer</div>
+<div class="chip-grid" id="offerButtons"></div>
+</div>
+</div>
+</div>
+
+<div class="stage" data-stage="details">
+<div class="panel">
+<div class="stage-title">Details & Stock</div>
+<div class="helper">Descriptions are auto-generated from category. Tap Custom only if you need to write.</div>
+<div class="input-group">
+<div class="input-label">Stock</div>
+<div class="chip-grid" id="stockButtons"></div>
+</div>
+<div class="input-group">
+<div class="input-label">Description1</div>
+<textarea class="textarea" id="description1" readonly oninput="syncDescription('description1',this)"></textarea>
+<div class="input-actions">
+<button class="mini-btn primary" onclick="regenerateDescription('description1')"><i class="fa-solid fa-rotate"></i> Regenerate</button>
+<button class="mini-btn" id="desc1CustomBtn" onclick="enableDescriptionCustom('description1')">Custom</button>
+</div>
+</div>
+<div class="input-group">
+<div class="input-label">Description2</div>
+<textarea class="textarea" id="description2" readonly oninput="syncDescription('description2',this)"></textarea>
+<div class="input-actions">
+<button class="mini-btn primary" onclick="regenerateDescription('description2')"><i class="fa-solid fa-rotate"></i> Regenerate</button>
+<button class="mini-btn" id="desc2CustomBtn" onclick="enableDescriptionCustom('description2')">Custom</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="stage" data-stage="images">
+<div class="panel">
+<div class="stage-title">Image URLs</div>
+<div class="helper">Paste Google Drive or image URLs. Main image is best. You can skip and add later.</div>
+<div class="input-actions">
+<button class="mini-btn primary" onclick="pasteNextImageUrl()"><i class="fa-solid fa-paste"></i> Paste Next URL</button>
+</div>
+<div id="imageSlots"></div>
+<div class="input-actions">
+<button class="mini-btn primary" onclick="checkAllImages()"><i class="fa-solid fa-image"></i> Check All Images</button>
+<button class="mini-btn danger" onclick="clearAllImages()">Remove All Images</button>
+</div>
+<details class="banner-advanced">
+<summary>Advanced Banner Optional</summary>
+<div class="input-group"><div class="input-label">Banner 1</div><input class="field" id="banner1" placeholder="Optional" oninput="syncField('banner1',this.value)"></div>
+<div class="input-group"><div class="input-label">Banner 2</div><input class="field" id="banner2" placeholder="Optional" oninput="syncField('banner2',this.value)"></div>
+<div class="input-group"><div class="input-label">Banner 3</div><input class="field" id="banner3" placeholder="Optional" oninput="syncField('banner3',this.value)"></div>
+</details>
+</div>
+</div>
+
+<div class="stage" data-stage="sale">
+<div class="panel">
+<div class="stage-title">Advanced Sale</div>
+<div class="helper">Default is 0. Use carefully because Flat Discount or Big Day Sale can act like a global sale in your app.</div>
+<div class="warning-box">Select only one: Flat Discount or Big Day Sale. Today Offer stays saved and returns after sale.</div>
+<div class="input-group">
+<div class="input-label">Flat Discount</div>
+<div class="chip-grid" id="flatButtons"></div>
+<div class="custom-row" id="customFlatRow">
+<input class="field" id="customFlat" type="tel" inputmode="numeric" placeholder="Custom flat discount %" oninput="setCustomDiscount('flatDiscount',this.value)">
+</div>
+</div>
+<div class="input-group">
+<div class="input-label">Big Day Sale</div>
+<div class="chip-grid" id="bigButtons"></div>
+<div class="custom-row" id="customBigRow">
+<input class="field" id="customBig" type="tel" inputmode="numeric" placeholder="Custom big day sale %" oninput="setCustomDiscount('bigDaySale',this.value)">
+</div>
+</div>
+</div>
+</div>
+
+<div class="stage" data-stage="review">
+<div class="panel review-panel active" id="reviewProductPanel">
+<div class="stage-title">Review & Upload</div>
+<div class="helper">Check product details before saving to Sheet.</div>
+<div id="reviewBox"></div>
+</div>
+<div class="panel review-panel" id="editProductPanel">
+<div class="stage-title">Edit Uploaded Product</div>
+<div class="helper">Search live products and tap Edit. Upload button stays hidden here to avoid mistakes.</div>
+<div class="edit-search">
+<input class="field" id="editSearch" placeholder="Search name ID or price">
+<button class="primary-btn" onclick="loadLiveProducts()" style="height:54px;border-radius:18px;padding:0 14px;"><i class="fa-solid fa-rotate"></i></button>
+</div>
+<div class="edit-filters" id="editFilters"></div>
+<div class="edit-list" id="editList"></div>
+</div>
+</div>
+</div>
+
+<div class="footer-actions" id="footerActions">
+<button class="footer-back" id="backBtn" onclick="prevStage()">Back</button>
+<button class="footer-skip" id="skipBtn" onclick="skipStage()" style="display:none;">Skip</button>
+<button class="footer-next" id="nextBtn" onclick="nextStage()">Next</button>
+<button class="footer-upload" id="uploadBtn" onclick="uploadProduct()" style="display:none;">Upload Product</button>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="success-overlay" id="successOverlay">
+<div class="success-card">
+<div class="success-icon"><i class="fa-solid fa-check"></i></div>
+<div class="success-title" id="successTitle">Product Saved</div>
+<div class="success-message" id="successMessage"></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="confirmModal">
+<div class="modal-card">
+<div class="modal-title" id="confirmTitle">Confirm</div>
+<div class="modal-message" id="confirmMessage"></div>
+<div class="modal-actions">
+<button class="secondary-btn" id="confirmBackBtn">Back</button>
+<button class="primary-btn" id="confirmOkBtn">Confirm</button>
+</div>
+</div>
+</div>
+
+<script>
+const SCRIPT_API = APP_CONFIG.scriptApi;
+const PRODUCT_API = SCRIPT_API;
+const CACHE_KEY = "purpleFashionProductsCacheV1";
+const DRAFT_KEY = "purpleFashionUploadDraftV1";
+const AUTO_EXIT_MS = 3600000;
+const WARNING_MS = 3595000;
+
+const stages = [
+{key:"start", label:"Start"},
+{key:"size", label:"Size"},
+{key:"category", label:"Category"},
+{key:"info", label:"Info"},
+{key:"price", label:"Price"},
+{key:"details", label:"Details"},
+{key:"images", label:"Images"},
+{key:"sale", label:"Sale"},
+{key:"review", label:"Review"}
+];
+
+const categories = ["New Arrivals","Saree","Kurti","Tops","Palazzo","Salwar","Gown","Nighty","Western","Kids","Bedsheet","Trendz"];
+const categoryFilters = ["All","New Arrival","No Image","Saree","Kurti","Tops","Palazzo","Salwar","Gown","Nighty","Western","Kids","Bedsheet","Trendz"];
+const newTypes = ["Saree","Kurti","Tops","Palazzo","Salwar","Gown","Nighty","Western","Kids","Bedsheet","Trendz"];
+const priceValues = [129,149,179,199,249,299,349,399,449,499,549,599,649,699,749,799,849,899,949,999,1199,1249,1299,1349,1399,1449,1499];
+const offerValues = [0,20,30,40,50,80,100,120,150,200,220,250];
+const discountValues = [0,5,7,10,12,15,17,20];
+const imageKeys = ["imageUrl","imageUrl2","imageUrl3","imageUrl4"];
+
+const desc1Map = {
+"Saree":["Premium saree for festive style","Royal saree for elegant occasions","Soft saree for graceful fashion"],
+"Kurti":["Stylish kurti for daily comfort","Premium kurti for ethnic style","Modern kurti with soft comfort"],
+"Tops":["Trendy top for casual style","Modern top for daily fashion","Soft top for easy comfort"],
+"Palazzo":["Comfort palazzo for daily wear","Soft palazzo for modern styling","Classic palazzo for easy fashion"],
+"Salwar":["Classic salwar for ethnic style","Elegant salwar for daily comfort","Premium salwar for graceful wear"],
+"Gown":["Party gown for elegant style","Premium gown for special occasions","Royal gown for festive fashion"],
+"Nighty":["Soft nighty for sleep comfort","Comfort nighty for daily rest","Premium nighty for relaxed wear"],
+"Western":["Modern western for daily style","Trendy western for smart fashion","Stylish western for confident looks"],
+"Kids":["Cute kids wear for comfort","Trendy kids fashion for occasions","Soft kids outfit for daily style"],
+"Bedsheet":["Soft bedsheet for bedroom comfort","Premium bedsheet for home style","Elegant bedsheet for fresh rooms"],
+"Trendz":["Latest trendz for modern style","Fresh trendz for daily fashion","Premium trendz for smart looks"],
+"New Arrivals":["Fresh style for modern fashion","New collection for daily comfort","Latest fashion for elegant looks"]
+};
+
+const desc2Map = {
+"Saree":["Premium saree made for festive moments family functions and elegant traditional styling","Royal saree designed for graceful comfort soft drape and confident ethnic fashion","Elegant saree perfect for celebrations daily charm and timeless traditional beauty styling"],
+"Kurti":["Stylish kurti made for daily comfort ethnic style and easy fashion for every occasion","Premium kurti designed with soft comfort modern look and graceful everyday ethnic wear","Modern kurti perfect for casual outings daily use and simple elegant fashion styling"],
+"Tops":["Trendy top designed for casual outings daily comfort and simple modern fashion styling","Modern top made for easy pairing soft comfort and confident everyday looks","Stylish top perfect for daily wear relaxed comfort and smart casual fashion"],
+"Palazzo":["Soft palazzo made for daily comfort easy movement and modern relaxed fashion","Comfort palazzo perfect for kurtis tops office wear and graceful daily styling","Classic palazzo designed for soft feel flexible fit and effortless modern looks"],
+"Salwar":["Elegant salwar made for ethnic comfort daily wear and graceful festive styling","Classic salwar designed for family occasions soft comfort and traditional fashion charm","Premium salwar perfect for daily use celebrations and confident ethnic fashion looks"],
+"Gown":["Premium gown made for parties celebrations and graceful special occasion fashion styling","Royal gown designed for elegant presence soft comfort and beautiful festive fashion","Stylish gown perfect for evening moments celebrations and confident party fashion looks"],
+"Nighty":["Soft nighty made for relaxed sleep comfort daily rest and easy home wear","Comfort nighty designed for lightweight feel peaceful sleep and everyday night use","Premium nighty perfect for calm evenings daily comfort and relaxed home styling"],
+"Western":["Modern western outfit made for daily confidence casual outings and smart fashion styling","Trendy western wear designed for comfort fresh looks and effortless everyday fashion","Stylish western choice perfect for modern dressing relaxed comfort and confident looks"],
+"Kids":["Cute kids wear made for playful comfort daily use and happy occasion styling","Soft kids outfit designed for easy movement bright looks and everyday comfort","Trendy kids fashion perfect for outings celebrations and comfortable daily fashion wear"],
+"Bedsheet":["Soft bedsheet made for bedroom comfort fresh home style and peaceful daily rest","Premium bedsheet designed for elegant rooms soft feel and comfortable home living","Fresh bedsheet perfect for daily home use bedroom beauty and relaxed sleep comfort"],
+"Trendz":["Latest trendz piece made for modern style daily comfort and fresh fashion looks","Premium trendz collection designed for smart dressing confident style and easy everyday use","Fresh trendz choice perfect for upgrading daily fashion with simple modern comfort"],
+"New Arrivals":["Fresh fashion style made for modern comfort daily confidence and elegant new looks","New collection designed for soft comfort smart style and beautiful everyday fashion","Latest fashion choice perfect for daily wear fresh styling and confident modern looks"]
+};
+
+const nameWords = {
+"Saree":[["Royal","Silk","Fashion","Saree"],["Elegant","Cotton","Party","Saree"],["Premium","Designer","Ethnic","Saree"]],
+"Kurti":[["Stylish","Cotton","Daily","Kurti"],["Premium","Ethnic","Fashion","Kurti"],["Modern","Comfort","Printed","Kurti"]],
+"Tops":[["Modern","Girls","Casual","Top"],["Trendy","Daily","Fashion","Top"],["Stylish","Comfort","Cotton","Top"]],
+"Palazzo":[["Soft","Comfort","Daily","Palazzo"],["Classic","Printed","Fashion","Palazzo"],["Modern","Relaxed","Cotton","Palazzo"]],
+"Salwar":[["Classic","Ethnic","Salwar","Set"],["Elegant","Cotton","Salwar","Set"],["Premium","Traditional","Salwar","Set"]],
+"Gown":[["Princess","Party","Fashion","Gown"],["Stylish","Evening","Party","Gown"],["Premium","Fashion","Designer","Gown"]],
+"Nighty":[["Soft","Cotton","Comfort","Nighty"],["Premium","Ladies","Sleep","Nighty"],["Comfort","Daily","Wear","Nighty"]],
+"Western":[["Modern","Western","Fashion","Outfit"],["Stylish","Daily","Western","Wear"],["Trendy","Comfort","Western","Outfit"]],
+"Kids":[["Cute","Kids","Fashion","Wear"],["Smart","Kids","Casual","Set"],["Trendy","Kids","Comfort","Wear"]],
+"Bedsheet":[["Premium","Soft","Bedroom","Bedsheet"],["Luxury","Printed","Cotton","Bedsheet"],["Comfort","Double","Soft","Bedsheet"]],
+"Trendz":[["Universal","Latest","Fashion","Collection"],["Modern","Trendy","Daily","Choice"],["Fresh","Premium","Style","Pick"]],
+"New Arrivals":[["New","Trendy","Fashion","Collection"],["Fresh","Latest","Style","Choice"],["Modern","Royal","Fashion","Choice"]]
+};
+
+let currentStage = 0;
+let editMode = false;
+let liveProducts = [];
+let productIdHistory = [];
+let toastTimer = null;
+let editFilter = "All";
+let pendingSale = null;
+let imageCheckState = {};
+let imageCompleteAnnounced = false;
+let returnToReviewMode = false;
+let reviewMode = "product";
+let warningTimer = null;
+let exitTimer = null;
+let previousEditStock = "";
+
+let uploadData = {
+size:"Free Size",
+category:"New Arrivals",
+newType:"",
+productId:"",
+productName:"",
+show:"Yes",
+price:"",
+description1:"",
+imageUrl:"",
+stock:"In Stock",
+todayOffer:"0",
+imageUrl2:"",
+imageUrl3:"",
+imageUrl4:"",
+shipping:"Free Shipping",
+description2:"",
+flatDiscount:"0",
+bigDaySale:"0",
+banner1:"",
+banner2:"",
+banner3:""
+};
+
+function freshUploadData(){
+return {
+size:"Free Size",
+category:"New Arrivals",
+newType:"",
+productId:"",
+productName:"",
+show:"Yes",
+price:"",
+description1:"",
+imageUrl:"",
+stock:"In Stock",
+todayOffer:"0",
+imageUrl2:"",
+imageUrl3:"",
+imageUrl4:"",
+shipping:"Free Shipping",
+description2:"",
+flatDiscount:"0",
+bigDaySale:"0",
+banner1:"",
+banner2:"",
+banner3:""
+};
+}
+
+function digitsOnly(input,maxLength){
+input.value = input.value.replace(/\D/g,"").slice(0,maxLength);
+}
+
+function showToast(message){
+let toast = document.getElementById("toast");
+toast.innerText = message;
+toast.className = "toast show";
+
+if(toastTimer){
+clearTimeout(toastTimer);
+}
+
+toastTimer = setTimeout(function(){
+toast.classList.remove("show");
+},2200);
+}
+
+function showWarningToast(message){
+let toast = document.getElementById("toast");
+toast.innerText = message;
+toast.className = "toast show warning";
+
+if(toastTimer){
+clearTimeout(toastTimer);
+}
+
+toastTimer = setTimeout(function(){
+toast.className = "toast";
+},2200);
+}
+
+function showSuccessBox(title,theme,message,icon){
+let successIcon = document.querySelector("#successOverlay .success-icon");
+document.getElementById("successTitle").innerText = title;
+document.getElementById("successMessage").innerText = message || "";
+successIcon.classList.toggle("blue",theme === "blue");
+successIcon.classList.toggle("info",theme === "info");
+successIcon.innerHTML = `<i class="fa-solid fa-${icon || "check"}"></i>`;
+document.getElementById("successOverlay").classList.add("show");
+}
+
+function getAdminToken(){
+return sessionStorage.getItem("purpleFashionAdminToken") || "";
+}
+
+function getAdminDeviceId(){
+let key = "purpleFashionAdminDeviceId";
+let deviceId = localStorage.getItem(key);
+
+if(!deviceId){
+deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+localStorage.setItem(key,deviceId);
+}
+
+return deviceId;
+}
+
+function adminLogin(pin){
+return fetch(SCRIPT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"adminLogin",
+pin:pin,
+page:"upload",
+deviceId:getAdminDeviceId()
+})
+}).then(res=>res.json());
+}
+
+function showSecurityModal(title,message,icon){
+let existing = document.getElementById("adminSecurityModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "adminSecurityModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
+<div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showAdminLoginMessage(result){
+if(result && result.code === "warning"){
+showSecurityModal("Warning",result.message || "One more wrong PIN will block seller access for 24 hours.","triangle-exclamation");
+return true;
+}
+
+if(result && result.code === "blocked"){
+showSecurityModal("Access Blocked",result.message || "Try again after 24 hours.","lock");
+return true;
+}
+
+return false;
+}
+
+function hideSuccessBox(){
+document.getElementById("successOverlay").classList.remove("show");
+}
+
+function openConfirm(title,message,onConfirm,onBack,backText,confirmText,confirmClass){
+let modal = document.getElementById("confirmModal");
+document.getElementById("confirmTitle").innerText = title;
+document.getElementById("confirmMessage").innerText = message;
+document.getElementById("confirmBackBtn").innerText = backText || "Back";
+let confirmButton = document.getElementById("confirmOkBtn");
+confirmButton.innerText = confirmText || "Confirm";
+confirmButton.className = "primary-btn" + (confirmClass ? " " + confirmClass : "");
+document.getElementById("confirmBackBtn").onclick = function(){
+closeConfirm();
+if(onBack){
+onBack();
+}
+};
+confirmButton.onclick = function(){
+closeConfirm();
+if(onConfirm){
+onConfirm();
+}
+};
+modal.classList.add("show");
+}
+
+function closeConfirm(){
+document.getElementById("confirmModal").classList.remove("show");
+pendingSale = null;
+}
+
+function openClearConfirm(){
+openConfirm("Clear current product?","This will reset the upload form.",function(){
+clearDraftNow();
+},null,"Cancel","Clear");
+}
+
+function unlockUpload(){
+let pin = document.getElementById("pinInput").value.trim();
+
+showToast("Checking PIN");
+
+adminLogin(pin).then(function(result){
+if(!(result && result.success && result.token)){
+if(showAdminLoginMessage(result)){
+return;
+}
+
+showToast(result && result.message ? result.message : "Wrong PIN");
+return;
+}
+
+sessionStorage.setItem("purpleFashionUploadUnlocked","yes");
+sessionStorage.setItem("purpleFashionAdminToken",result.token);
+showApp();
+}).catch(function(){
+showToast("Login server error");
+});
+}
+
+function showApp(){
+document.getElementById("pinScreen").style.display = "none";
+document.getElementById("app").style.display = "block";
+renderAllControls();
+loadDraft();
+currentStage = 0;
+reviewMode = "product";
+renderStage();
+if(!uploadData.productId){
+regenerateProductId();
+}
+loadLiveProducts();
+startAutoExit();
+}
+
+function startAutoExit(){
+resetAutoExit();
+
+["click","touchstart","scroll","keydown","input"].forEach(function(eventName){
+window.addEventListener(eventName, resetAutoExit, {passive:true});
+});
+}
+
+function resetAutoExit(){
+if(warningTimer){
+clearTimeout(warningTimer);
+}
+
+if(exitTimer){
+clearTimeout(exitTimer);
+}
+
+warningTimer = setTimeout(function(){
+showWarningToast("Auto exit in 5 seconds");
+},WARNING_MS);
+
+exitTimer = setTimeout(function(){
+sessionStorage.removeItem("purpleFashionUploadUnlocked");
+showToast("Session expired");
+setTimeout(function(){
+window.location.replace("products.html");
+},500);
+},AUTO_EXIT_MS);
+}
+
+function returnToUploadStart(){
+hideSuccessBox();
+localStorage.removeItem(DRAFT_KEY);
+let uploadButton = document.getElementById("uploadBtn");
+uploadButton.disabled = false;
+uploadButton.innerText = "Upload Product";
+editMode = false;
+previousEditStock = "";
+reviewMode = "product";
+returnToReviewMode = false;
+uploadData = freshUploadData();
+fillForm();
+currentStage = 0;
+document.getElementById("modeText").innerText = "New product";
+renderStage();
+regenerateProductId();
+loadLiveProducts();
+resetAutoExit();
+}
+
+function startNewUpload(){
+if(editMode){
+uploadData = freshUploadData();
+fillForm();
+}
+
+editMode = false;
+previousEditStock = "";
+reviewMode = "product";
+returnToReviewMode = false;
+document.getElementById("modeText").innerText = "New product";
+
+if(!uploadData.productId){
+regenerateProductId();
+}
+
+currentStage = 1;
+renderStage();
+showToast("New upload started");
+}
+
+function startOldProductEdit(){
+reviewMode = "edit";
+returnToReviewMode = false;
+currentStage = stages.length - 1;
+document.getElementById("modeText").innerText = "Choose product to edit";
+renderStage();
+loadLiveProducts();
+showToast("Edit old product");
+}
+
+function normalizeImageUrl(url){
+if(!url){
+return "";
+}
+
+let cleanUrl = String(url).trim();
+let driveMatch =
+cleanUrl.match(/drive\.google\.com\/file\/d\/([^/]+)/) ||
+cleanUrl.match(/[?&]id=([^&]+)/);
+
+if(driveMatch && driveMatch[1]){
+return "https://lh3.googleusercontent.com/d/" + driveMatch[1];
+}
+
+return cleanUrl;
+}
+
+function getExistingProductIds(){
+let ids = new Set();
+
+liveProducts.forEach(function(product){
+let id = String(getField(product,["Product ID","productId"]) || "").trim().toUpperCase();
+if(id){
+ids.add(id);
+}
+});
+
+productIdHistory.forEach(function(item){
+let id = "";
+
+if(typeof item === "string"){
+id = item;
+}
+else{
+id = String(getField(item,["Product ID","productId"]) || "").trim().toUpperCase();
+}
+
+if(id){
+ids.add(id);
+}
+});
+
+return ids;
+}
+
+function makeProductId(number){
+return "DS" + String(number).padStart(5,"0");
+}
+
+function getNextProductIdNumber(){
+let highest = 0;
+
+getExistingProductIds().forEach(function(id){
+let match = id.match(/^DS(\d{5})$/);
+
+if(match){
+let number = Number(match[1]) || 0;
+
+if(number > highest){
+highest = number;
+}
+}
+});
+
+return highest + 1;
+}
+
+function generateUniqueProductId(){
+let existingIds = getExistingProductIds();
+let nextNumber = getNextProductIdNumber();
+
+for(let number = nextNumber; number <= 99999; number++){
+let id = makeProductId(number);
+
+if(!existingIds.has(id)){
+return id;
+}
+}
+
+showToast("Product ID limit reached");
+return "";
+}
+
+function regenerateProductId(){
+if(editMode){
+showToast("Product ID locked while editing");
+return;
+}
+
+uploadData.productId = generateUniqueProductId();
+let field = document.getElementById("productId");
+
+if(field){
+field.value = uploadData.productId;
+}
+
+saveDraft();
+}
+
+function renderAllControls(){
+renderStageLabels();
+renderSizeButtons();
+renderCategoryButtons();
+renderNewTypeButtons();
+renderImageSlots();
+renderEditFilters();
+renderChoiceButtons("showButtons",["Yes","No"],uploadData.show,function(value){ uploadData.show = value; });
+renderChoiceButtons("stockButtons",["In Stock","Out Of Stock"],uploadData.stock,function(value){ uploadData.stock = value; });
+renderPriceButtons();
+renderOfferButtons();
+renderDiscountButtons();
+}
+
+function renderStageLabels(){
+let labelBox = document.getElementById("stageLabels");
+let visibleStages = currentStage === 0 ? stages : stages.filter(function(stage){ return stage.key !== "start"; });
+labelBox.innerHTML = visibleStages.map(function(stage){
+let index = stages.findIndex(function(item){ return item.key === stage.key; });
+let cls = index === currentStage ? "active" : (index < currentStage ? "done" : "");
+return `<div class="stage-pill ${cls}">${index < currentStage ? "Done " : ""}${stage.label}</div>`;
+}).join("");
+
+let activePill = labelBox.querySelector(".stage-pill.active");
+if(activePill){
+setTimeout(function(){
+activePill.scrollIntoView({
+behavior:"smooth",
+block:"nearest",
+inline:"center"
+});
+},60);
+}
+}
+
+function renderSizeButtons(){
+let values = ["Free Size","Standard Size","S","M","L","XL","XXL","XXXL"];
+document.getElementById("sizeButtons").innerHTML = values.map(function(value){
+let active = getSizeArray().includes(value) ? " active" : "";
+return `<button class="chip${active}" onclick="selectSize('${value}')">${value}</button>`;
+}).join("");
+}
+
+function getSizeArray(){
+return String(uploadData.size || "").split(",").map(function(item){
+return item.trim();
+}).filter(Boolean);
+}
+
+function selectSize(size){
+let singleSizes = ["Free Size","Standard Size"];
+let selected = getSizeArray();
+
+if(singleSizes.includes(size)){
+uploadData.size = size;
+}
+else{
+selected = selected.filter(function(item){
+return !singleSizes.includes(item);
+});
+
+if(selected.includes(size)){
+selected = selected.filter(function(item){
+return item !== size;
+});
+}
+else{
+selected.push(size);
+}
+
+uploadData.size = selected.length ? selected.join(",") : "";
+}
+
+saveDraft();
+renderSizeButtons();
+}
+
+function renderCategoryButtons(){
+document.getElementById("categoryButtons").innerHTML = categories.map(function(category){
+let active = uploadData.category === category ? " active" : "";
+return `<button class="chip${active}" onclick="selectCategory('${category}')">${category}</button>`;
+}).join("");
+}
+
+function renderNewTypeButtons(){
+document.getElementById("newTypeButtons").innerHTML = newTypes.map(function(type){
+let active = uploadData.newType === type ? " active" : "";
+return `<button class="chip${active}" onclick="selectNewType('${type}')">${type}</button>`;
+}).join("");
+}
+
+function selectCategory(category){
+uploadData.category = category;
+
+if(category !== "New Arrivals"){
+uploadData.newType = "";
+}
+
+generateName(false);
+resetDescriptions();
+saveDraft();
+renderCategoryButtons();
+renderNewTypeButtons();
+document.getElementById("newTypeBox").style.display = category === "New Arrivals" ? "block" : "none";
+}
+
+function selectNewType(type){
+uploadData.newType = type;
+generateName(false);
+resetDescriptions();
+saveDraft();
+renderNewTypeButtons();
+}
+
+function generateName(force){
+let category = uploadData.category || "Trendz";
+let useCategory = category === "New Arrivals" && uploadData.newType ? uploadData.newType : category;
+let sets = nameWords[useCategory] || nameWords.Trendz;
+let index = Math.floor(Math.random() * sets.length);
+let words = sets[index].slice();
+
+let generated = words.join(" ");
+
+if(force || !uploadData.productName){
+uploadData.productName = cleanText(generated);
+document.getElementById("productName").value = generated;
+saveDraft();
+renderOfferButtons();
+}
+}
+
+function syncProductName(input){
+let clean = cleanText(input.value,{trim:false});
+input.value = clean;
+uploadData.productName = clean;
+saveDraft();
+}
+
+function validateProductName(){
+let name = cleanText(uploadData.productName);
+let words = wordCount(name);
+
+if(words < 4 || words > 6){
+showToast("Product name needs 4 to 6 words");
+return false;
+}
+
+uploadData.productName = name;
+let field = document.getElementById("productName");
+if(field){
+field.value = name;
+}
+return true;
+}
+
+function getDescriptionCategory(){
+if(uploadData.category === "New Arrivals" && uploadData.newType){
+return uploadData.newType;
+}
+
+return uploadData.category || "Trendz";
+}
+
+function cleanText(value,options){
+options = options || {};
+let original = String(value || "");
+let normalized = original.replace(/[\r\n\t]+/g," ");
+let textWithoutPunctuation = normalized.replace(/[^a-zA-Z0-9 ]+/g,"");
+let clean = textWithoutPunctuation.replace(/\s+/g," ");
+
+if(options.trim !== false){
+clean = clean.trim();
+}
+
+if(textWithoutPunctuation !== normalized){
+showToast("No punctuation marks use letters and numbers only");
+}
+
+return clean;
+}
+
+function wordCount(value){
+return cleanText(value).split(/\s+/).filter(Boolean).length;
+}
+
+function pickText(map,category,previous){
+let options = map[category] || map.Trendz;
+let cleanPrevious = cleanText(previous || "");
+let choices = options.filter(function(text){
+return cleanText(text) !== cleanPrevious;
+});
+
+if(!choices.length){
+choices = options;
+}
+
+return cleanText(choices[Math.floor(Math.random() * choices.length)]);
+}
+
+function resetDescriptions(){
+let category = getDescriptionCategory();
+uploadData.description1 = pickText(desc1Map,category,uploadData.description1);
+uploadData.description2 = pickText(desc2Map,category,uploadData.description2);
+
+let desc1 = document.getElementById("description1");
+let desc2 = document.getElementById("description2");
+
+if(desc1){
+desc1.value = uploadData.description1;
+desc1.readOnly = true;
+}
+
+if(desc2){
+desc2.value = uploadData.description2;
+desc2.readOnly = true;
+}
+
+saveDraft();
+}
+
+function regenerateDescription(key){
+let category = getDescriptionCategory();
+
+if(key === "description1"){
+uploadData.description1 = pickText(desc1Map,category,uploadData.description1);
+document.getElementById("description1").value = uploadData.description1;
+document.getElementById("description1").readOnly = true;
+}
+
+if(key === "description2"){
+uploadData.description2 = pickText(desc2Map,category,uploadData.description2);
+document.getElementById("description2").value = uploadData.description2;
+document.getElementById("description2").readOnly = true;
+}
+
+saveDraft();
+showToast("Description regenerated");
+}
+
+function enableDescriptionCustom(key){
+let id = key === "description1" ? "description1" : "description2";
+let field = document.getElementById(id);
+field.readOnly = false;
+field.focus();
+showToast("Custom description enabled");
+}
+
+function syncDescription(key,input){
+let clean = cleanText(input.value,{trim:false});
+input.value = clean;
+uploadData[key] = clean;
+saveDraft();
+}
+
+function renderChoiceButtons(id,values,current,onSelect){
+let box = document.getElementById(id);
+box.innerHTML = values.map(function(value){
+let danger = value.toLowerCase().includes("out") || value === "No" ? " danger" : "";
+let active = current === value ? " active" : "";
+return `<button class="chip${danger}${active}" onclick="selectChoice('${id}','${value}')">${value}</button>`;
+}).join("");
+}
+
+function selectChoice(id,value){
+if(id === "showButtons"){
+uploadData.show = value;
+renderChoiceButtons("showButtons",["Yes","No"],uploadData.show);
+}
+
+if(id === "stockButtons"){
+uploadData.stock = value;
+renderChoiceButtons("stockButtons",["In Stock","Out Of Stock"],uploadData.stock);
+}
+
+saveDraft();
+}
+
+function renderPriceButtons(){
+let html = priceValues.map(function(price){
+let active = Number(uploadData.price) === price ? " active" : "";
+return `<button class="chip${active}" onclick="selectPrice('${price}')">Rs ${price}</button>`;
+}).join("");
+html += `<button class="chip${uploadData.price && !priceValues.includes(Number(uploadData.price)) ? " active" : ""}" onclick="showCustomPrice()">Custom</button>`;
+document.getElementById("priceButtons").innerHTML = html;
+document.getElementById("customPriceRow").classList.toggle("active",uploadData.price && !priceValues.includes(Number(uploadData.price)));
+}
+
+function selectPrice(price){
+uploadData.price = String(price);
+document.getElementById("customPrice").value = "";
+saveDraft();
+renderPriceButtons();
+}
+
+function showCustomPrice(){
+document.getElementById("customPriceRow").classList.add("active");
+setTimeout(function(){
+document.getElementById("customPrice").focus();
+},80);
+}
+
+function setCustomPrice(value){
+uploadData.price = String(value || "").replace(/\D/g,"");
+saveDraft();
+renderPriceButtons();
+}
+
+function renderOfferButtons(){
+document.getElementById("offerButtons").innerHTML = offerValues.map(function(value){
+let label = value === 0 ? "No Offer" : "Rs " + value;
+let active = Number(uploadData.todayOffer) === value ? " active" : "";
+return `<button class="chip${active}" onclick="selectOffer('${value}')">${label}</button>`;
+}).join("") + `<button class="chip${uploadData.todayOffer && !offerValues.includes(Number(uploadData.todayOffer)) ? " active" : ""}" onclick="showCustomOffer()">Custom</button>
+<div class="custom-row" id="customOfferRow"><input class="field" id="customOffer" type="tel" inputmode="numeric" placeholder="Custom today offer" oninput="setCustomOffer(this.value)"></div>`;
+}
+
+function selectOffer(value){
+uploadData.todayOffer = String(value);
+
+if(Number(value) > 0 && (Number(uploadData.flatDiscount) > 0 || Number(uploadData.bigDaySale) > 0)){
+uploadData.flatDiscount = "0";
+uploadData.bigDaySale = "0";
+showToast("Sale discount cleared because Today Offer is selected");
+renderDiscountButtons();
+}
+
+saveDraft();
+renderOfferButtons();
+}
+
+function showCustomOffer(){
+let row = document.getElementById("customOfferRow");
+if(row){
+row.classList.add("active");
+}
+setTimeout(function(){
+let input = document.getElementById("customOffer");
+if(input){
+input.focus();
+}
+},80);
+}
+
+function setCustomOffer(value){
+let clean = String(value || "").replace(/\D/g,"");
+uploadData.todayOffer = clean || "0";
+
+if(Number(uploadData.todayOffer) > 0 && (Number(uploadData.flatDiscount) > 0 || Number(uploadData.bigDaySale) > 0)){
+uploadData.flatDiscount = "0";
+uploadData.bigDaySale = "0";
+showToast("Sale discount cleared because Today Offer is selected");
+renderDiscountButtons();
+}
+
+saveDraft();
+}
+
+function renderDiscountButtons(){
+renderOneDiscount("flatButtons","flatDiscount","customFlatRow");
+renderOneDiscount("bigButtons","bigDaySale","customBigRow");
+}
+
+function renderOneDiscount(boxId,key,rowId){
+let otherKey = key === "flatDiscount" ? "bigDaySale" : "flatDiscount";
+let disabled = Number(uploadData[otherKey]) > 0;
+let values = discountValues.map(function(value){
+let active = Number(uploadData[key]) === value ? " active" : "";
+let disabledText = disabled && value !== 0 ? " disabled" : "";
+return `<button class="chip${active}" ${disabledText} onclick="selectDiscount('${key}','${value}')">${value}%</button>`;
+}).join("");
+
+values += `<button class="chip${uploadData[key] && !discountValues.includes(Number(uploadData[key])) ? " active" : ""}" ${disabled ? "disabled" : ""} onclick="showCustomDiscount('${rowId}')">Custom</button>`;
+document.getElementById(boxId).innerHTML = values;
+document.getElementById(rowId).classList.toggle("active",uploadData[key] && !discountValues.includes(Number(uploadData[key])));
+}
+
+function selectDiscount(key,value){
+let otherKey = key === "flatDiscount" ? "bigDaySale" : "flatDiscount";
+
+if(Number(value) > 0){
+let chosenSale = {key:key,value:String(value)};
+pendingSale = chosenSale;
+openConfirm("Use discount in all products?","Today Offer will stay saved and app will ignore it during sale",function(){
+applySaleDiscount(chosenSale.key,chosenSale.value);
+showToast("Today Offer saved for after sale");
+});
+return;
+}
+
+uploadData[key] = String(value);
+saveDraft();
+renderDiscountButtons();
+}
+
+function applySaleDiscount(key,value){
+let otherKey = key === "flatDiscount" ? "bigDaySale" : "flatDiscount";
+uploadData[key] = String(value);
+uploadData[otherKey] = "0";
+saveDraft();
+renderDiscountButtons();
+}
+
+function showCustomDiscount(rowId){
+document.getElementById(rowId).classList.add("active");
+let input = rowId === "customFlatRow" ? "customFlat" : "customBig";
+setTimeout(function(){
+document.getElementById(input).focus();
+},80);
+}
+
+function setCustomDiscount(key,value){
+let clean = String(value || "").replace(/\D/g,"").slice(0,2);
+
+if(Number(clean) > 0){
+let chosenSale = {key:key,value:clean};
+pendingSale = chosenSale;
+openConfirm("Use discount in all products?","Today Offer will stay saved and app will ignore it during sale",function(){
+applySaleDiscount(chosenSale.key,chosenSale.value);
+showToast("Today Offer saved for after sale");
+});
+return;
+}
+
+uploadData[key] = clean || "0";
+saveDraft();
+renderDiscountButtons();
+}
+
+function syncField(key,value){
+uploadData[key] = value;
+saveDraft();
+}
+
+function hasAllProductImages(data){
+let source = data || uploadData;
+return imageKeys.every(function(key){
+return String(source[key] || "").trim() !== "";
+});
+}
+
+function syncShowByImages(){
+uploadData.show = hasAllProductImages(uploadData) ? "Yes" : "No";
+saveDraft();
+}
+
+function getImageVisibilityResult(){
+if(hasAllProductImages(uploadData)){
+return {
+title:"Product Visible",
+message:"All 4 images are added. Product is now visible in app.",
+theme:"blue",
+icon:"check"
+};
+}
+
+return {
+title:"Product Saved Hidden",
+message:"Add all 4 images to make this product visible in app.",
+theme:"info",
+icon:"circle-info"
+};
+}
+
+function getSavedProductType(){
+if(uploadData.category === "New Arrivals"){
+return uploadData.newType || "";
+}
+
+return uploadData.category || "";
+}
+
+function renderImageSlots(){
+let box = document.getElementById("imageSlots");
+
+if(!box){
+return;
+}
+
+let labels = ["Main Image Url","Image Url2","Image Url3","Image Url4"];
+let hints = ["main image url","optional image url","optional image url","optional image url"];
+
+box.innerHTML = imageKeys.map(function(key,index){
+let value = uploadData[key] || "";
+let required = index === 0 ? " Main" : " Optional";
+return `
+<div class="image-slot">
+<div class="input-label">${labels[index]}<span>${required}</span></div>
+<input class="field" id="${key}" placeholder="${hints[index]}" value="${value}" oninput="syncImageField('${key}',this.value)">
+<div class="input-actions">
+<button class="mini-btn" onclick="pasteImageUrl('${key}')">Paste</button>
+<button class="mini-btn primary" onclick="checkImage('${key}')">Preview</button>
+<button class="mini-btn danger" onclick="clearImage('${key}')">Clear</button>
+</div>
+<div class="image-preview" id="${key}Preview">
+<img id="${key}Img" alt="">
+<div class="image-state" id="${key}State">Waiting for image</div>
+</div>
+</div>
+`;
+}).join("");
+
+imageKeys.forEach(function(key){
+if(uploadData[key]){
+checkImage(key,true);
+}
+});
+}
+
+function syncImageField(key,value){
+uploadData[key] = value;
+saveDraft();
+checkImageCompletion();
+
+if(value.trim()){
+checkImage(key,true);
+}
+}
+
+function pasteImageUrl(key){
+if(!navigator.clipboard){
+showToast("Paste manually");
+return;
+}
+
+navigator.clipboard.readText().then(function(text){
+let field = document.getElementById(key);
+field.value = text;
+syncImageField(key,text);
+showToast("Image URL pasted");
+}).catch(function(){
+showToast("Paste manually");
+});
+}
+
+function getClipboardImageUrl(text){
+let parts = String(text || "")
+.split(/\s+/)
+.map(function(item){ return item.trim(); })
+.filter(function(item){ return /^https?:\/\//i.test(item); });
+
+return parts[0] || String(text || "").trim();
+}
+
+function pasteNextImageUrl(){
+if(!navigator.clipboard){
+showToast("Copy URL first");
+return;
+}
+
+let nextKey = imageKeys.find(function(key){
+return !String(uploadData[key] || "").trim();
+});
+
+if(!nextKey){
+showImageCompleteModal();
+return;
+}
+
+navigator.clipboard.readText().then(function(text){
+let url = getClipboardImageUrl(text);
+
+if(!url){
+showToast("Copy image URL first");
+return;
+}
+
+let field = document.getElementById(nextKey);
+
+if(field){
+field.value = url;
+}
+
+syncImageField(nextKey,url);
+checkImage(nextKey,true);
+
+let index = imageKeys.indexOf(nextKey) + 1;
+showToast("Image " + index + " URL pasted");
+}).catch(function(){
+showToast("Copy URL first");
+});
+}
+
+function checkImageCompletion(){
+if(hasAllProductImages(uploadData)){
+if(!imageCompleteAnnounced){
+showImageCompleteModal();
+}
+imageCompleteAnnounced = true;
+return;
+}
+
+imageCompleteAnnounced = false;
+}
+
+function showImageCompleteModal(){
+showSuccessBox(
+"Product Visible",
+"blue",
+"All 4 images added. Product will be visible.",
+"check"
+);
+
+setTimeout(function(){
+hideSuccessBox();
+},3000);
+}
+
+function checkImage(key,silent){
+let value = String(uploadData[key] || "").trim();
+let preview = document.getElementById(key + "Preview");
+let img = document.getElementById(key + "Img");
+let state = document.getElementById(key + "State");
+
+if(!preview || !img || !state){
+return;
+}
+
+if(!value){
+preview.classList.remove("show");
+return;
+}
+
+let url = normalizeImageUrl(value);
+preview.classList.add("show");
+state.className = "image-state";
+state.innerText = "Checking image";
+img.onload = function(){
+state.className = "image-state good";
+state.innerText = "Image loaded";
+imageCheckState[key] = "good";
+};
+img.onerror = function(){
+state.className = "image-state bad";
+state.innerText = "Image not loading check URL";
+imageCheckState[key] = "bad";
+if(!silent){
+showToast("Image not loading check URL");
+}
+};
+img.src = url;
+}
+
+function checkAllImages(){
+imageKeys.forEach(function(key){
+if(uploadData[key]){
+checkImage(key,false);
+}
+});
+showToast("Checking images");
+}
+
+function clearImage(key){
+uploadData[key] = "";
+imageCompleteAnnounced = false;
+let field = document.getElementById(key);
+let preview = document.getElementById(key + "Preview");
+
+if(field){
+field.value = "";
+}
+
+if(preview){
+preview.classList.remove("show");
+}
+
+saveDraft();
+}
+
+function clearAllImages(){
+imageKeys.forEach(clearImage);
+showToast("Images removed");
+}
+
+function fillForm(){
+if(!editMode && !uploadData.category){
+uploadData.category = "New Arrivals";
+}
+
+Object.keys(uploadData).forEach(function(key){
+let field = document.getElementById(key);
+if(field){
+field.value = uploadData[key] || "";
+}
+});
+renderAllControls();
+document.getElementById("newTypeBox").style.display = uploadData.category === "New Arrivals" ? "block" : "none";
+}
+
+function saveDraft(){
+localStorage.setItem(DRAFT_KEY,JSON.stringify({
+editMode:editMode,
+uploadData:uploadData
+}));
+}
+
+function loadDraft(){
+let draft = localStorage.getItem(DRAFT_KEY);
+
+if(!draft){
+fillForm();
+return;
+}
+
+try{
+let parsed = JSON.parse(draft);
+if(parsed && parsed.uploadData){
+uploadData = Object.assign(uploadData,parsed.uploadData);
+editMode = !!parsed.editMode;
+document.getElementById("modeText").innerText = editMode ? "Editing product" : "New product";
+}
+}
+catch(error){
+localStorage.removeItem(DRAFT_KEY);
+}
+
+fillForm();
+}
+
+function clearDraftNow(){
+localStorage.removeItem(DRAFT_KEY);
+editMode = false;
+uploadData = freshUploadData();
+currentStage = 0;
+document.getElementById("modeText").innerText = "New product";
+fillForm();
+regenerateProductId();
+renderStage();
+showToast("Form cleared");
+}
+
+function validateStage(){
+let key = stages[currentStage].key;
+
+if(key === "size" && !uploadData.size){
+showToast("Select size");
+return false;
+}
+
+if(key === "category" && !uploadData.category){
+showToast("Select category");
+return false;
+}
+
+if(key === "category" && uploadData.category === "New Arrivals" && !uploadData.newType){
+showToast("Select product type");
+return false;
+}
+
+if(key === "info"){
+if(!uploadData.productId.trim()){
+showToast("Enter product ID");
+return false;
+}
+if(!uploadData.productName.trim()){
+showToast("Enter product name");
+return false;
+}
+
+if(!validateProductName()){
+return false;
+}
+}
+
+if(key === "price" && !uploadData.price){
+showToast("Select price");
+return false;
+}
+
+if(key === "details" && !validateDescriptions()){
+return false;
+}
+
+return true;
+}
+
+function nextStage(){
+if(!validateStage()){
+return;
+}
+
+if(returnToReviewMode){
+currentStage = stages.length - 1;
+returnToReviewMode = false;
+renderStage();
+showToast("Review updated");
+return;
+}
+
+if(currentStage < stages.length - 1){
+currentStage++;
+renderStage();
+}
+}
+
+function skipStage(){
+if(returnToReviewMode){
+currentStage = stages.length - 1;
+returnToReviewMode = false;
+renderStage();
+showToast("Review updated");
+return;
+}
+
+if(stages[currentStage].key === "images" && currentStage < stages.length - 1){
+currentStage++;
+renderStage();
+showToast("Images skipped");
+}
+}
+
+function prevStage(){
+if(currentStage > 0){
+currentStage--;
+if(currentStage === 0){
+reviewMode = "product";
+document.getElementById("modeText").innerText = editMode ? "Editing product" : "New product";
+}
+renderStage();
+}
+}
+
+function renderStage(){
+document.querySelectorAll(".stage").forEach(function(stage,index){
+stage.classList.toggle("active",index === currentStage);
+});
+
+document.getElementById("stepName").innerText = stages[currentStage].label;
+document.getElementById("stepCount").innerText = currentStage === 0 ? "Choose" : "Step " + currentStage + " of " + (stages.length - 1);
+document.getElementById("progressFill").style.width = (((currentStage + 1) / stages.length) * 100) + "%";
+
+let isReviewStage = currentStage === stages.length - 1;
+if(isReviewStage && reviewMode === "edit"){
+document.getElementById("stepName").innerText = "Edit Product";
+document.getElementById("stepCount").innerText = "Find product";
+}
+
+let hideFooter = isReviewStage && reviewMode === "edit";
+let hideStartFooter = currentStage === 0;
+document.getElementById("footerActions").style.display = hideFooter || hideStartFooter ? "none" : "flex";
+document.getElementById("backBtn").style.display = returnToReviewMode || currentStage <= 1 ? "none" : "block";
+document.getElementById("nextBtn").style.display = isReviewStage || currentStage === 0 ? "none" : "block";
+document.getElementById("nextBtn").innerText = returnToReviewMode ? "Back to Review" : "Next";
+document.getElementById("uploadBtn").style.display = isReviewStage && reviewMode === "product" ? "block" : "none";
+document.getElementById("skipBtn").style.display = !returnToReviewMode && stages[currentStage].key === "images" ? "block" : "none";
+document.getElementById("uploadBtn").innerText = editMode ? "Reupdate Product" : "Upload Product";
+renderStageLabels();
+
+if(stages[currentStage].key === "review"){
+returnToReviewMode = false;
+renderReview();
+renderReviewMode();
+}
+
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderReview(){
+if(reviewMode === "edit"){
+renderEditList();
+return;
+}
+
+syncShowByImages();
+let img = normalizeImageUrl(uploadData.imageUrl);
+let showVisible = uploadData.show === "Yes";
+let productTypeRow = uploadData.category === "New Arrivals" ? summaryRow("Product Type",uploadData.newType || "-",2) : "";
+let deleteAction = editMode ? `
+<div class="danger-zone">
+<button class="warning-btn" onclick="openDeleteProductConfirm()">
+<i class="fa-solid fa-triangle-exclamation"></i>
+Delete Product
+</button>
+</div>
+` : "";
+document.getElementById("reviewBox").innerHTML = `
+<div class="review-card">
+<img class="review-img" src="${img}" onerror="this.style.display='none'">
+<div>
+<div class="review-title">${uploadData.productName || "-"}</div>
+<div class="review-meta">${uploadData.productId || "-"} - ${uploadData.category || "-"} - ${uploadData.size || "-"}</div>
+<div class="review-price">Rs ${uploadData.price || "0"}</div>
+<div class="status-badge ${showVisible ? "visible" : "hidden"}">${showVisible ? "Visible in app" : "Hidden from app"}</div>
+</div>
+</div>
+<div class="summary-grid">
+${summaryRow("Main Image",uploadData.imageUrl ? "Added" : "Not added",6)}
+${summaryRow("Product Name",uploadData.productName || "-",3)}
+${summaryRow("Size",uploadData.size || "-",1)}
+${summaryRow("Category",uploadData.category || "-",2)}
+${productTypeRow}
+${summaryRow("Price","Rs " + (uploadData.price || "0"),4)}
+${summaryRow("Description1",uploadData.description1 || "-",5)}
+${summaryRow("Description2",uploadData.description2 || "-",5)}
+${summaryRow("Stock",uploadData.stock || "-",5)}
+${summaryRow("Today Offer",uploadData.todayOffer || "0",4)}
+${summaryRow("Flat Discount",(uploadData.flatDiscount || "0") + "%",7)}
+${summaryRow("Big Day Sale",(uploadData.bigDaySale || "0") + "%",7)}
+${summaryRow("Show",showVisible ? "Visible in app" : "Hidden from app",3)}
+</div>
+${deleteAction}
+`;
+}
+
+function setReviewMode(mode){
+reviewMode = mode;
+renderReviewMode();
+renderStage();
+}
+
+function renderReviewMode(){
+let productPanel = document.getElementById("reviewProductPanel");
+let editPanel = document.getElementById("editProductPanel");
+
+if(!productPanel || !editPanel){
+return;
+}
+
+productPanel.classList.toggle("active",reviewMode === "product");
+editPanel.classList.toggle("active",reviewMode === "edit");
+}
+
+function summaryRow(label,value,stageIndex){
+return `<div class="summary-row"><b>${label}</b><span>${value}</span><button class="summary-edit" onclick="goToEditStage(${stageIndex},'${label}')">Edit</button></div>`;
+}
+
+function goToEditStage(index,label){
+currentStage = index;
+returnToReviewMode = true;
+renderStage();
+showToast("Edit " + label);
+
+setTimeout(function(){
+if(label === "Description1"){
+enableDescriptionCustom("description1");
+}
+
+if(label === "Description2"){
+enableDescriptionCustom("description2");
+}
+},250);
+}
+
+function payload(){
+syncShowByImages();
+return Object.assign({},uploadData,{
+type:editMode ? "updateProduct" : "product",
+productType:getSavedProductType(),
+shipping:"Free Shipping",
+adminToken:sessionStorage.getItem("purpleFashionAdminToken") || "",
+deviceId:getAdminDeviceId()
+});
+}
+
+function getFreshProductUrl(){
+let separator = PRODUCT_API.indexOf("?") === -1 ? "?" : "&";
+return PRODUCT_API + separator + "_=" + Date.now();
+}
+
+function getProductIdHistoryUrl(){
+let separator = PRODUCT_API.indexOf("?") === -1 ? "?" : "&";
+return PRODUCT_API + separator + "type=productIds&adminToken=" + encodeURIComponent(sessionStorage.getItem("purpleFashionAdminToken") || "") + "&_=" + Date.now();
+}
+
+function wait(ms){
+return new Promise(function(resolve){
+setTimeout(resolve,ms);
+});
+}
+
+function productMatchesSavedData(product,savedData){
+if(!product){
+return false;
+}
+
+let productId = String(getField(product,["Product ID","productId"]) || "").trim().toUpperCase();
+let savedId = String(savedData.productId || "").trim().toUpperCase();
+
+return productId === savedId;
+}
+
+function verifyProductSaved(savedData,attempt){
+attempt = attempt || 1;
+
+return wait(attempt === 1 ? 1200 : 1800)
+.then(function(){
+return fetch(getFreshProductUrl());
+})
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+let products = Array.isArray(data) ? data : [];
+liveProducts = products;
+
+let savedProduct = products.find(function(product){
+let productId = String(getField(product,["Product ID","productId"]) || "").trim().toUpperCase();
+let savedId = String(savedData.productId || "").trim().toUpperCase();
+return productId === savedId;
+});
+
+if(productMatchesSavedData(savedProduct,savedData)){
+return true;
+}
+
+if(attempt < 5){
+return verifyProductSaved(savedData,attempt + 1);
+}
+
+return false;
+});
+}
+
+function isUploadStockInStock(value){
+let stock = String(value || "").trim().toLowerCase();
+return stock === "yes" || stock === "in stock";
+}
+
+function isUploadStockOutOfStock(value){
+return !isUploadStockInStock(value);
+}
+
+function getStockRequestsUrl(){
+let separator = PRODUCT_API.indexOf("?") === -1 ? "?" : "&";
+return PRODUCT_API + separator + "type=stockRequests&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function checkWaitingStockRequests(productId){
+return fetch(getStockRequestsUrl())
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+if(!Array.isArray(data)){
+return 0;
+}
+
+let waiting = data.filter(function(item){
+let id = String(item.productId || item["Product ID"] || "").trim();
+let status = String(item.status || item.Status || "Waiting").trim().toLowerCase();
+return id === String(productId || "").trim() && status !== "informed";
+});
+
+return waiting.length;
+})
+.catch(function(){
+return 0;
+});
+}
+
+function handleStockRequestReminder(savedData){
+let shouldCheck =
+editMode &&
+isUploadStockOutOfStock(previousEditStock) &&
+isUploadStockInStock(savedData.stock);
+
+if(!shouldCheck){
+returnToUploadStart();
+return;
+}
+
+checkWaitingStockRequests(savedData.productId).then(function(count){
+if(!count){
+returnToUploadStart();
+return;
+}
+
+hideSuccessBox();
+openConfirm(
+count + " customers are waiting",
+"This product is now in stock. Notify them from Stock Requests.",
+function(){
+sessionStorage.setItem("purpleFashionUsersOpenTab","requests");
+sessionStorage.setItem("purpleFashionStockRequestProductId",savedData.productId || "");
+window.location.href = "users.html";
+},
+function(){
+returnToUploadStart();
+},
+"Later",
+"Open Stock Requests"
+);
+});
+}
+
+function verifyProductDeleted(productId,attempt){
+attempt = attempt || 1;
+
+return wait(attempt === 1 ? 1200 : 1800)
+.then(function(){
+return fetch(getFreshProductUrl());
+})
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+let products = Array.isArray(data) ? data : [];
+liveProducts = products;
+
+let found = products.some(function(product){
+let currentId = String(getField(product,["Product ID","productId"]) || "").trim().toUpperCase();
+return currentId === String(productId || "").trim().toUpperCase();
+});
+
+if(!found){
+return true;
+}
+
+if(attempt < 5){
+return verifyProductDeleted(productId,attempt + 1);
+}
+
+return false;
+});
+}
+
+function openDeleteProductConfirm(){
+if(!editMode || !uploadData.productId){
+showToast("Choose product first");
+return;
+}
+
+openConfirm(
+"Delete product permanently?",
+"This will remove it from Sheet",
+deleteProduct,
+null,
+"Back",
+"Delete",
+"warning-confirm"
+);
+}
+
+function deleteProduct(){
+let productId = String(uploadData.productId || "").trim();
+
+if(!productId){
+showToast("Product ID missing");
+return;
+}
+
+let deleteButton = document.querySelector(".warning-btn");
+
+if(deleteButton){
+deleteButton.disabled = true;
+deleteButton.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Deleting Product...`;
+}
+
+fetch(SCRIPT_API,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify({
+type:"deleteProduct",
+productId:productId,
+adminToken:sessionStorage.getItem("purpleFashionAdminToken") || "",
+deviceId:getAdminDeviceId()
+})
+})
+.then(function(){
+return verifyProductDeleted(productId);
+})
+.then(function(deleted){
+if(!deleted){
+if(deleteButton){
+deleteButton.disabled = false;
+deleteButton.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Delete Product`;
+}
+
+showToast("Product not deleted. Redeploy Apps Script and try again.");
+return;
+}
+
+localStorage.removeItem(CACHE_KEY);
+localStorage.removeItem(DRAFT_KEY);
+showSuccessBox("Product Deleted Successfully","blue");
+setTimeout(function(){
+returnToUploadStart();
+},1800);
+})
+.catch(function(){
+if(deleteButton){
+deleteButton.disabled = false;
+deleteButton.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Delete Product`;
+}
+
+showToast("Could not confirm delete. Check internet and Apps Script.");
+});
+}
+
+function uploadProduct(){
+if(!validateAll()){
+return;
+}
+
+let btn = document.getElementById("uploadBtn");
+syncShowByImages();
+let savedData = payload();
+let successResult = getImageVisibilityResult();
+let successTitle = hasAllProductImages(uploadData)
+? (editMode ? "Product Updated Successfully" : "New Product Uploaded Successfully")
+: "Product Saved Hidden";
+
+btn.disabled = true;
+btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+
+fetch(SCRIPT_API,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify(savedData)
+})
+.then(function(){
+btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Checking Sheet...`;
+return verifyProductSaved(savedData);
+})
+.then(function(saved){
+if(!saved){
+btn.disabled = false;
+btn.innerText = editMode ? "Reupdate Product" : "Upload Product";
+showToast("Product not saved. Redeploy Apps Script and try again.");
+return;
+}
+
+localStorage.removeItem(CACHE_KEY);
+localStorage.removeItem(DRAFT_KEY);
+showSuccessBox(successTitle,successResult.theme,successResult.message,successResult.icon);
+setTimeout(function(){
+handleStockRequestReminder(savedData);
+},3000);
+})
+.catch(function(){
+btn.disabled = false;
+btn.innerText = editMode ? "Reupdate Product" : "Upload Product";
+showToast("Could not confirm save. Check internet and Apps Script.");
+});
+}
+
+function validateAll(){
+if(!/^DS\d{5}$/.test(String(uploadData.productId || "").trim().toUpperCase())){
+showToast("Product ID must be DS followed by 5 digits");
+return false;
+}
+
+if(!editMode && getExistingProductIds().has(String(uploadData.productId || "").trim().toUpperCase())){
+showToast("Product ID already exists. Regenerate ID.");
+return false;
+}
+
+if(!validateDescriptions()){
+return false;
+}
+
+let required = [
+["size","Select size"],
+["category","Select category"],
+["productId","Enter product ID"],
+["productName","Enter product name"],
+["price","Select price"],
+["description1","Enter Description1"],
+["description2","Enter Description2"]
+];
+
+for(let i = 0; i < required.length; i++){
+let key = required[i][0];
+if(!String(uploadData[key] || "").trim()){
+showToast(required[i][1]);
+return false;
+}
+}
+
+if(!validateProductName()){
+return false;
+}
+
+if(uploadData.category === "New Arrivals" && !uploadData.newType){
+showToast("Select product type");
+return false;
+}
+
+return true;
+}
+
+function validateDescriptions(){
+let desc1 = cleanText(uploadData.description1);
+let desc2 = cleanText(uploadData.description2);
+let desc1Words = wordCount(desc1);
+let desc2Words = wordCount(desc2);
+
+if(desc1Words < 4 || desc1Words > 6){
+showToast("Description1 needs 4 to 6 words");
+return false;
+}
+
+if(desc2Words < 12 || desc2Words > 24){
+showToast("Description2 needs 12 to 24 words");
+return false;
+}
+
+uploadData.description1 = desc1;
+uploadData.description2 = desc2;
+return true;
+}
+
+function getField(product,names){
+for(let i = 0; i < names.length; i++){
+if(product[names[i]] !== undefined && product[names[i]] !== null){
+return product[names[i]];
+}
+}
+return "";
+}
+
+function productToUploadData(product){
+let category = String(getField(product,["Category","category"]) || "");
+let productType = String(getField(product,["Product Type","productType","newType"]) || "");
+return {
+size:String(getField(product,["Size","size"]) || "Free Size"),
+productName:String(getField(product,["Product Name","productName"]) || ""),
+category:category,
+show:String(getField(product,["Show","show"]) || "Yes"),
+price:String(getField(product,["Price","price"]) || ""),
+description1:String(getField(product,["Description1","description1"]) || ""),
+imageUrl:String(getField(product,["Image Url","imageUrl"]) || ""),
+stock:String(getField(product,["Stock","stock"]) || "In Stock"),
+todayOffer:String(getField(product,["Today Offer","todayOffer"]) || "0"),
+imageUrl2:String(getField(product,["Image Url2","imageUrl2"]) || ""),
+imageUrl3:String(getField(product,["Image Url3","imageUrl3"]) || ""),
+imageUrl4:String(getField(product,["Image Url4","imageUrl4"]) || ""),
+shipping:String(getField(product,["Shipping","shipping"]) || "Free Shipping"),
+description2:String(getField(product,["Description2","description2"]) || ""),
+productId:String(getField(product,["Product ID","productId"]) || ""),
+flatDiscount:String(getField(product,["Flat Discount","flatDiscount"]) || "0"),
+bigDaySale:String(getField(product,["Big Day Sale","bigDaySale"]) || "0"),
+banner1:String(getField(product,["Banner 1","banner1"]) || ""),
+banner2:String(getField(product,["Banner 2","banner2"]) || ""),
+banner3:String(getField(product,["Banner 3","banner3"]) || ""),
+newType:category === "New Arrivals" ? productType : ""
+};
+}
+
+function loadLiveProducts(){
+let editList = document.getElementById("editList");
+editList.innerHTML = "<div class='helper'>Loading products...</div>";
+
+Promise.all([
+fetch(getFreshProductUrl()).then(function(res){ return res.json(); }),
+fetch(getProductIdHistoryUrl()).then(function(res){ return res.json(); }).catch(function(){ return []; })
+])
+.then(function(results){
+liveProducts = Array.isArray(results[0]) ? results[0] : [];
+productIdHistory = Array.isArray(results[1]) ? results[1] : [];
+if(!editMode && uploadData.productId && getExistingProductIds().has(uploadData.productId)){
+regenerateProductId();
+}
+renderEditFilters();
+renderEditList();
+})
+.catch(function(){
+editList.innerHTML = "<div class='helper'>Could not load live products.</div>";
+});
+}
+
+function renderEditFilters(){
+let box = document.getElementById("editFilters");
+
+if(!box){
+return;
+}
+
+box.innerHTML = categoryFilters.map(function(category){
+let active = editFilter === category ? " active" : "";
+return `<button class="chip${active}" onclick="setEditFilter('${category}')">${category}</button>`;
+}).join("");
+}
+
+function setEditFilter(category){
+editFilter = category;
+renderEditFilters();
+renderEditList();
+}
+
+function renderEditList(){
+let list = document.getElementById("editList");
+
+if(!list){
+return;
+}
+
+let search = (document.getElementById("editSearch").value || "").toLowerCase().trim();
+let filtered = liveProducts.filter(function(product){
+let category = String(getField(product,["Category"]) || "");
+let imageUrl = String(getField(product,["Image Url"]) || "").trim();
+let showValue = String(getField(product,["Show"]) || "Yes").trim().toLowerCase();
+let categoryMatch =
+editFilter === "All" ||
+(editFilter === "New Arrival" && category === "New Arrivals") ||
+(editFilter === "No Image" && !imageUrl && showValue === "no") ||
+category === editFilter;
+let text = [
+getField(product,["Product ID"]),
+getField(product,["Product Name"]),
+getField(product,["Category"]),
+getField(product,["Price"])
+].join(" ").toLowerCase();
+return categoryMatch && (!search || text.includes(search));
+}).slice(0,30);
+
+if(!filtered.length){
+list.innerHTML = "<div class='helper'>No products found.</div>";
+return;
+}
+
+list.innerHTML = filtered.map(function(product){
+let img = normalizeImageUrl(getField(product,["Image Url"]));
+let name = getField(product,["Product Name"]) || "Purple Fashion Product";
+let id = getField(product,["Product ID"]) || "";
+let cat = getField(product,["Category"]) || "";
+let price = getField(product,["Price"]) || "";
+let show = String(getField(product,["Show"]) || "Yes").trim().toLowerCase() !== "no";
+let hasImage = !!String(getField(product,["Image Url"]) || "").trim();
+let imageHTML = hasImage
+? `<img src="${img}" onerror="this.style.display='none'">`
+: `<div class="no-image-thumb"><i class="fa-solid fa-image"></i></div>`;
+return `
+<div class="edit-card">
+${imageHTML}
+<div>
+<div class="edit-card-title">${name}</div>
+<div class="edit-card-meta">${id} - ${cat} - Rs ${price}</div>
+<div class="status-badge ${show ? "visible" : "hidden"}">${show ? "Visible" : "Hidden"}</div>
+${!hasImage ? '<div class="status-badge hidden">No Image</div>' : ''}
+</div>
+<button class="mini-btn primary" onclick="editProduct(${liveProducts.indexOf(product)})">Edit</button>
+</div>
+`;
+}).join("");
+}
+
+function editProduct(index){
+let product = liveProducts[index];
+
+if(!product){
+return;
+}
+
+uploadData = Object.assign(uploadData,productToUploadData(product));
+editMode = true;
+previousEditStock = uploadData.stock || "";
+reviewMode = "product";
+document.getElementById("modeText").innerText = "Editing product";
+fillForm();
+currentStage = stages.length - 1;
+saveDraft();
+renderStage();
+showToast("Product loaded for edit");
+}
+
+document.addEventListener("input",function(event){
+if(event.target && event.target.id === "editSearch"){
+renderEditList();
+}
+});
+
+if(sessionStorage.getItem("purpleFashionUploadUnlocked") === "yes" && getAdminToken()){
+showApp();
+}
+else{
+document.getElementById("pinScreen").style.display = "flex";
+}
+</script>
+</body>
+</html>
+
+
+
+
