@@ -26,7 +26,7 @@ const APP_CONFIG = {
   growContactWhatsApp: "919836697502",
   sellerPhone: "9836697502",
   sellerEmail: "",
-  shopAddress: "",
+  shopAddress: "C/231 survey park , Kolkata, India, 700075",
   businessHours: "10 AM - 9 PM",
 
   // Payment
