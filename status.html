@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<link rel="dns-prefetch" href="https://script.google.com">
+<link rel="dns-prefetch" href="https://script.googleusercontent.com">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion Status</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f0f2f5;
+color:#071d33;
+padding-bottom:88px;
+overflow-x:hidden;
+}
+
+button,
+a,
+.status-chip,
+.bottom-nav,
+.nav-item{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+}
+
+input{
+user-select:text;
+-webkit-user-select:text;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.page-title{
+font-size:22px;
+font-weight:900;
+color:#1877F2;
+line-height:26px;
+}
+
+.page-subtitle{
+font-size:12px;
+font-weight:700;
+color:#5d6673;
+margin-top:2px;
+}
+
+.header-actions{
+display:flex;
+gap:10px;
+}
+
+.round-btn{
+width:42px;
+height:42px;
+border:none;
+border-radius:50%;
+background:#f3f8ff;
+color:#1877F2;
+font-size:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(24,119,242,0.10);
+}
+
+.container{
+max-width:940px;
+margin:auto;
+padding:16px;
+}
+
+.hero-card{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border-radius:22px;
+padding:16px;
+box-shadow:0 10px 24px rgba(24,119,242,0.22);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+}
+
+.hero-card h2{
+font-size:18px;
+font-weight:900;
+line-height:24px;
+}
+
+.hero-card p{
+font-size:12px;
+font-weight:700;
+line-height:18px;
+opacity:0.92;
+margin-top:3px;
+}
+
+.hero-pill{
+height:36px;
+padding:0 13px;
+border-radius:999px;
+background:rgba(255,255,255,0.18);
+display:flex;
+align-items:center;
+gap:8px;
+font-size:12px;
+font-weight:900;
+white-space:nowrap;
+}
+
+.tools{
+background:white;
+border-radius:22px;
+padding:14px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid rgba(255,255,255,0.82);
+margin-top:14px;
+display:grid;
+grid-template-columns:1fr auto;
+gap:10px;
+}
+
+.search-box{
+height:50px;
+background:#f8fbff;
+border:1px solid #d6e7ff;
+border-radius:16px;
+display:flex;
+align-items:center;
+gap:10px;
+padding:0 14px;
+}
+
+.search-box i{
+color:#1877F2;
+}
+
+.search-box input{
+width:100%;
+height:100%;
+border:none;
+outline:none;
+background:transparent;
+font-size:14px;
+font-weight:800;
+color:#071d33;
+}
+
+.refresh-btn{
+height:50px;
+min-width:50px;
+border:none;
+border-radius:16px;
+background:#f3f8ff;
+border:1px solid #d6e7ff;
+color:#1877F2;
+font-size:16px;
+font-weight:900;
+cursor:pointer;
+}
+
+.summary-row{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
+margin-top:14px;
+}
+
+.summary-card{
+background:white;
+border-radius:20px;
+padding:14px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid rgba(255,255,255,0.82);
+}
+
+.summary-label{
+font-size:12px;
+font-weight:900;
+color:#5d6673;
+}
+
+.summary-value{
+font-size:26px;
+font-weight:900;
+color:#1877F2;
+margin-top:5px;
+line-height:32px;
+}
+
+.list-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin:20px 0 10px;
+}
+
+.section-title{
+font-size:18px;
+font-weight:900;
+color:#111827;
+}
+
+.showing-count{
+font-size:12px;
+font-weight:900;
+color:#1877F2;
+background:#f3f8ff;
+border:1px solid #d6e7ff;
+border-radius:999px;
+padding:7px 10px;
+white-space:nowrap;
+}
+
+.orders{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.order-card{
+background:white;
+border-radius:24px;
+padding:15px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid rgba(255,255,255,0.82);
+}
+
+.order-top{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:12px;
+}
+
+.order-id{
+font-size:14px;
+font-weight:900;
+color:#1877F2;
+line-height:20px;
+word-break:break-word;
+}
+
+.order-date{
+font-size:12px;
+font-weight:800;
+color:#5d6673;
+line-height:18px;
+margin-top:2px;
+}
+
+.status-badge{
+border-radius:999px;
+padding:8px 10px;
+font-size:11px;
+font-weight:900;
+white-space:nowrap;
+background:#f3f8ff;
+color:#1877F2;
+border:1px solid #d6e7ff;
+}
+
+.status-badge.payment{
+background:#fff7ed;
+color:#c2410c;
+border-color:#fed7aa;
+}
+
+.status-badge.cancelled{
+background:#f3f4f6;
+color:#111827;
+border-color:#d1d5db;
+}
+
+.status-badge.delivered{
+background:#ecfdf5;
+color:#16a34a;
+border-color:#bbf7d0;
+}
+
+.info-grid{
+display:grid;
+gap:8px;
+margin-top:13px;
+}
+
+.info-line{
+display:grid;
+grid-template-columns:92px 1fr;
+gap:10px;
+font-size:13px;
+line-height:20px;
+}
+
+.info-line span:first-child{
+color:#5d6673;
+font-weight:800;
+}
+
+.info-line span:last-child{
+font-weight:900;
+color:#111827;
+word-break:break-word;
+}
+
+.amount{
+color:#1877F2!important;
+font-size:18px;
+}
+
+.contact-row{
+display:flex;
+gap:8px;
+margin-top:12px;
+}
+
+.contact-btn{
+height:42px;
+flex:1;
+border:none;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+font-size:13px;
+font-weight:900;
+text-decoration:none;
+cursor:pointer;
+}
+
+.call-btn{
+background:#ecfdf5;
+color:#16a34a;
+}
+
+.wa-btn{
+background:#ecfdf5;
+color:#128c7e;
+}
+
+.copy-btn{
+background:#f3f8ff;
+color:#1877F2;
+}
+
+.change-title{
+font-size:13px;
+font-weight:900;
+color:#111827;
+margin-top:15px;
+margin-bottom:9px;
+}
+
+.status-row{
+display:flex;
+gap:8px;
+overflow-x:auto;
+scrollbar-width:none;
+padding-bottom:4px;
+}
+
+.status-row::-webkit-scrollbar{
+display:none;
+}
+
+.status-chip{
+flex:0 0 auto;
+height:38px;
+border-radius:999px;
+border:1px solid #d6e7ff;
+background:#f8fbff;
+color:#1877F2;
+font-size:12px;
+font-weight:900;
+padding:0 12px;
+cursor:pointer;
+}
+
+.status-chip.active{
+background:#1877F2;
+color:white;
+border-color:#1877F2;
+box-shadow:0 6px 14px rgba(24,119,242,0.22);
+}
+
+.update-btn{
+width:100%;
+height:50px;
+border:none;
+border-radius:16px;
+margin-top:12px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+font-size:15px;
+font-weight:900;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+cursor:pointer;
+}
+
+.update-btn:disabled{
+opacity:0.62;
+cursor:not-allowed;
+}
+
+.loading,
+.empty-state{
+background:white;
+border-radius:22px;
+padding:28px 16px;
+text-align:center;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+font-size:14px;
+font-weight:900;
+color:#5d6673;
+line-height:22px;
+}
+
+.loading{
+color:#1877F2;
+}
+
+.loading i{
+margin-right:8px;
+}
+
+.pin-overlay{
+position:fixed;
+inset:0;
+z-index:10000;
+background:linear-gradient(180deg,#f7fbff,#eaf3ff);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+}
+
+.pin-box{
+width:100%;
+max-width:430px;
+background:white;
+border-radius:28px;
+padding:24px;
+box-shadow:0 16px 42px rgba(24,119,242,0.20),0 8px 22px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.pin-icon{
+width:70px;
+height:70px;
+border-radius:24px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+margin:0 auto 16px;
+box-shadow:0 10px 22px rgba(24,119,242,0.24);
+}
+
+.pin-box h1{
+font-size:26px;
+font-weight:900;
+line-height:32px;
+color:#071d33;
+}
+
+.pin-box p{
+font-size:14px;
+line-height:22px;
+color:#5d6673;
+font-weight:700;
+margin:8px 0 18px;
+}
+
+.pin-input{
+width:100%;
+height:56px;
+border-radius:18px;
+border:1px solid #d6e7ff;
+background:#f8fbff;
+outline:none;
+text-align:center;
+font-size:24px;
+font-weight:900;
+letter-spacing:8px;
+color:#071d33;
+}
+
+.pin-submit{
+width:100%;
+height:56px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+font-size:16px;
+font-weight:900;
+margin-top:14px;
+box-shadow:0 9px 20px rgba(24,119,242,0.24);
+cursor:pointer;
+}
+
+.toast{
+position:fixed;
+left:16px;
+right:16px;
+bottom:98px;
+max-width:460px;
+min-height:54px;
+margin:auto;
+border-radius:18px;
+background:white;
+box-shadow:0 12px 30px rgba(24,119,242,0.22),0 6px 16px rgba(0,0,0,0.10);
+z-index:11000;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:12px 16px;
+font-size:15px;
+font-weight:900;
+line-height:21px;
+color:#071d33;
+opacity:0;
+transform:translateY(22px);
+pointer-events:none;
+transition:0.28s ease;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.toast.warning{
+background:linear-gradient(135deg,#fff7ed,#ffffff);
+color:#9a3412;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+box-shadow:0 -2px 10px rgba(0,0,0,0.08);
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+z-index:999;
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:12px;
+color:#555;
+position:relative;
+cursor:pointer;
+}
+
+.nav-item i{
+font-size:20px;
+margin-bottom:5px;
+}
+
+.nav-item.active{
+color:#1877F2;
+}
+
+@media(min-width:720px){
+.summary-row{
+grid-template-columns:repeat(4,minmax(0,1fr));
+}
+}
+
+@media(max-width:430px){
+.container{
+padding:14px;
+}
+
+.hero-card{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.tools{
+grid-template-columns:1fr auto;
+}
+
+.info-line{
+grid-template-columns:86px 1fr;
+}
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+<div class="pin-overlay" id="pinOverlay">
+<div class="pin-box">
+<div class="pin-icon">
+<i class="fa-solid fa-truck-fast"></i>
+</div>
+<h1>Status Control</h1>
+<p>Enter seller PIN to update customer order status.</p>
+<input class="pin-input" id="pinInput" type="tel" inputmode="numeric" maxlength="4" placeholder="PIN" oninput="digitsOnly(this,4)">
+<button class="pin-submit" onclick="checkPin()">Open Status</button>
+</div>
+</div>
+
+<div class="header">
+<div>
+<div class="page-title">Status Control</div>
+<div class="page-subtitle" id="updatedText">Loading orders...</div>
+</div>
+<div class="header-actions">
+<button class="round-btn" onclick="loadOrders()"><i class="fa-solid fa-rotate"></i></button>
+<button class="round-btn" onclick="exitStatus()"><i class="fa-solid fa-house"></i></button>
+</div>
+</div>
+
+<main class="container">
+<section class="hero-card">
+<div>
+<h2>Order Status Manager</h2>
+<p>Search orders and update the exact status shown on Track Order.</p>
+</div>
+<div class="hero-pill">
+<i class="fa-solid fa-shield-halved"></i>
+Hidden seller tool
+</div>
+</section>
+
+<section class="tools">
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="searchInput" type="text" placeholder="Search order ID, phone, or name" oninput="applySearch()">
+</div>
+<button class="refresh-btn" onclick="loadOrders()"><i class="fa-solid fa-rotate"></i></button>
+</section>
+
+<section class="summary-row">
+<div class="summary-card">
+<div class="summary-label">All Orders</div>
+<div class="summary-value" id="allCount">0</div>
+</div>
+<div class="summary-card">
+<div class="summary-label">Processing</div>
+<div class="summary-value" id="processingCount">0</div>
+</div>
+<div class="summary-card">
+<div class="summary-label">Pending Payment</div>
+<div class="summary-value" id="paymentCount">0</div>
+</div>
+<div class="summary-card">
+<div class="summary-label">Delivered</div>
+<div class="summary-value" id="deliveredCount">0</div>
+</div>
+</section>
+
+<div class="list-head">
+<div class="section-title">Orders</div>
+<div class="showing-count" id="showingCount">Showing 0</div>
+</div>
+<section class="orders" id="ordersList">
+<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading orders...</div>
+</section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="bottom-nav">
+<div class="nav-item" onclick="exitStatus()"><i class="fa-solid fa-house"></i><span>Home</span></div>
+<div class="nav-item active"><i class="fa-solid fa-truck-fast"></i><span>Status</span></div>
+<div class="nav-item" onclick="loadOrders()"><i class="fa-solid fa-rotate"></i><span>Refresh</span></div>
+</div>
+
+<script>
+const SCRIPT_API = APP_CONFIG.scriptApi;
+const AUTO_EXIT_MS = 50000;
+const WARNING_MS = 45000;
+
+const STATUS_OPTIONS = [
+{label:"Processing", value:"Order Processing"},
+{label:"Payment", value:"Payment Pending"},
+{label:"Confirmed", value:"Order Confirmed"},
+{label:"Packing", value:"Packing"},
+{label:"Out Delivery", value:"Out for Delivery"},
+{label:"Delivered", value:"Delivered"},
+{label:"Cancelled", value:"Cancelled"}
+];
+
+function getAdminToken(){
+return sessionStorage.getItem("purpleFashionAdminToken") || "";
+}
+
+function getAdminOrdersUrl(){
+return SCRIPT_API + "?type=adminOrders&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function getAdminDeviceId(){
+let key = "purpleFashionAdminDeviceId";
+let deviceId = localStorage.getItem(key);
+
+if(!deviceId){
+deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+localStorage.setItem(key,deviceId);
+}
+
+return deviceId;
+}
+
+function adminLogin(pin){
+return fetch(SCRIPT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"adminLogin",
+pin:pin,
+page:"status",
+deviceId:getAdminDeviceId()
+})
+}).then(res=>res.json());
+}
+
+function showSecurityModal(title,message,icon){
+let existing = document.getElementById("adminSecurityModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "adminSecurityModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
+<div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showAdminLoginMessage(result){
+if(result && result.code === "warning"){
+showSecurityModal("Warning",result.message || "One more wrong PIN will block seller access for 24 hours.","triangle-exclamation");
+return true;
+}
+
+if(result && result.code === "blocked"){
+showSecurityModal("Access Blocked",result.message || "Try again after 24 hours.","lock");
+return true;
+}
+
+return false;
+}
+
+let allOrders = [];
+let filteredOrders = [];
+let toastTimer = null;
+let warningTimer = null;
+let exitTimer = null;
+
+function digitsOnly(input,maxLength){
+input.value = input.value.replace(/\D/g,"").slice(0,maxLength);
+}
+
+function showToast(message,type){
+let toast = document.getElementById("toast");
+toast.innerText = message;
+toast.className = "toast show" + (type ? " " + type : "");
+
+if(toastTimer){
+clearTimeout(toastTimer);
+}
+
+toastTimer = setTimeout(function(){
+toast.className = "toast";
+},2200);
+}
+
+function checkPin(){
+let pin = document.getElementById("pinInput").value.trim();
+
+showToast("Checking PIN");
+
+adminLogin(pin).then(function(result){
+if(result && result.success && result.token){
+sessionStorage.setItem("purpleFashionStatusUnlocked","yes");
+sessionStorage.setItem("purpleFashionAdminToken",result.token);
+document.getElementById("pinOverlay").style.display = "none";
+loadOrders();
+startAutoExit();
+return;
+}
+
+if(showAdminLoginMessage(result)){
+return;
+}
+
+showToast(result && result.message ? result.message : "Wrong PIN");
+}).catch(function(){
+showToast("Login server error");
+});
+}
+
+function guardPage(){
+if(sessionStorage.getItem("purpleFashionStatusUnlocked") === "yes" && getAdminToken()){
+document.getElementById("pinOverlay").style.display = "none";
+loadOrders();
+startAutoExit();
+}
+}
+
+function exitStatus(){
+sessionStorage.removeItem("purpleFashionStatusUnlocked");
+sessionStorage.removeItem("purpleFashionAdminToken");
+window.location.replace("grow.html");
+}
+
+function startAutoExit(){
+resetAutoExit();
+
+["click","touchstart","scroll","keydown","input"].forEach(function(eventName){
+window.addEventListener(eventName, resetAutoExit, {passive:true});
+});
+}
+
+function resetAutoExit(){
+if(warningTimer){
+clearTimeout(warningTimer);
+}
+
+if(exitTimer){
+clearTimeout(exitTimer);
+}
+
+warningTimer = setTimeout(function(){
+showToast("Auto exit in 5 seconds","warning");
+},WARNING_MS);
+
+exitTimer = setTimeout(function(){
+sessionStorage.removeItem("purpleFashionStatusUnlocked");
+sessionStorage.removeItem("purpleFashionAdminToken");
+showToast("Session expired");
+setTimeout(function(){
+window.location.replace("grow.html");
+},500);
+},AUTO_EXIT_MS);
+}
+
+function normalize(value){
+return String(value || "").trim();
+}
+
+function cleanPhone(value){
+return normalize(value).replace(/\D/g,"");
+}
+
+function getField(order,names){
+for(let i = 0; i < names.length; i++){
+let name = names[i];
+
+if(order[name] !== undefined && order[name] !== null && normalize(order[name]) !== ""){
+return order[name];
+}
+}
+
+return "";
+}
+
+function parseDate(value){
+let text = normalize(value);
+
+if(!text){
+return null;
+}
+
+let match = text.match(/(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})(?:,\s*|\s+)?(\d{1,2})?:?(\d{2})?\s*(am|pm)?/i);
+
+if(match){
+let day = Number(match[1]);
+let month = Number(match[2]) - 1;
+let year = Number(match[3]);
+let hour = Number(match[4] || 0);
+let minute = Number(match[5] || 0);
+let period = (match[6] || "").toLowerCase();
+
+if(period === "pm" && hour < 12){
+hour += 12;
+}
+
+if(period === "am" && hour === 12){
+hour = 0;
+}
+
+return new Date(year, month, day, hour, minute);
+}
+
+let date = new Date(text);
+
+if(!isNaN(date.getTime())){
+return date;
+}
+
+return null;
+}
+
+function formatDate(date,raw){
+if(!date){
+return normalize(raw) || "No date";
+}
+
+return date.toLocaleString("en-IN", {
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit",
+hour12:true
+});
+}
+
+function enrichOrders(data){
+return data.map(function(order,index){
+let orderId = normalize(getField(order,["Order ID","orderId","OrderID"]));
+let rawDate = getField(order,["Date Time","dateTime","DateTime","Date"]);
+let date = parseDate(rawDate);
+let status = normalize(getField(order,["Status","status"])) || "Order Processing";
+
+return {
+raw:order,
+index:index,
+orderId:orderId,
+date:date,
+displayDate:formatDate(date,rawDate),
+customerName:normalize(getField(order,["Customer Name","customerName","Name"])),
+phone:cleanPhone(getField(order,["Phone Number","phoneNumber","Phone","phone"])),
+village:normalize(getField(order,["Village","village"])),
+products:normalize(getField(order,["Product Names","productNames","Products","Product"])),
+sizes:normalize(getField(order,["Sizes","sizes"])),
+quantities:normalize(getField(order,["Quantities","quantities"])),
+total:normalize(getField(order,["Order Total","orderTotal","Total"])),
+status:status,
+selectedStatus:status
+};
+})
+.filter(function(order){
+return order.orderId || order.customerName || order.phone;
+})
+.sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeB - timeA;
+});
+}
+
+function loadOrders(){
+document.getElementById("ordersList").innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading orders...</div>`;
+
+fetch(getAdminOrdersUrl())
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+allOrders = enrichOrders(Array.isArray(data) ? data : []);
+document.getElementById("updatedText").innerText = "Updated " + new Date().toLocaleTimeString("en-IN", {
+hour:"2-digit",
+minute:"2-digit",
+hour12:true
+});
+updateSummary();
+applySearch();
+})
+.catch(function(){
+document.getElementById("ordersList").innerHTML = `<div class="empty-state">Could not load orders. Please check internet and refresh.</div>`;
+showToast("Orders server error");
+});
+}
+
+function updateSummary(){
+document.getElementById("allCount").innerText = allOrders.length;
+document.getElementById("processingCount").innerText = allOrders.filter(function(order){
+return order.status === "Order Processing";
+}).length;
+document.getElementById("paymentCount").innerText = allOrders.filter(function(order){
+return order.status === "Payment Pending";
+}).length;
+document.getElementById("deliveredCount").innerText = allOrders.filter(function(order){
+return order.status === "Delivered";
+}).length;
+}
+
+function applySearch(){
+let search = normalize(document.getElementById("searchInput").value).toLowerCase();
+
+filteredOrders = allOrders.filter(function(order){
+if(!search){
+return true;
+}
+
+let haystack = [
+order.orderId,
+order.customerName,
+order.phone,
+order.displayDate,
+order.products,
+order.total,
+order.status
+].join(" ").toLowerCase();
+
+return haystack.includes(search);
+});
+
+document.getElementById("showingCount").innerText = "Showing " + filteredOrders.length;
+renderOrders(filteredOrders);
+}
+
+function getStatusClass(status){
+if(status === "Payment Pending"){
+return "payment";
+}
+
+if(status === "Cancelled"){
+return "cancelled";
+}
+
+if(status === "Delivered"){
+return "delivered";
+}
+
+return "";
+}
+
+function renderOrders(orders){
+let list = document.getElementById("ordersList");
+
+if(!orders.length){
+list.innerHTML = `<div class="empty-state">No orders found.</div>`;
+return;
+}
+
+let html = "";
+
+orders.forEach(function(order){
+let waText = encodeURIComponent("Hi " + (order.customerName || "there") + ", your Purple Fashion order " + order.orderId + " status is: " + order.status + ".");
+
+html += `
+<div class="order-card" id="order-${order.index}">
+<div class="order-top">
+<div>
+<div class="order-id">${escapeHTML(order.orderId || "No Order ID")}</div>
+<div class="order-date">${escapeHTML(order.displayDate)}</div>
+</div>
+<div class="status-badge ${getStatusClass(order.status)}">${escapeHTML(order.status)}</div>
+</div>
+
+<div class="info-grid">
+<div class="info-line"><span>Name</span><span>${escapeHTML(order.customerName || "No name")}</span></div>
+<div class="info-line"><span>Phone</span><span>${escapeHTML(order.phone || "No phone")}</span></div>
+<div class="info-line"><span>Products</span><span>${escapeHTML(order.products || "No products")}</span></div>
+<div class="info-line"><span>Size / Qty</span><span>${escapeHTML((order.sizes || "-") + " / " + (order.quantities || "-"))}</span></div>
+<div class="info-line"><span>Total</span><span class="amount">Rs  ${escapeHTML(order.total || "0")}</span></div>
+</div>
+
+<div class="contact-row">
+<a class="contact-btn call-btn" href="tel:${order.phone}"><i class="fa-solid fa-phone"></i>Call</a>
+<a class="contact-btn wa-btn" href="https://wa.me/91${order.phone}?text=${waText}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+<button class="contact-btn copy-btn" onclick="copyText('${escapeJS(order.orderId)}')"><i class="fa-regular fa-copy"></i>Copy ID</button>
+</div>
+
+<div class="change-title">Change Status</div>
+<div class="status-row">
+${renderStatusButtons(order)}
+</div>
+
+<button class="update-btn" id="update-${order.index}" onclick="updateStatus(${order.index})" disabled>Update Status</button>
+</div>
+`;
+});
+
+list.innerHTML = html;
+}
+
+function renderStatusButtons(order){
+let html = "";
+
+STATUS_OPTIONS.forEach(function(status){
+let active = order.selectedStatus === status.value ? " active" : "";
+html += `<button class="status-chip${active}" onclick="selectStatus(${order.index},'${escapeJS(status.value)}')">${status.label}</button>`;
+});
+
+return html;
+}
+
+function selectStatus(index,status){
+let order = allOrders.find(function(item){
+return item.index === index;
+});
+
+if(!order){
+return;
+}
+
+order.selectedStatus = status;
+
+let card = document.getElementById("order-" + index);
+if(card){
+card.querySelectorAll(".status-chip").forEach(function(btn){
+btn.classList.remove("active");
+
+let option = STATUS_OPTIONS.find(function(item){
+return item.label === btn.innerText.trim();
+});
+
+if(option && option.value === status){
+btn.classList.add("active");
+}
+});
+}
+
+let updateBtn = document.getElementById("update-" + index);
+if(updateBtn){
+updateBtn.disabled = status === order.status;
+}
+}
+
+function updateStatus(index){
+let order = allOrders.find(function(item){
+return item.index === index;
+});
+
+if(!order || !order.orderId){
+showToast("Order ID missing");
+return;
+}
+
+if(order.selectedStatus === order.status){
+showToast("Status already selected");
+return;
+}
+
+let btn = document.getElementById("update-" + index);
+let oldText = btn ? btn.innerText : "";
+
+if(btn){
+btn.disabled = true;
+btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Updating...`;
+}
+
+fetch(SCRIPT_API,{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"text/plain;charset=utf-8"
+},
+body:JSON.stringify({
+type:"updateStatus",
+orderId:order.orderId,
+status:order.selectedStatus,
+adminToken:getAdminToken(),
+deviceId:getAdminDeviceId()
+})
+})
+.then(function(){
+order.status = order.selectedStatus;
+showToast("Status updated");
+updateSummary();
+applySearch();
+})
+.catch(function(){
+if(btn){
+btn.disabled = false;
+btn.innerText = oldText || "Update Status";
+}
+showToast("Update failed. Try again.");
+});
+}
+
+function copyText(text){
+if(!text){
+showToast("Nothing to copy");
+return;
+}
+
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){
+showToast("Copied");
+});
+return;
+}
+
+let input = document.createElement("input");
+input.value = text;
+document.body.appendChild(input);
+input.select();
+document.execCommand("copy");
+document.body.removeChild(input);
+showToast("Copied");
+}
+
+function escapeHTML(value){
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+function escapeJS(value){
+return String(value || "").replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+}
+
+document.getElementById("pinInput").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+checkPin();
+}
+});
+
+guardPage();
+</script>
+</body>
+</html>
+
+
+
+
