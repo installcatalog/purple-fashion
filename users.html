@@ -1,0 +1,2994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<link rel="dns-prefetch" href="https://script.google.com">
+<link rel="dns-prefetch" href="https://script.googleusercontent.com">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion Users</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f0f2f5;
+color:#071d33;
+padding-bottom:88px;
+overflow-x:hidden;
+}
+
+button,
+.tap,
+.filter-card,
+.icon-btn,
+.bottom-nav,
+.nav-item{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+}
+
+input{
+user-select:text;
+-webkit-user-select:text;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.title-box{
+display:flex;
+flex-direction:column;
+gap:2px;
+}
+
+.page-title{
+font-size:22px;
+font-weight:900;
+color:#1877F2;
+line-height:26px;
+}
+
+.page-subtitle{
+font-size:12px;
+font-weight:700;
+color:#5d6673;
+}
+
+.header-actions{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.round-btn{
+width:42px;
+height:42px;
+border:none;
+border-radius:50%;
+background:#f3f8ff;
+color:#1877F2;
+font-size:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(24,119,242,0.10);
+}
+
+.container{
+max-width:940px;
+margin:auto;
+padding:16px;
+}
+
+.status-strip{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border-radius:22px;
+padding:16px;
+box-shadow:0 10px 24px rgba(24,119,242,0.22);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+margin-bottom:14px;
+}
+
+.status-strip h2{
+font-size:18px;
+font-weight:900;
+line-height:24px;
+}
+
+.status-strip p{
+font-size:12px;
+line-height:18px;
+opacity:0.92;
+margin-top:3px;
+}
+
+.status-pill{
+height:36px;
+padding:0 13px;
+border-radius:999px;
+background:rgba(255,255,255,0.18);
+display:flex;
+align-items:center;
+gap:8px;
+font-size:12px;
+font-weight:900;
+white-space:nowrap;
+}
+
+.admin-tabs{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:10px;
+margin:14px 0 18px;
+}
+
+.admin-tab{
+min-height:50px;
+border:none;
+border-radius:18px;
+background:white;
+color:#5d6673;
+font-size:13px;
+font-weight:900;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid #d6e7ff;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+cursor:pointer;
+}
+
+.admin-tab.active{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+box-shadow:0 10px 24px rgba(24,119,242,0.24);
+border-color:#1877F2;
+}
+
+.tab-section{
+display:none;
+}
+
+.tab-section.active{
+display:block;
+}
+
+.section-heading{
+font-size:18px;
+font-weight:900;
+margin:20px 0 10px;
+color:#111827;
+}
+
+.analytics-grid,
+.filter-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
+}
+
+.analytics-card,
+.filter-card{
+background:white;
+border-radius:20px;
+padding:15px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid rgba(255,255,255,0.82);
+min-height:98px;
+position:relative;
+overflow:hidden;
+}
+
+.analytics-card::after,
+.filter-card::after{
+content:"";
+position:absolute;
+right:-24px;
+top:-24px;
+width:74px;
+height:74px;
+border-radius:50%;
+background:rgba(24,119,242,0.08);
+}
+
+.analytics-label,
+.filter-label{
+font-size:12px;
+font-weight:900;
+color:#5d6673;
+line-height:18px;
+position:relative;
+z-index:1;
+}
+
+.analytics-value,
+.filter-value{
+font-size:27px;
+font-weight:900;
+color:#1877F2;
+line-height:34px;
+margin-top:6px;
+position:relative;
+z-index:1;
+}
+
+.analytics-note{
+font-size:12px;
+font-weight:700;
+line-height:18px;
+color:#4d5662;
+margin-top:4px;
+position:relative;
+z-index:1;
+}
+
+.filter-card{
+cursor:pointer;
+min-height:88px;
+}
+
+.filter-card.active{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+box-shadow:0 10px 24px rgba(24,119,242,0.24);
+}
+
+.filter-card.active .filter-label,
+.filter-card.active .filter-value{
+color:white;
+}
+
+.chart-card,
+.tool-card,
+.list-panel{
+background:white;
+border-radius:22px;
+padding:16px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid rgba(255,255,255,0.82);
+margin-top:14px;
+}
+
+.chart-title{
+font-size:15px;
+font-weight:900;
+color:#111827;
+margin-bottom:12px;
+}
+
+.chart-bars{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px;
+height:145px;
+align-items:end;
+}
+
+.bar-wrap{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-end;
+height:145px;
+gap:7px;
+}
+
+.bar{
+width:100%;
+max-width:28px;
+min-height:8px;
+border-radius:12px 12px 4px 4px;
+background:linear-gradient(180deg,#1877F2,#74b4ff);
+box-shadow:0 6px 12px rgba(24,119,242,0.16);
+}
+
+.bar-count{
+font-size:11px;
+font-weight:900;
+color:#1877F2;
+line-height:14px;
+}
+
+.bar-label{
+font-size:10px;
+font-weight:800;
+color:#5d6673;
+line-height:12px;
+white-space:nowrap;
+}
+
+.tools-row{
+display:grid;
+grid-template-columns:1fr auto auto;
+gap:10px;
+align-items:center;
+}
+
+.search-box{
+height:48px;
+background:#f8fbff;
+border:1px solid #d6e7ff;
+border-radius:16px;
+display:flex;
+align-items:center;
+gap:10px;
+padding:0 14px;
+}
+
+.search-box i{
+color:#1877F2;
+font-size:16px;
+}
+
+.search-box input{
+width:100%;
+height:100%;
+border:none;
+outline:none;
+background:transparent;
+font-size:14px;
+font-weight:700;
+color:#071d33;
+}
+
+.tool-btn{
+height:48px;
+min-width:48px;
+border:none;
+border-radius:16px;
+background:#f3f8ff;
+color:#1877F2;
+font-size:16px;
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+cursor:pointer;
+border:1px solid #d6e7ff;
+}
+
+.tool-btn span{
+font-size:13px;
+}
+
+.list-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin-bottom:12px;
+}
+
+.list-title{
+font-size:17px;
+font-weight:900;
+color:#111827;
+}
+
+.showing-count{
+font-size:12px;
+font-weight:900;
+color:#1877F2;
+background:#f3f8ff;
+border:1px solid #d6e7ff;
+border-radius:999px;
+padding:7px 10px;
+white-space:nowrap;
+}
+
+.user-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.user-card{
+background:linear-gradient(180deg,#ffffff,#f8fbff);
+border:1px solid #edf3ff;
+border-radius:20px;
+padding:14px;
+box-shadow:0 6px 16px rgba(0,0,0,0.04);
+}
+
+.request-card,
+.log-card{
+background:linear-gradient(180deg,#ffffff,#f8fbff);
+border:1px solid #edf3ff;
+border-radius:20px;
+padding:14px;
+box-shadow:0 6px 16px rgba(0,0,0,0.04);
+}
+
+.request-card.waiting{
+border-color:#d6e7ff;
+}
+
+.request-card.informed{
+border-color:#bbf7d0;
+background:linear-gradient(180deg,#ffffff,#f0fdf4);
+}
+
+.log-card.failed,
+.log-card.blocked{
+border-color:#fed7aa;
+background:linear-gradient(180deg,#ffffff,#fff7ed);
+}
+
+.card-meta{
+font-size:12px;
+font-weight:900;
+line-height:18px;
+color:#5d6673;
+margin-top:2px;
+}
+
+.status-badge{
+display:inline-flex;
+align-items:center;
+height:30px;
+padding:0 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:900;
+background:#f3f8ff;
+color:#1877F2;
+border:1px solid #d6e7ff;
+white-space:nowrap;
+}
+
+.status-badge.waiting{
+background:#fff7ed;
+color:#9a3412;
+border-color:#fed7aa;
+}
+
+.status-badge.informed,
+.status-badge.success{
+background:#ecfdf5;
+color:#16a34a;
+border-color:#bbf7d0;
+}
+
+.status-badge.failed,
+.status-badge.blocked{
+background:#fff7ed;
+color:#c2410c;
+border-color:#fed7aa;
+}
+
+.user-card.duplicate{
+border-color:#ffd1d9;
+background:linear-gradient(180deg,#ffffff,#fff5f7);
+}
+
+.user-top{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:10px;
+}
+
+.user-name{
+font-size:16px;
+font-weight:900;
+color:#111827;
+line-height:22px;
+}
+
+.user-date{
+font-size:12px;
+font-weight:800;
+color:#5d6673;
+line-height:18px;
+margin-top:2px;
+}
+
+.duplicate-badge{
+font-size:11px;
+font-weight:900;
+color:#e11d48;
+background:#fff1f2;
+border:1px solid #fecdd3;
+border-radius:999px;
+padding:5px 8px;
+white-space:nowrap;
+}
+
+.phone-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-top:12px;
+}
+
+.phone-number{
+font-size:16px;
+font-weight:900;
+letter-spacing:0.3px;
+color:#1877F2;
+word-break:break-word;
+}
+
+.action-row{
+display:flex;
+gap:8px;
+flex-shrink:0;
+}
+
+.welcome-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:12px;
+}
+
+.welcome-btn{
+min-height:42px;
+border:none;
+border-radius:14px;
+font-size:13px;
+font-weight:900;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:7px;
+}
+
+.welcome-btn.normal{
+background:#f3f8ff;
+color:#1877F2;
+border:1px solid #d6e7ff;
+}
+
+.welcome-btn.offer{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+box-shadow:0 8px 18px rgba(24,119,242,0.20);
+}
+
+.coupon-chip{
+display:inline-flex;
+align-items:center;
+gap:6px;
+margin-top:10px;
+padding:7px 10px;
+border-radius:999px;
+background:#eef6ff;
+color:#1877F2;
+font-size:12px;
+font-weight:900;
+border:1px solid #d6e7ff;
+}
+
+.icon-btn{
+width:40px;
+height:40px;
+border:none;
+border-radius:13px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px;
+cursor:pointer;
+text-decoration:none;
+}
+
+.call-btn{
+background:#ecfdf5;
+color:#16a34a;
+}
+
+.wa-btn{
+background:#ecfdf5;
+color:#128c7e;
+}
+
+.copy-btn{
+background:#f3f8ff;
+color:#1877F2;
+}
+
+.request-actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:12px;
+}
+
+.small-action{
+height:40px;
+padding:0 12px;
+border:none;
+border-radius:13px;
+font-size:13px;
+font-weight:900;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:7px;
+text-decoration:none;
+cursor:pointer;
+}
+
+.small-action.primary{
+background:#ecfdf5;
+color:#128c7e;
+}
+
+.small-action.secondary{
+background:#f3f8ff;
+color:#1877F2;
+border:1px solid #d6e7ff;
+}
+
+.empty-state{
+padding:26px 12px;
+text-align:center;
+color:#5d6673;
+font-size:14px;
+font-weight:800;
+line-height:22px;
+}
+
+.loading{
+padding:30px 12px;
+text-align:center;
+font-size:14px;
+font-weight:900;
+color:#1877F2;
+}
+
+.loading i{
+margin-right:8px;
+}
+
+.pin-overlay{
+position:fixed;
+inset:0;
+z-index:10000;
+background:linear-gradient(180deg,#f7fbff,#eaf3ff);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+}
+
+.pin-box{
+width:100%;
+max-width:430px;
+background:white;
+border-radius:28px;
+padding:24px;
+box-shadow:0 16px 42px rgba(24,119,242,0.20),0 8px 22px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.pin-icon{
+width:70px;
+height:70px;
+border-radius:24px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+margin:0 auto 16px;
+box-shadow:0 10px 22px rgba(24,119,242,0.24);
+}
+
+.pin-box h1{
+font-size:26px;
+font-weight:900;
+line-height:32px;
+color:#071d33;
+}
+
+.pin-box p{
+font-size:14px;
+line-height:22px;
+color:#5d6673;
+font-weight:700;
+margin:8px 0 18px;
+}
+
+.pin-input{
+width:100%;
+height:56px;
+border-radius:18px;
+border:1px solid #d6e7ff;
+background:#f8fbff;
+outline:none;
+text-align:center;
+font-size:24px;
+font-weight:900;
+letter-spacing:8px;
+color:#071d33;
+}
+
+.pin-submit{
+width:100%;
+height:56px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+font-size:16px;
+font-weight:900;
+margin-top:14px;
+box-shadow:0 9px 20px rgba(24,119,242,0.24);
+cursor:pointer;
+}
+
+.toast{
+position:fixed;
+left:16px;
+right:16px;
+bottom:98px;
+max-width:460px;
+min-height:54px;
+margin:auto;
+border-radius:18px;
+background:white;
+box-shadow:0 12px 30px rgba(24,119,242,0.22),0 6px 16px rgba(0,0,0,0.10);
+z-index:11000;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:12px 16px;
+font-size:15px;
+font-weight:900;
+line-height:21px;
+color:#071d33;
+opacity:0;
+transform:translateY(22px);
+pointer-events:none;
+transition:0.28s ease;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.toast.warning{
+background:linear-gradient(135deg,#fff7ed,#ffffff);
+color:#9a3412;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+box-shadow:0 -2px 10px rgba(0,0,0,0.08);
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+z-index:999;
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:12px;
+color:#555;
+position:relative;
+cursor:pointer;
+}
+
+.nav-item i{
+font-size:20px;
+margin-bottom:5px;
+}
+
+.nav-item.active{
+color:#1877F2;
+}
+
+@media(min-width:720px){
+.analytics-grid{
+grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+.filter-grid{
+grid-template-columns:repeat(4,minmax(0,1fr));
+}
+}
+
+@media(max-width:430px){
+.container{
+padding:14px;
+}
+
+.status-strip{
+align-items:flex-start;
+flex-direction:column;
+}
+
+.tools-row{
+grid-template-columns:1fr auto auto;
+gap:8px;
+}
+
+.tool-btn span{
+display:none;
+}
+
+.phone-row{
+align-items:flex-start;
+flex-direction:column;
+}
+
+.action-row{
+width:100%;
+}
+
+.icon-btn{
+flex:1;
+height:42px;
+}
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+<div class="pin-overlay" id="pinOverlay">
+<div class="pin-box">
+<div class="pin-icon">
+<i class="fa-solid fa-lock"></i>
+</div>
+<h1>Seller Access</h1>
+<p>Enter seller PIN to view user signups.</p>
+<input class="pin-input" id="pinInput" type="tel" inputmode="numeric" maxlength="4" placeholder="PIN" oninput="digitsOnly(this,4)">
+<button class="pin-submit" onclick="checkPin()">Open Users</button>
+</div>
+</div>
+
+<div class="header">
+<div class="title-box">
+<div class="page-title">Purple Fashion Users</div>
+<div class="page-subtitle" id="updatedText">Loading users...</div>
+</div>
+<div class="header-actions">
+<button class="round-btn" onclick="refreshUsers()" title="Refresh">
+<i class="fa-solid fa-rotate"></i>
+</button>
+<button class="round-btn" onclick="exitUsers()" title="Back home">
+<i class="fa-solid fa-house"></i>
+</button>
+</div>
+</div>
+
+<main class="container">
+<div class="status-strip">
+<div>
+<h2>User Growth Dashboard</h2>
+<p>Hidden seller page for signup tracking and quick customer contact.</p>
+</div>
+<div class="status-pill">
+<i class="fa-solid fa-shield-halved"></i>
+Auto exit 180s
+</div>
+</div>
+
+<div class="admin-tabs">
+<button class="admin-tab active" id="tabUsers" onclick="switchAdminTab('users')"><i class="fa-solid fa-users"></i>Users</button>
+<button class="admin-tab" id="tabRequests" onclick="switchAdminTab('requests')"><i class="fa-solid fa-bell"></i>Stock Requests</button>
+<button class="admin-tab" id="tabCart" onclick="switchAdminTab('cart')"><i class="fa-solid fa-cart-shopping"></i>Cart No Order</button>
+<button class="admin-tab" id="tabLogs" onclick="switchAdminTab('logs')"><i class="fa-solid fa-shield-halved"></i>Admin Logs</button>
+</div>
+
+<section class="tab-section active" id="usersSection">
+<div class="section-heading">User Analytics</div>
+<section class="analytics-grid">
+<div class="analytics-card">
+<div class="analytics-label">Today New Users</div>
+<div class="analytics-value" id="todayCount">0</div>
+<div class="analytics-note" id="todayNote">Today</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Yesterday Users</div>
+<div class="analytics-value" id="yesterdayCount">0</div>
+<div class="analytics-note" id="yesterdayNote">Compare daily growth</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Last 7 Days Growth</div>
+<div class="analytics-value" id="weekCount">0</div>
+<div class="analytics-note">Recent signup trend</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Last 30 Days Growth</div>
+<div class="analytics-value" id="monthCount">0</div>
+<div class="analytics-note">Monthly user growth</div>
+</div>
+</section>
+
+<section class="analytics-grid" style="margin-top:12px;">
+<div class="analytics-card">
+<div class="analytics-label">Latest Signup</div>
+<div class="analytics-value" id="latestName" style="font-size:19px;line-height:25px;">-</div>
+<div class="analytics-note" id="latestTime">No signup yet</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Best Signup Day</div>
+<div class="analytics-value" id="bestDay" style="font-size:19px;line-height:25px;">-</div>
+<div class="analytics-note" id="bestDayCount">No data yet</div>
+</div>
+</section>
+
+<section class="chart-card">
+<div class="chart-title">Last 7 Days Signup Chart</div>
+<div class="chart-bars" id="chartBars"></div>
+</section>
+
+<div class="section-heading">Filter Users</div>
+<section class="filter-grid">
+<div class="filter-card active" id="filterToday" onclick="setFilter('today')">
+<div class="filter-label">Today</div>
+<div class="filter-value" id="filterTodayCount">0</div>
+</div>
+<div class="filter-card" id="filterWeek" onclick="setFilter('week')">
+<div class="filter-label">Last 7 Days</div>
+<div class="filter-value" id="filterWeekCount">0</div>
+</div>
+<div class="filter-card" id="filterMonth" onclick="setFilter('month')">
+<div class="filter-label">Last 30 Days</div>
+<div class="filter-value" id="filterMonthCount">0</div>
+</div>
+<div class="filter-card" id="filterAll" onclick="setFilter('all')">
+<div class="filter-label">All Users</div>
+<div class="filter-value" id="filterAllCount">0</div>
+</div>
+</section>
+
+<section class="tool-card">
+<div class="tools-row">
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="searchInput" type="text" placeholder="Search name, phone, or date" oninput="applyFilters()">
+</div>
+<button class="tool-btn" onclick="exportCSV()" title="Export CSV">
+<i class="fa-solid fa-file-arrow-down"></i>
+<span>Export</span>
+</button>
+<button class="tool-btn" onclick="refreshUsers()" title="Refresh">
+<i class="fa-solid fa-rotate"></i>
+</button>
+</div>
+</section>
+
+<section class="list-panel">
+<div class="list-head">
+<div class="list-title" id="listTitle">Today Users</div>
+<div class="showing-count" id="showingCount">Showing 0</div>
+</div>
+<div class="user-list" id="userList">
+<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading users...</div>
+</div>
+</section>
+</section>
+
+<section class="tab-section" id="requestsSection">
+<div class="section-heading">Stock Request Analytics</div>
+<section class="analytics-grid">
+<div class="analytics-card">
+<div class="analytics-label">Total Requests</div>
+<div class="analytics-value" id="requestTotalCount">0</div>
+<div class="analytics-note">All availability requests</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Today Requests</div>
+<div class="analytics-value" id="requestTodayCount">0</div>
+<div class="analytics-note">New today</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Last 7 Days</div>
+<div class="analytics-value" id="requestWeekCount">0</div>
+<div class="analytics-note">Recent product demand</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Waiting</div>
+<div class="analytics-value" id="requestWaitingCount">0</div>
+<div class="analytics-note">Need seller follow up</div>
+</div>
+</section>
+
+<section class="analytics-grid" style="margin-top:12px;">
+<div class="analytics-card">
+<div class="analytics-label">Informed</div>
+<div class="analytics-value" id="requestInformedCount">0</div>
+<div class="analytics-note">Customer already informed</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Top Requested Product</div>
+<div class="analytics-value" id="topRequestProduct" style="font-size:19px;line-height:25px;">-</div>
+<div class="analytics-note" id="topRequestCount">No request yet</div>
+</div>
+</section>
+
+<section class="tool-card">
+<div class="tools-row">
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="requestSearchInput" type="text" placeholder="Search product, ID, name, or phone" oninput="applyRequestFilters()">
+</div>
+<button class="tool-btn" onclick="loadStockRequests()" title="Refresh">
+<i class="fa-solid fa-rotate"></i>
+</button>
+</div>
+</section>
+
+<section class="list-panel">
+<div class="list-head">
+<div class="list-title">Stock Requests</div>
+<div class="showing-count" id="requestShowingCount">Showing 0</div>
+</div>
+<div class="user-list" id="requestList">
+<div class="empty-state">Stock request tracking is ready. Requests will appear here after Check Availability is connected.</div>
+</div>
+</section>
+</section>
+
+<section class="tab-section" id="cartSection">
+<div class="section-heading">Cart No Order</div>
+<section class="analytics-grid">
+<div class="analytics-card">
+<div class="analytics-label">Current Pending</div>
+<div class="analytics-value" id="cartPendingCount">0</div>
+<div class="analytics-note">Cart added but no order</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Today Added</div>
+<div class="analytics-value" id="cartTodayCount">0</div>
+<div class="analytics-note">Cart interest today</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Last 3 Days</div>
+<div class="analytics-value" id="cartThreeCount">0</div>
+<div class="analytics-note">Recent recovery chance</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Last 7 Days</div>
+<div class="analytics-value" id="cartSevenCount">0</div>
+<div class="analytics-note">Weekly pending carts</div>
+</div>
+</section>
+
+<section class="analytics-grid" style="margin-top:12px;">
+<div class="analytics-card">
+<div class="analytics-label">Top Pending Product</div>
+<div class="analytics-value" id="cartTopProduct" style="font-size:19px;line-height:25px;">-</div>
+<div class="analytics-note" id="cartTopProductCount">No cart yet</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Most Active Buyer</div>
+<div class="analytics-value" id="cartTopUser" style="font-size:19px;line-height:25px;">-</div>
+<div class="analytics-note" id="cartTopUserCount">No buyer yet</div>
+</div>
+</section>
+
+<div class="section-heading">Filter Cart No Order</div>
+<section class="filter-grid">
+<div class="filter-card" id="cartFilterToday" onclick="setCartFilter('today')">
+<div class="filter-label">Today</div>
+<div class="filter-value" id="cartFilterTodayCount">0</div>
+</div>
+<div class="filter-card active" id="cartFilterThree" onclick="setCartFilter('three')">
+<div class="filter-label">Last 3 Days</div>
+<div class="filter-value" id="cartFilterThreeCount">0</div>
+</div>
+<div class="filter-card" id="cartFilterSeven" onclick="setCartFilter('seven')">
+<div class="filter-label">Last 7 Days</div>
+<div class="filter-value" id="cartFilterSevenCount">0</div>
+</div>
+<div class="filter-card" id="cartFilterAll" onclick="setCartFilter('all')">
+<div class="filter-label">All Pending</div>
+<div class="filter-value" id="cartFilterAllCount">0</div>
+</div>
+</section>
+
+<section class="tool-card">
+<div class="tools-row">
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="cartSearchInput" type="text" placeholder="Search user, phone, product, or ID" oninput="applyCartFilters()">
+</div>
+<button class="tool-btn" onclick="loadUserEvents()" title="Refresh">
+<i class="fa-solid fa-rotate"></i>
+</button>
+</div>
+</section>
+
+<section class="list-panel">
+<div class="list-head">
+<div class="list-title">Users with Cart No Order</div>
+<div class="showing-count" id="cartShowingCount">Showing 0</div>
+</div>
+<div class="user-list" id="cartList">
+<div class="empty-state">Cart No Order monitor is ready. Data will appear after cart tracking is connected.</div>
+</div>
+</section>
+</section>
+
+<section class="tab-section" id="logsSection">
+<div class="section-heading">Admin Security Logs</div>
+<section class="analytics-grid">
+<div class="analytics-card">
+<div class="analytics-label">Today Admin Opens</div>
+<div class="analytics-value" id="logTodayCount">0</div>
+<div class="analytics-note">Successful admin login</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Wrong PIN Today</div>
+<div class="analytics-value" id="logWrongCount">0</div>
+<div class="analytics-note">Failed login attempts</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Blocked Devices</div>
+<div class="analytics-value" id="logBlockedCount">0</div>
+<div class="analytics-note">24 hour blocks</div>
+</div>
+<div class="analytics-card">
+<div class="analytics-label">Last Admin Action</div>
+<div class="analytics-value" id="lastAdminAction" style="font-size:19px;line-height:25px;">-</div>
+<div class="analytics-note" id="lastAdminTime">No action yet</div>
+</div>
+</section>
+
+<div class="section-heading">Filter Logs</div>
+<section class="filter-grid">
+<div class="filter-card active" id="logFilterToday" onclick="setLogFilter('today')">
+<div class="filter-label">Today</div>
+<div class="filter-value" id="logFilterTodayCount">0</div>
+</div>
+<div class="filter-card" id="logFilterFailed" onclick="setLogFilter('failed')">
+<div class="filter-label">Failed Login</div>
+<div class="filter-value" id="logFilterFailedCount">0</div>
+</div>
+<div class="filter-card" id="logFilterBlocked" onclick="setLogFilter('blocked')">
+<div class="filter-label">Blocked</div>
+<div class="filter-value" id="logFilterBlockedCount">0</div>
+</div>
+<div class="filter-card" id="logFilterAll" onclick="setLogFilter('all')">
+<div class="filter-label">All Logs</div>
+<div class="filter-value" id="logFilterAllCount">0</div>
+</div>
+</section>
+
+<section class="tool-card">
+<div class="tools-row">
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="logSearchInput" type="text" placeholder="Search page, action, status, or device" oninput="applyLogFilters()">
+</div>
+<button class="tool-btn" onclick="loadAdminLogs()" title="Refresh">
+<i class="fa-solid fa-rotate"></i>
+</button>
+</div>
+</section>
+
+<section class="list-panel">
+<div class="list-head">
+<div class="list-title">Admin Logs</div>
+<div class="showing-count" id="logShowingCount">Showing 0</div>
+</div>
+<div class="user-list" id="logList">
+<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading logs...</div>
+</div>
+</section>
+</section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="bottom-nav">
+<div class="nav-item" onclick="exitUsers()"><i class="fa-solid fa-house"></i><span>Home</span></div>
+<div class="nav-item"><i class="fa-solid fa-users"></i><span>Users</span></div>
+<div class="nav-item active"><i class="fa-solid fa-chart-line"></i><span>Admin</span></div>
+</div>
+
+<script>
+const SCRIPT_API = APP_CONFIG.scriptApi;
+const AUTO_EXIT_MS = 180000;
+const WARNING_MS = 175000;
+
+let allUsers = [];
+let filteredUsers = [];
+let allRequests = [];
+let filteredRequests = [];
+let allLogs = [];
+let filteredLogs = [];
+let allEvents = [];
+let cartNoOrderItems = [];
+let activeFilter = "today";
+let activeAdminTab = "users";
+let activeLogFilter = "today";
+let activeCartFilter = "three";
+let toastTimer = null;
+let warningTimer = null;
+let exitTimer = null;
+
+function getAdminToken(){
+return sessionStorage.getItem("purpleFashionAdminToken") || "";
+}
+
+function getAdminUsersUrl(){
+return SCRIPT_API + "?type=adminUsers&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function getStockRequestsUrl(){
+return SCRIPT_API + "?type=stockRequests&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function getAdminLogsUrl(){
+return SCRIPT_API + "?type=adminLogs&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function getUserEventsUrl(){
+return SCRIPT_API + "?type=userEvents&adminToken=" + encodeURIComponent(getAdminToken()) + "&_=" + Date.now();
+}
+
+function getAdminDeviceId(){
+let key = "purpleFashionAdminDeviceId";
+let deviceId = localStorage.getItem(key);
+
+if(!deviceId){
+deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+localStorage.setItem(key,deviceId);
+}
+
+return deviceId;
+}
+
+function adminLogin(pin){
+return fetch(SCRIPT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"adminLogin",
+pin:pin,
+page:"users",
+deviceId:getAdminDeviceId()
+})
+}).then(res=>res.json());
+}
+
+function showSecurityModal(title,message,icon){
+let existing = document.getElementById("adminSecurityModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "adminSecurityModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
+<div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showAdminLoginMessage(result){
+if(result && result.code === "warning"){
+showSecurityModal("Warning",result.message || "One more wrong PIN will block seller access for 24 hours.","triangle-exclamation");
+return true;
+}
+
+if(result && result.code === "blocked"){
+showSecurityModal("Access Blocked",result.message || "Try again after 24 hours.","lock");
+return true;
+}
+
+return false;
+}
+
+function digitsOnly(input,maxLength){
+input.value = input.value.replace(/\D/g,"").slice(0,maxLength);
+}
+
+function showToast(message,type){
+let toast = document.getElementById("toast");
+toast.innerText = message;
+toast.className = "toast show" + (type ? " " + type : "");
+
+if(toastTimer){
+clearTimeout(toastTimer);
+}
+
+toastTimer = setTimeout(function(){
+toast.className = "toast";
+},2200);
+}
+
+function checkPin(){
+let pin = document.getElementById("pinInput").value.trim();
+
+showToast("Checking PIN");
+
+adminLogin(pin).then(function(result){
+if(result && result.success && result.token){
+sessionStorage.setItem("purpleFashionUsersUnlocked","yes");
+sessionStorage.setItem("purpleFashionAdminToken",result.token);
+document.getElementById("pinOverlay").style.display = "none";
+applyPendingAdminFocus();
+loadUsers();
+loadStockRequests();
+loadAdminLogs();
+loadUserEvents();
+startAutoExit();
+return;
+}
+
+if(showAdminLoginMessage(result)){
+return;
+}
+
+showToast(result && result.message ? result.message : "Wrong PIN");
+}).catch(function(){
+showToast("Login server error");
+});
+}
+
+function guardPage(){
+if(sessionStorage.getItem("purpleFashionUsersUnlocked") === "yes" && getAdminToken()){
+document.getElementById("pinOverlay").style.display = "none";
+applyPendingAdminFocus();
+loadUsers();
+loadStockRequests();
+loadAdminLogs();
+loadUserEvents();
+startAutoExit();
+}
+}
+
+function applyPendingAdminFocus(){
+let pendingTab = sessionStorage.getItem("purpleFashionUsersOpenTab");
+let pendingProduct = sessionStorage.getItem("purpleFashionStockRequestProductId");
+
+if(pendingTab === "requests"){
+switchAdminTab("requests");
+}
+
+if(pendingProduct){
+let input = document.getElementById("requestSearchInput");
+
+if(input){
+input.value = pendingProduct;
+}
+}
+
+sessionStorage.removeItem("purpleFashionUsersOpenTab");
+sessionStorage.removeItem("purpleFashionStockRequestProductId");
+}
+
+function startAutoExit(){
+resetAutoExit();
+
+["click","touchstart","scroll","keydown","input"].forEach(function(eventName){
+window.addEventListener(eventName, resetAutoExit, {passive:true});
+});
+}
+
+function resetAutoExit(){
+if(warningTimer){
+clearTimeout(warningTimer);
+}
+
+if(exitTimer){
+clearTimeout(exitTimer);
+}
+
+warningTimer = setTimeout(function(){
+showToast("Auto exit in 5 seconds","warning");
+},WARNING_MS);
+
+exitTimer = setTimeout(function(){
+sessionStorage.removeItem("purpleFashionUsersUnlocked");
+sessionStorage.removeItem("purpleFashionAdminToken");
+showToast("Session expired");
+setTimeout(function(){
+window.location.replace("home.html");
+},500);
+},AUTO_EXIT_MS);
+}
+
+function exitUsers(){
+sessionStorage.removeItem("purpleFashionUsersUnlocked");
+sessionStorage.removeItem("purpleFashionAdminToken");
+window.location.replace("home.html");
+}
+
+function normalize(value){
+return String(value || "").trim();
+}
+
+function cleanPhone(value){
+return normalize(value).replace(/\D/g,"");
+}
+
+function startOfDay(date){
+return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function addDays(date,days){
+let next = new Date(date);
+next.setDate(next.getDate() + days);
+return next;
+}
+
+function pad2(value){
+return String(value).padStart(2,"0");
+}
+
+function formatDateKey(date){
+if(!date || isNaN(date.getTime())){
+return "";
+}
+
+return pad2(date.getDate()) + "/" + pad2(date.getMonth() + 1) + "/" + date.getFullYear();
+}
+
+function makeLocalDate(year,month,day,hour,minute){
+let parsed = new Date(year,month,day,hour || 0,minute || 0,0,0);
+
+if(
+parsed.getFullYear() !== year ||
+parsed.getMonth() !== month ||
+parsed.getDate() !== day
+){
+return null;
+}
+
+return parsed;
+}
+
+function chooseReadableSheetDate(first,second,year,hour,minute){
+let firstNumber = Number(first);
+let secondNumber = Number(second);
+let dayFirst = makeLocalDate(year,secondNumber - 1,firstNumber,hour,minute);
+let monthFirst = makeLocalDate(year,firstNumber - 1,secondNumber,hour,minute);
+
+if(firstNumber > 12){
+return dayFirst;
+}
+
+if(secondNumber > 12){
+return monthFirst;
+}
+
+if(dayFirst && !monthFirst){
+return dayFirst;
+}
+
+if(monthFirst && !dayFirst){
+return monthFirst;
+}
+
+if(dayFirst && monthFirst){
+let today = startOfDay(new Date()).getTime();
+let dayDistance = Math.abs(startOfDay(dayFirst).getTime() - today);
+let monthDistance = Math.abs(startOfDay(monthFirst).getTime() - today);
+return dayDistance <= monthDistance ? dayFirst : monthFirst;
+}
+
+return null;
+}
+
+function parseDateTime(value){
+let text = normalize(value);
+
+if(!text){
+return null;
+}
+
+if(/^\d{4}[\/\-.]\d{1,2}[\/\-.]\d{1,2}T/i.test(text)){
+let directIso = new Date(text);
+if(!isNaN(directIso.getTime())){
+return new Date(
+directIso.getFullYear(),
+directIso.getMonth(),
+directIso.getDate(),
+directIso.getHours(),
+directIso.getMinutes(),
+0,
+0
+);
+}
+}
+
+let match = text.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})(?:,\s*|\s+)?(\d{1,2})?(?::(\d{2}))?\s*(am|pm)?/i);
+
+if(match){
+let first = Number(match[1]);
+let second = Number(match[2]);
+let year = Number(match[3]);
+let hour = Number(match[4] || 0);
+let minute = Number(match[5] || 0);
+let period = (match[6] || "").toLowerCase();
+
+if(period === "pm" && hour < 12){
+hour += 12;
+}
+
+if(period === "am" && hour === 12){
+hour = 0;
+}
+
+let parsed = chooseReadableSheetDate(first, second, year, hour, minute);
+if(parsed){
+return parsed;
+}
+}
+
+let isoLike = text.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})(?:[T\s,]+(\d{1,2})?(?::(\d{2}))?\s*(am|pm)?)?/i);
+
+if(isoLike){
+let year = Number(isoLike[1]);
+let month = Number(isoLike[2]) - 1;
+let day = Number(isoLike[3]);
+let hour = Number(isoLike[4] || 0);
+let minute = Number(isoLike[5] || 0);
+let period = (isoLike[6] || "").toLowerCase();
+
+if(period === "pm" && hour < 12){
+hour += 12;
+}
+
+if(period === "am" && hour === 12){
+hour = 0;
+}
+
+let parsed = makeLocalDate(year, month, day, hour, minute);
+if(parsed){
+return parsed;
+}
+}
+
+let direct = new Date(text);
+if(!isNaN(direct.getTime())){
+return new Date(
+direct.getFullYear(),
+direct.getMonth(),
+direct.getDate(),
+direct.getHours(),
+direct.getMinutes(),
+0,
+0
+);
+}
+
+return null;
+}
+
+function formatDateTime(date,value){
+if(!date){
+return normalize(value) || "No date";
+}
+
+let hour = date.getHours();
+let minute = pad2(date.getMinutes());
+let period = hour >= 12 ? "PM" : "AM";
+hour = hour % 12;
+if(hour === 0){
+hour = 12;
+}
+
+return formatDateKey(date) + ", " + pad2(hour) + ":" + minute + " " + period;
+}
+
+function getUserDate(user){
+return parseDateTime(user.dateTime);
+}
+
+function isToday(user){
+let date = getUserDate(user);
+if(!date){
+return false;
+}
+
+let today = startOfDay(new Date());
+return formatDateKey(date) === formatDateKey(today);
+}
+
+function isYesterday(user){
+let date = getUserDate(user);
+if(!date){
+return false;
+}
+
+let today = startOfDay(new Date());
+let yesterday = addDays(today,-1);
+return formatDateKey(date) === formatDateKey(yesterday);
+}
+
+function isWithinDays(user,days){
+let date = getUserDate(user);
+if(!date){
+return false;
+}
+
+let today = startOfDay(new Date());
+let userDay = startOfDay(date);
+let diffDays = Math.floor((today.getTime() - userDay.getTime()) / 86400000);
+return diffDays >= 0 && diffDays < days;
+}
+
+function enrichUsers(users){
+let phoneCount = {};
+
+users.forEach(function(user){
+let phone = cleanPhone(user.phone);
+if(phone){
+phoneCount[phone] = (phoneCount[phone] || 0) + 1;
+}
+});
+
+return users
+.filter(function(user){
+return normalize(user.username) || normalize(user.phone);
+})
+.map(function(user,index){
+let date = getUserDate(user);
+let phone = cleanPhone(user.phone);
+
+return {
+username:normalize(user.username),
+phone:phone,
+rawPhone:normalize(user.phone),
+dateTime:normalize(user.dateTime),
+date:date,
+displayDate:formatDateTime(date,user.dateTime),
+couponCode:normalize(user.couponCode || user["Coupon Code"]),
+couponPercent:normalize(user.couponPercent || user["Coupon Percent"]),
+couponExpiry:normalize(user.couponExpiry || user["Coupon Expiry"]),
+couponUsed:normalize(user.couponUsed || user["Coupon Used"] || "No"),
+welcomeSent:normalize(user.welcomeSent || user["Welcome Sent"] || "No"),
+duplicate:phone && phoneCount[phone] > 1,
+index:index
+};
+})
+.sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeB - timeA;
+});
+}
+
+function loadUsers(){
+document.getElementById("userList").innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading users...</div>`;
+
+fetch(getAdminUsersUrl())
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+allUsers = enrichUsers(Array.isArray(data) ? data : []);
+document.getElementById("updatedText").innerText = "Updated " + new Date().toLocaleTimeString("en-IN", {
+hour:"2-digit",
+minute:"2-digit",
+hour12:true
+});
+updateAnalytics();
+applyFilters();
+})
+.catch(function(){
+document.getElementById("userList").innerHTML = `<div class="empty-state">Could not load users. Please check internet and try refresh.</div>`;
+showToast("Users server error. Try again.");
+});
+}
+
+function refreshUsers(){
+showToast("Refreshing...");
+
+if(activeAdminTab === "requests"){
+loadStockRequests();
+return;
+}
+
+if(activeAdminTab === "logs"){
+loadAdminLogs();
+return;
+}
+
+if(activeAdminTab === "cart"){
+loadUserEvents();
+return;
+}
+
+loadUsers();
+}
+
+function countByFilter(filter){
+if(filter === "today"){
+return allUsers.filter(isToday).length;
+}
+
+if(filter === "week"){
+return allUsers.filter(function(user){
+return isWithinDays(user,7);
+}).length;
+}
+
+if(filter === "month"){
+return allUsers.filter(function(user){
+return isWithinDays(user,30);
+}).length;
+}
+
+return allUsers.length;
+}
+
+function updateAnalytics(){
+let today = countByFilter("today");
+let yesterday = allUsers.filter(isYesterday).length;
+let week = countByFilter("week");
+let month = countByFilter("month");
+
+document.getElementById("todayCount").innerText = today;
+document.getElementById("yesterdayCount").innerText = yesterday;
+document.getElementById("weekCount").innerText = week;
+document.getElementById("monthCount").innerText = month;
+document.getElementById("filterTodayCount").innerText = today;
+document.getElementById("filterWeekCount").innerText = week;
+document.getElementById("filterMonthCount").innerText = month;
+document.getElementById("filterAllCount").innerText = allUsers.length;
+document.getElementById("todayNote").innerText = "Yesterday: " + yesterday;
+
+if(today > yesterday){
+document.getElementById("yesterdayNote").innerText = "Today is higher";
+}
+else if(today < yesterday){
+document.getElementById("yesterdayNote").innerText = "Yesterday was higher";
+}
+else{
+document.getElementById("yesterdayNote").innerText = "Same as today";
+}
+
+let latest = allUsers[0];
+if(latest){
+document.getElementById("latestName").innerText = latest.username || "Unknown";
+document.getElementById("latestTime").innerText = latest.displayDate;
+}
+else{
+document.getElementById("latestName").innerText = "-";
+document.getElementById("latestTime").innerText = "No signup yet";
+}
+
+updateBestDay();
+renderChart();
+}
+
+function updateBestDay(){
+let dayMap = {};
+
+allUsers.forEach(function(user){
+if(!user.date){
+return;
+}
+
+let key = formatDateKey(user.date);
+
+dayMap[key] = (dayMap[key] || 0) + 1;
+});
+
+let bestDate = "-";
+let bestCount = 0;
+
+Object.keys(dayMap).forEach(function(key){
+if(dayMap[key] > bestCount){
+bestDate = key;
+bestCount = dayMap[key];
+}
+});
+
+document.getElementById("bestDay").innerText = bestDate;
+document.getElementById("bestDayCount").innerText = bestCount ? bestCount + " users" : "No data yet";
+}
+
+function renderChart(){
+let chart = document.getElementById("chartBars");
+let today = startOfDay(new Date());
+let days = [];
+let maxCount = 1;
+
+for(let i = 6; i >= 0; i--){
+let date = addDays(today,-i);
+let next = addDays(date,1);
+let count = allUsers.filter(function(user){
+return user.date && user.date >= date && user.date < next;
+}).length;
+
+if(count > maxCount){
+maxCount = count;
+}
+
+days.push({
+date:date,
+count:count
+});
+}
+
+let html = "";
+days.forEach(function(day){
+let height = Math.max(8, Math.round((day.count / maxCount) * 90));
+let label = day.date.toLocaleDateString("en-IN", {weekday:"short"});
+
+html += `
+<div class="bar-wrap">
+<div class="bar-count">${day.count}</div>
+<div class="bar" style="height:${height}px;"></div>
+<div class="bar-label">${label}</div>
+</div>
+`;
+});
+
+chart.innerHTML = html;
+}
+
+function switchAdminTab(tab){
+activeAdminTab = tab;
+
+document.querySelectorAll(".admin-tab").forEach(function(button){
+button.classList.remove("active");
+});
+
+document.querySelectorAll(".tab-section").forEach(function(section){
+section.classList.remove("active");
+});
+
+let button = document.getElementById(
+tab === "requests" ? "tabRequests" :
+tab === "cart" ? "tabCart" :
+tab === "logs" ? "tabLogs" :
+"tabUsers"
+);
+
+let section = document.getElementById(
+tab === "requests" ? "requestsSection" :
+tab === "cart" ? "cartSection" :
+tab === "logs" ? "logsSection" :
+"usersSection"
+);
+
+if(button){
+button.classList.add("active");
+}
+
+if(section){
+section.classList.add("active");
+}
+
+if(tab === "requests" && !allRequests.length){
+loadStockRequests();
+}
+
+if(tab === "cart" && !allEvents.length){
+loadUserEvents();
+}
+
+if(tab === "logs" && !allLogs.length){
+loadAdminLogs();
+}
+}
+
+function setFilter(filter){
+activeFilter = filter;
+
+document.querySelectorAll("#usersSection .filter-card").forEach(function(card){
+card.classList.remove("active");
+});
+
+let activeCard = document.getElementById(
+filter === "today" ? "filterToday" :
+filter === "week" ? "filterWeek" :
+filter === "month" ? "filterMonth" :
+"filterAll"
+);
+
+if(activeCard){
+activeCard.classList.add("active");
+}
+
+applyFilters();
+}
+
+function getFilteredByActiveCard(){
+if(activeFilter === "today"){
+return allUsers.filter(isToday);
+}
+
+if(activeFilter === "week"){
+return allUsers.filter(function(user){
+return isWithinDays(user,7);
+});
+}
+
+if(activeFilter === "month"){
+return allUsers.filter(function(user){
+return isWithinDays(user,30);
+});
+}
+
+return allUsers;
+}
+
+function getListTitle(){
+if(activeFilter === "today"){
+return "Today Users";
+}
+
+if(activeFilter === "week"){
+return "Last 7 Days Users";
+}
+
+if(activeFilter === "month"){
+return "Last 30 Days Users";
+}
+
+return "All Users";
+}
+
+function applyFilters(){
+let search = normalize(document.getElementById("searchInput").value).toLowerCase();
+let users = getFilteredByActiveCard();
+
+if(search){
+users = users.filter(function(user){
+let haystack = [
+user.username,
+user.phone,
+user.rawPhone,
+user.displayDate,
+user.dateTime
+].join(" ").toLowerCase();
+
+return haystack.includes(search);
+});
+}
+
+filteredUsers = users;
+document.getElementById("listTitle").innerText = getListTitle();
+document.getElementById("showingCount").innerText = "Showing " + users.length;
+renderUserList(users);
+}
+
+function renderUserList(users){
+let list = document.getElementById("userList");
+
+if(!users.length){
+list.innerHTML = `<div class="empty-state">No users found for this filter.</div>`;
+return;
+}
+
+let html = "";
+
+users.forEach(function(user){
+let safeName = escapeHTML(user.username || "Unknown User");
+let phone = user.phone || user.rawPhone || "";
+let displayPhone = escapeHTML(phone || "No phone");
+let whatsappText = encodeURIComponent("Hi " + (user.username || "there") + ", welcome to Purple Fashion. Thank you for joining us.");
+let couponText = user.couponCode ? `${escapeHTML(user.couponCode)}${user.couponUsed.toLowerCase() === "yes" ? " | Used" : ""}` : "Coupon loading";
+
+html += `
+<div class="user-card ${user.duplicate ? "duplicate" : ""}">
+<div class="user-top">
+<div>
+<div class="user-name">${safeName}</div>
+<div class="user-date">${escapeHTML(user.displayDate)}</div>
+</div>
+${user.duplicate ? '<div class="duplicate-badge">Duplicate phone</div>' : ''}
+</div>
+<div class="phone-row">
+<div class="phone-number">${displayPhone}</div>
+<div class="action-row">
+<a class="icon-btn call-btn" href="tel:${phone}" title="Call"><i class="fa-solid fa-phone"></i></a>
+<a class="icon-btn wa-btn" href="https://wa.me/91${phone}?text=${whatsappText}" target="_blank" rel="noopener" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="icon-btn copy-btn" onclick="copyPhone('${phone}')" title="Copy"><i class="fa-regular fa-copy"></i></button>
+</div>
+</div>
+<div class="coupon-chip"><i class="fa-solid fa-ticket"></i>${couponText}</div>
+<div class="welcome-actions">
+<button class="welcome-btn normal" onclick="sendNormalWelcome(${user.index})"><i class="fa-brands fa-whatsapp"></i>Normal Welcome</button>
+<button class="welcome-btn offer" onclick="openOfferWelcome(${user.index})"><i class="fa-solid fa-gift"></i>Offer Welcome</button>
+</div>
+</div>
+`;
+});
+
+list.innerHTML = html;
+}
+
+function getRowDate(row){
+return parseDateTime(row.dateTime || row.DateTime || row.date || row.Date);
+}
+
+function isRowToday(row){
+let date = row.date;
+if(!date){
+return false;
+}
+
+let today = startOfDay(new Date());
+return date >= today && date < addDays(today,1);
+}
+
+function isRowWithinDays(row,days){
+let date = row.date;
+if(!date){
+return false;
+}
+
+let today = startOfDay(new Date());
+let start = addDays(today,-(days - 1));
+let end = addDays(today,1);
+return date >= start && date < end;
+}
+
+function enrichRequests(rows){
+return rows
+.filter(function(row){
+return normalize(row.productId || row["Product ID"] || row.productName || row["Product Name"] || row.username || row.phone);
+})
+.map(function(row,index){
+let date = getRowDate(row);
+let status = normalize(row.status || row.Status || "Waiting");
+
+return {
+requestId:normalize(row.requestId || row["Request ID"] || ""),
+dateTime:normalize(row.dateTime || row.DateTime || row.date || row.Date),
+date:date,
+displayDate:formatDateTime(date,row.dateTime || row.DateTime || row.date || row.Date),
+username:normalize(row.username || row.Username || row.name || row.Name),
+phone:cleanPhone(row.phone || row.Phone),
+productId:normalize(row.productId || row["Product ID"]),
+productName:normalize(row.productName || row["Product Name"]),
+status:status || "Waiting",
+index:index
+};
+})
+.sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeB - timeA;
+});
+}
+
+function loadStockRequests(){
+document.getElementById("requestList").innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading requests...</div>`;
+
+fetch(getStockRequestsUrl())
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+allRequests = enrichRequests(Array.isArray(data) ? data : []);
+updateRequestAnalytics();
+applyRequestFilters();
+})
+.catch(function(){
+document.getElementById("requestList").innerHTML = `<div class="empty-state">Could not load stock requests.</div>`;
+});
+}
+
+function updateRequestAnalytics(){
+let total = allRequests.length;
+let today = allRequests.filter(isRowToday).length;
+let week = allRequests.filter(function(item){
+return isRowWithinDays(item,7);
+}).length;
+let waiting = allRequests.filter(function(item){
+return item.status.toLowerCase() !== "informed";
+}).length;
+let informed = allRequests.filter(function(item){
+return item.status.toLowerCase() === "informed";
+}).length;
+
+document.getElementById("requestTotalCount").innerText = total;
+document.getElementById("requestTodayCount").innerText = today;
+document.getElementById("requestWeekCount").innerText = week;
+document.getElementById("requestWaitingCount").innerText = waiting;
+document.getElementById("requestInformedCount").innerText = informed;
+
+let productMap = {};
+
+allRequests.forEach(function(item){
+let key = item.productId || item.productName;
+if(!key){
+return;
+}
+
+if(!productMap[key]){
+productMap[key] = {
+name:item.productName || key,
+count:0
+};
+}
+
+productMap[key].count++;
+});
+
+let top = null;
+Object.keys(productMap).forEach(function(key){
+if(!top || productMap[key].count > top.count){
+top = productMap[key];
+}
+});
+
+document.getElementById("topRequestProduct").innerText = top ? top.name : "-";
+document.getElementById("topRequestCount").innerText = top ? top.count + " requests" : "No request yet";
+}
+
+function applyRequestFilters(){
+let searchInput = document.getElementById("requestSearchInput");
+let search = searchInput ? normalize(searchInput.value).toLowerCase() : "";
+let requests = allRequests;
+
+if(search){
+requests = requests.filter(function(item){
+let haystack = [
+item.username,
+item.phone,
+item.productId,
+item.productName,
+item.status,
+item.displayDate
+].join(" ").toLowerCase();
+
+return haystack.includes(search);
+});
+}
+
+filteredRequests = requests;
+document.getElementById("requestShowingCount").innerText = "Showing " + requests.length;
+renderRequestList(requests);
+}
+
+function renderRequestList(requests){
+let list = document.getElementById("requestList");
+
+if(!requests.length){
+list.innerHTML = `<div class="empty-state">No stock requests found.</div>`;
+return;
+}
+
+let html = "";
+
+requests.forEach(function(item){
+let statusClass = item.status.toLowerCase() === "informed" ? "informed" : "waiting";
+let whatsappText = encodeURIComponent(
+"Hi " + (item.username || "there") + ", good news. Your requested product is available now.\n\nProduct: " + (item.productName || "") + "\nProduct ID: " + (item.productId || "") + "\n\nYou can order now on Purple Fashion."
+);
+
+html += `
+<div class="request-card ${statusClass}">
+<div class="user-top">
+<div>
+<div class="user-name">${escapeHTML(item.productName || "Requested Product")}</div>
+<div class="card-meta">${escapeHTML(item.productId || "No product ID")} | ${escapeHTML(item.displayDate)}</div>
+</div>
+<div class="status-badge ${statusClass}">${escapeHTML(item.status || "Waiting")}</div>
+</div>
+<div class="phone-row">
+<div>
+<div class="phone-number">${escapeHTML(item.username || "Unknown User")}</div>
+<div class="card-meta">${escapeHTML(item.phone || "No phone")}</div>
+</div>
+<div class="action-row">
+<button class="icon-btn wa-btn" onclick="notifyStockRequestByIndex(${item.index})" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+<button class="icon-btn copy-btn" onclick="copyPhone('${item.phone}')" title="Copy"><i class="fa-regular fa-copy"></i></button>
+</div>
+</div>
+${statusClass === "waiting" ? `<div class="request-actions"><button class="small-action secondary" onclick="markStockRequestInformedByIndex(${item.index})"><i class="fa-solid fa-check"></i>Mark Informed</button></div>` : ""}
+</div>
+`;
+});
+
+list.innerHTML = html;
+}
+
+function getStockRequestByIndex(index){
+return allRequests.find(function(item){
+return Number(item.index) === Number(index);
+});
+}
+
+function markStockRequestInformed(request){
+if(!request){
+return Promise.resolve(false);
+}
+
+return fetch(SCRIPT_API,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify({
+type:"markStockRequestInformed",
+adminToken:getAdminToken(),
+deviceId:getAdminDeviceId(),
+requestId:request.requestId || "",
+productId:request.productId || "",
+phone:request.phone || ""
+})
+})
+.then(function(){
+request.status = "Informed";
+updateRequestAnalytics();
+applyRequestFilters();
+return true;
+})
+.catch(function(){
+return false;
+});
+}
+
+function markStockRequestInformedByIndex(index){
+let request = getStockRequestByIndex(index);
+
+markStockRequestInformed(request).then(function(success){
+showToast(success ? "Marked informed" : "Could not update request");
+});
+}
+
+function notifyStockRequestByIndex(index){
+let request = getStockRequestByIndex(index);
+
+if(!request){
+showToast("Request not found");
+return;
+}
+
+let whatsappText = encodeURIComponent(
+"Hi " + (request.username || "there") + ",\n" +
+"Your product " + (request.productName || "") + " is available now.\n\n" +
+"You can order now on Purple Fashion.\n\n" +
+"Thank you\n" +
+"Purple Fashion"
+);
+
+let phone = String(request.phone || "").replace(/\D/g,"");
+
+if(!phone){
+showToast("Phone number missing");
+return;
+}
+
+if(phone.length === 10){
+phone = "91" + phone;
+}
+
+window.open("https://wa.me/" + phone + "?text=" + whatsappText, "_blank");
+markStockRequestInformed(request).then(function(){
+showToast("Marked informed");
+});
+}
+
+function getUserByIndex(index){
+return allUsers.find(function(user){
+return Number(user.index) === Number(index);
+});
+}
+
+function buildWhatsAppPhone(phone){
+phone = String(phone || "").replace(/\D/g,"");
+
+if(phone.length === 10){
+phone = "91" + phone;
+}
+
+return phone;
+}
+
+function sendNormalWelcome(index){
+let user = getUserByIndex(index);
+
+if(!user){
+showToast("User not found");
+return;
+}
+
+let phone = buildWhatsAppPhone(user.phone || user.rawPhone);
+
+if(!phone){
+showToast("No phone number");
+return;
+}
+
+let text = encodeURIComponent(
+"Hi " + (user.username || "there") + ",\n" +
+"Welcome to Purple Fashion.\n\n" +
+"Thank you for joining us.\n\n" +
+"Purple Fashion"
+);
+
+window.open("https://wa.me/" + phone + "?text=" + text, "_blank");
+}
+
+function getOfferExpiryDate(){
+let date = new Date();
+date.setHours(date.getHours() + 48);
+return date;
+}
+
+function formatOfferExpiry(date){
+return date.toLocaleString("en-IN", {
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit",
+hour12:true
+});
+}
+
+function openOfferWelcome(index){
+let user = getUserByIndex(index);
+
+if(!user){
+showToast("User not found");
+return;
+}
+
+let existing = document.getElementById("offerWelcomeModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "offerWelcomeModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99998;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:390px;background:white;border-radius:28px;padding:24px 20px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-gift"></i></div>
+<div style="font-size:24px;line-height:30px;font-weight:900;color:#071d33;">Choose offer</div>
+<div style="margin-top:8px;font-size:14px;line-height:21px;font-weight:800;color:#607086;">Offer valid for 48 hours after sending.</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:18px;">
+${[5,10,15,20].map(function(percent){
+return `<button onclick="this.style.background='linear-gradient(135deg,#1877F2,#0f6be8)';this.style.color='white';sendOfferWelcome(${index},${percent})" style="height:48px;border:1px solid #d6e7ff;border-radius:15px;background:#f3f8ff;color:#1877F2;font-size:15px;font-weight:900;">${percent}%</button>`;
+}).join("")}
+</div>
+<button onclick="document.getElementById('offerWelcomeModal').remove()" style="margin-top:14px;width:100%;height:48px;border:1px solid #d6e7ff;border-radius:15px;background:white;color:#1877F2;font-size:15px;font-weight:900;">Back</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function sendOfferWelcome(index,percent){
+let user = getUserByIndex(index);
+
+if(!user){
+showToast("User not found");
+return;
+}
+
+let phone = buildWhatsAppPhone(user.phone || user.rawPhone);
+
+if(!phone){
+showToast("No phone number");
+return;
+}
+
+let expiry = getOfferExpiryDate();
+let expiryText = formatOfferExpiry(expiry);
+let code = user.couponCode || "";
+
+if(!code){
+showToast("Coupon loading. Refresh users.");
+return;
+}
+
+fetch(SCRIPT_API,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify({
+type:"updateWelcomeOffer",
+adminToken:getAdminToken(),
+deviceId:getAdminDeviceId(),
+username:user.username || "",
+phone:user.phone || "",
+couponPercent:percent
+})
+}).catch(function(){});
+
+user.couponPercent = String(percent);
+user.couponExpiry = expiryText;
+user.welcomeSent = "Yes";
+
+let modal = document.getElementById("offerWelcomeModal");
+if(modal){
+modal.remove();
+}
+
+let text = encodeURIComponent(
+"Hi " + (user.username || "there") + ",\n" +
+"Welcome to Purple Fashion.\n\n" +
+"Use coupon code " + code + " and get extra " + percent + "% discount on any product.\n\n" +
+"Valid till: " + expiryText + "\n\n" +
+"Thank you\n" +
+"Purple Fashion"
+);
+
+window.open("https://wa.me/" + phone + "?text=" + text, "_blank");
+showToast("Offer welcome ready");
+applyFilters();
+}
+
+function enrichEvents(rows){
+return rows
+.filter(function(row){
+return normalize(row.action || row.Action || row.productId || row["Product ID"] || row.productName || row["Product Name"] || row.username || row.phone);
+})
+.map(function(row,index){
+let date = getRowDate(row);
+
+return {
+requestId:normalize(row.requestId || row["Request ID"]),
+dateTime:normalize(row.dateTime || row.DateTime || row.date || row.Date),
+date:date,
+displayDate:formatDateTime(date,row.dateTime || row.DateTime || row.date || row.Date),
+username:normalize(row.username || row.Username || row.name || row.Name),
+phone:cleanPhone(row.phone || row.Phone),
+productId:normalize(row.productId || row["Product ID"]),
+productName:normalize(row.productName || row["Product Name"]),
+category:normalize(row.category || row.Category),
+action:normalize(row.action || row.Action).toLowerCase(),
+sessionId:normalize(row.sessionId || row.SessionId),
+deviceId:normalize(row.deviceId || row.DeviceId || row.DeviceID),
+index:index
+};
+})
+.sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeB - timeA;
+});
+}
+
+function loadUserEvents(){
+document.getElementById("cartList").innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading cart interest...</div>`;
+
+fetch(getUserEventsUrl())
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+allEvents = enrichEvents(Array.isArray(data) ? data : []);
+buildCartNoOrderItems();
+updateCartNoOrderAnalytics();
+applyCartFilters();
+})
+.catch(function(){
+document.getElementById("cartList").innerHTML = `<div class="empty-state">Could not load cart interest.</div>`;
+});
+}
+
+function getCartEventKey(event){
+return [
+event.phone || event.username || event.deviceId || "unknown",
+event.productId || event.productName || "product"
+].join("::");
+}
+
+function isSameCartUser(event,item){
+return (
+(event.phone && item.phone && event.phone === item.phone) ||
+(event.sessionId && item.sessionId && event.sessionId === item.sessionId) ||
+(event.deviceId && item.deviceId && event.deviceId === item.deviceId) ||
+(event.username && item.username && event.username.toLowerCase() === item.username.toLowerCase())
+);
+}
+
+function buildCartNoOrderItems(){
+let sorted = allEvents.slice().sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeA - timeB;
+});
+
+let cartMap = {};
+
+sorted.forEach(function(event){
+if(event.action === "addtocart"){
+cartMap[getCartEventKey(event)] = Object.assign({},event,{
+addedAt:event.date,
+addedDisplayDate:event.displayDate
+});
+return;
+}
+
+if(event.action === "removefromcart"){
+delete cartMap[getCartEventKey(event)];
+return;
+}
+
+if(event.action === "orderplaced"){
+Object.keys(cartMap).forEach(function(key){
+let item = cartMap[key];
+let sameUser = isSameCartUser(event,item);
+let sameProduct = !event.productId || event.productId === item.productId;
+
+if(sameUser && sameProduct){
+delete cartMap[key];
+}
+});
+}
+});
+
+cartNoOrderItems = Object.keys(cartMap).map(function(key){
+return cartMap[key];
+}).sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeB - timeA;
+});
+}
+
+function getCartItemsByFilter(filter){
+if(filter === "today"){
+return cartNoOrderItems.filter(isRowToday);
+}
+
+if(filter === "three"){
+return cartNoOrderItems.filter(function(item){
+return isRowWithinDays(item,3);
+});
+}
+
+if(filter === "seven"){
+return cartNoOrderItems.filter(function(item){
+return isRowWithinDays(item,7);
+});
+}
+
+return cartNoOrderItems;
+}
+
+function updateCartNoOrderAnalytics(){
+let today = getCartItemsByFilter("today").length;
+let three = getCartItemsByFilter("three").length;
+let seven = getCartItemsByFilter("seven").length;
+let total = cartNoOrderItems.length;
+
+document.getElementById("cartPendingCount").innerText = total;
+document.getElementById("cartTodayCount").innerText = today;
+document.getElementById("cartThreeCount").innerText = three;
+document.getElementById("cartSevenCount").innerText = seven;
+document.getElementById("cartFilterTodayCount").innerText = today;
+document.getElementById("cartFilterThreeCount").innerText = three;
+document.getElementById("cartFilterSevenCount").innerText = seven;
+document.getElementById("cartFilterAllCount").innerText = total;
+
+let productMap = {};
+let userMap = {};
+
+cartNoOrderItems.forEach(function(item){
+let productKey = item.productId || item.productName;
+let userKey = item.phone || item.username || item.deviceId;
+
+if(productKey){
+if(!productMap[productKey]){
+productMap[productKey] = {
+name:item.productName || productKey,
+count:0
+};
+}
+productMap[productKey].count++;
+}
+
+if(userKey){
+if(!userMap[userKey]){
+userMap[userKey] = {
+name:item.username || item.phone || userKey,
+count:0
+};
+}
+userMap[userKey].count++;
+}
+});
+
+let topProduct = null;
+Object.keys(productMap).forEach(function(key){
+if(!topProduct || productMap[key].count > topProduct.count){
+topProduct = productMap[key];
+}
+});
+
+let topUser = null;
+Object.keys(userMap).forEach(function(key){
+if(!topUser || userMap[key].count > topUser.count){
+topUser = userMap[key];
+}
+});
+
+document.getElementById("cartTopProduct").innerText = topProduct ? topProduct.name : "-";
+document.getElementById("cartTopProductCount").innerText = topProduct ? topProduct.count + " pending carts" : "No data yet";
+document.getElementById("cartTopUser").innerText = topUser ? topUser.name : "-";
+document.getElementById("cartTopUserCount").innerText = topUser ? topUser.count + " pending items" : "No data yet";
+}
+
+function setCartFilter(filter){
+activeCartFilter = filter;
+
+document.querySelectorAll("#cartSection .filter-card").forEach(function(card){
+card.classList.remove("active");
+});
+
+let activeCard = document.getElementById(
+filter === "today" ? "cartFilterToday" :
+filter === "three" ? "cartFilterThree" :
+filter === "seven" ? "cartFilterSeven" :
+"cartFilterAll"
+);
+
+if(activeCard){
+activeCard.classList.add("active");
+}
+
+applyCartFilters();
+}
+
+function applyCartFilters(){
+let searchInput = document.getElementById("cartSearchInput");
+let search = searchInput ? normalize(searchInput.value).toLowerCase() : "";
+let items = getCartItemsByFilter(activeCartFilter);
+
+if(search){
+items = items.filter(function(item){
+let haystack = [
+item.username,
+item.phone,
+item.productId,
+item.productName,
+item.category,
+item.displayDate
+].join(" ").toLowerCase();
+
+return haystack.includes(search);
+});
+}
+
+document.getElementById("cartShowingCount").innerText = "Showing " + items.length;
+renderCartNoOrderList(items);
+}
+
+function renderCartNoOrderList(items){
+let list = document.getElementById("cartList");
+
+if(!items.length){
+list.innerHTML = `<div class="empty-state">No cart without order found.</div>`;
+return;
+}
+
+let html = "";
+
+items.forEach(function(item){
+let whatsappText = encodeURIComponent(
+"Hi " + (item.username || "there") + ", you added this product to your cart on Purple Fashion.\n\nProduct: " + (item.productName || "") + "\nProduct ID: " + (item.productId || "") + "\n\nNeed any help to complete your order?"
+);
+
+html += `
+<div class="request-card waiting">
+<div class="user-top">
+<div>
+<div class="user-name">${escapeHTML(item.productName || "Cart Product")}</div>
+<div class="card-meta">${escapeHTML(item.productId || "No product ID")} | ${escapeHTML(item.category || "No category")}</div>
+</div>
+<div class="status-badge waiting">No Order</div>
+</div>
+<div class="phone-row">
+<div>
+<div class="phone-number">${escapeHTML(item.username || "Unknown User")}</div>
+<div class="card-meta">${escapeHTML(item.phone || "No phone")} | Added ${escapeHTML(item.addedDisplayDate || item.displayDate)}</div>
+</div>
+<div class="action-row">
+<a class="icon-btn wa-btn" href="https://wa.me/91${item.phone}?text=${whatsappText}" target="_blank" rel="noopener" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="icon-btn copy-btn" onclick="copyPhone('${item.phone}')" title="Copy"><i class="fa-regular fa-copy"></i></button>
+</div>
+</div>
+</div>
+`;
+});
+
+list.innerHTML = html;
+}
+
+function enrichLogs(rows){
+return rows
+.filter(function(row){
+return normalize(row.dateTime || row.page || row.action || row.status || row.message || row.deviceId);
+})
+.map(function(row,index){
+let date = getRowDate(row);
+
+return {
+dateTime:normalize(row.dateTime || row.DateTime || row.date || row.Date),
+date:date,
+displayDate:formatDateTime(date,row.dateTime || row.DateTime || row.date || row.Date),
+page:normalize(row.page || row.Page),
+action:normalize(row.action || row.Action),
+status:normalize(row.status || row.Status),
+message:normalize(row.message || row.Message),
+deviceId:normalize(row.deviceId || row.DeviceId || row.DeviceID),
+tokenPrefix:normalize(row.tokenPrefix || row.TokenPrefix),
+index:index
+};
+})
+.sort(function(a,b){
+let timeA = a.date ? a.date.getTime() : 0;
+let timeB = b.date ? b.date.getTime() : 0;
+return timeB - timeA;
+});
+}
+
+function loadAdminLogs(){
+document.getElementById("logList").innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Loading logs...</div>`;
+
+fetch(getAdminLogsUrl())
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+allLogs = enrichLogs(Array.isArray(data) ? data : []);
+updateLogAnalytics();
+applyLogFilters();
+})
+.catch(function(){
+document.getElementById("logList").innerHTML = `<div class="empty-state">Could not load admin logs.</div>`;
+});
+}
+
+function updateLogAnalytics(){
+let todayLogs = allLogs.filter(isRowToday);
+let todaySuccess = todayLogs.filter(function(log){
+return log.action === "adminLogin" && log.status === "success";
+}).length;
+let wrongToday = todayLogs.filter(function(log){
+return log.action === "adminLogin" && log.status === "failed";
+}).length;
+let blocked = allLogs.filter(function(log){
+return log.status === "blocked";
+}).length;
+
+document.getElementById("logTodayCount").innerText = todaySuccess;
+document.getElementById("logWrongCount").innerText = wrongToday;
+document.getElementById("logBlockedCount").innerText = blocked;
+document.getElementById("logFilterTodayCount").innerText = todayLogs.length;
+document.getElementById("logFilterFailedCount").innerText = allLogs.filter(function(log){ return log.status === "failed"; }).length;
+document.getElementById("logFilterBlockedCount").innerText = blocked;
+document.getElementById("logFilterAllCount").innerText = allLogs.length;
+
+let latest = allLogs[0];
+document.getElementById("lastAdminAction").innerText = latest ? (latest.page + " " + latest.action).trim() : "-";
+document.getElementById("lastAdminTime").innerText = latest ? latest.displayDate : "No action yet";
+}
+
+function setLogFilter(filter){
+activeLogFilter = filter;
+
+document.querySelectorAll("#logsSection .filter-card").forEach(function(card){
+card.classList.remove("active");
+});
+
+let activeCard = document.getElementById(
+filter === "today" ? "logFilterToday" :
+filter === "failed" ? "logFilterFailed" :
+filter === "blocked" ? "logFilterBlocked" :
+"logFilterAll"
+);
+
+if(activeCard){
+activeCard.classList.add("active");
+}
+
+applyLogFilters();
+}
+
+function getLogsByFilter(){
+if(activeLogFilter === "today"){
+return allLogs.filter(isRowToday);
+}
+
+if(activeLogFilter === "failed"){
+return allLogs.filter(function(log){
+return log.status === "failed";
+});
+}
+
+if(activeLogFilter === "blocked"){
+return allLogs.filter(function(log){
+return log.status === "blocked";
+});
+}
+
+return allLogs;
+}
+
+function applyLogFilters(){
+let searchInput = document.getElementById("logSearchInput");
+let search = searchInput ? normalize(searchInput.value).toLowerCase() : "";
+let logs = getLogsByFilter();
+
+if(search){
+logs = logs.filter(function(log){
+let haystack = [
+log.page,
+log.action,
+log.status,
+log.message,
+log.deviceId,
+log.tokenPrefix,
+log.displayDate
+].join(" ").toLowerCase();
+
+return haystack.includes(search);
+});
+}
+
+filteredLogs = logs;
+document.getElementById("logShowingCount").innerText = "Showing " + logs.length;
+renderLogList(logs);
+}
+
+function renderLogList(logs){
+let list = document.getElementById("logList");
+
+if(!logs.length){
+list.innerHTML = `<div class="empty-state">No admin logs found.</div>`;
+return;
+}
+
+let html = "";
+
+logs.forEach(function(log){
+let statusClass = log.status === "success" ? "success" : log.status === "blocked" ? "blocked" : log.status === "failed" ? "failed" : "";
+let shortDevice = log.deviceId ? log.deviceId.slice(0,14) : "-";
+
+html += `
+<div class="log-card ${statusClass}">
+<div class="user-top">
+<div>
+<div class="user-name">${escapeHTML(log.page || "Admin")} | ${escapeHTML(log.action || "Action")}</div>
+<div class="card-meta">${escapeHTML(log.displayDate)}</div>
+</div>
+<div class="status-badge ${statusClass}">${escapeHTML(log.status || "status")}</div>
+</div>
+<div class="card-meta" style="margin-top:10px;">${escapeHTML(log.message || "")}</div>
+<div class="card-meta">Device: ${escapeHTML(shortDevice)} ${log.tokenPrefix ? "| Token: " + escapeHTML(log.tokenPrefix) : ""}</div>
+</div>
+`;
+});
+
+list.innerHTML = html;
+}
+
+function escapeHTML(value){
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+function copyPhone(phone){
+if(!phone){
+showToast("No phone number");
+return;
+}
+
+if(navigator.clipboard){
+navigator.clipboard.writeText(phone).then(function(){
+showToast("Phone copied");
+});
+return;
+}
+
+let input = document.createElement("input");
+input.value = phone;
+document.body.appendChild(input);
+input.select();
+document.execCommand("copy");
+document.body.removeChild(input);
+showToast("Phone copied");
+}
+
+function exportCSV(){
+let users = filteredUsers.length ? filteredUsers : getFilteredByActiveCard();
+
+if(!users.length){
+showToast("No users to export");
+return;
+}
+
+let rows = [["Date Time","Name","Phone"]];
+
+users.forEach(function(user){
+rows.push([
+user.displayDate,
+user.username,
+user.phone || user.rawPhone
+]);
+});
+
+let csv = rows.map(function(row){
+return row.map(function(cell){
+return '"' + String(cell || "").replace(/"/g,'""') + '"';
+}).join(",");
+}).join("\n");
+
+let blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+let url = URL.createObjectURL(blob);
+let link = document.createElement("a");
+let fileName = "seller-users-" + activeFilter + ".csv";
+
+link.href = url;
+link.download = fileName;
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+URL.revokeObjectURL(url);
+showToast("CSV exported");
+}
+
+document.getElementById("pinInput").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+checkPin();
+}
+});
+
+guardPage();
+</script>
+</body>
+</html>
+
+
+
+
