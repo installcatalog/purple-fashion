@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Fashion Grow</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1877F2">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f0f2f5;
+color:#222;
+padding-bottom:95px;
+overflow-x:hidden;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+#welcome{
+font-size:15px;
+font-weight:bold;
+color:#1877F2;
+line-height:22px;
+}
+
+.right-header{
+display:flex;
+align-items:center;
+gap:12px;
+position:relative;
+}
+
+.brand{
+font-size:28px;
+font-weight:bold;
+color:#1877F2;
+}
+
+.profile-btn{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#f0f2f5;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+color:#1877F2;
+cursor:pointer;
+}
+
+#profileMenu{
+position:absolute;
+top:60px;
+right:0;
+background:white;
+padding:12px;
+border-radius:16px;
+box-shadow:0 2px 15px rgba(0,0,0,0.08);
+display:none;
+z-index:9999;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:16px;
+}
+
+.hero{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border-radius:26px;
+padding:26px 20px;
+box-shadow:0 10px 26px rgba(24,119,242,0.25);
+margin-bottom:18px;
+overflow:hidden;
+position:relative;
+}
+
+.hero h1{
+font-size:34px;
+line-height:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:16px;
+line-height:25px;
+opacity:0.96;
+}
+
+.hero-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:rgba(255,255,255,0.18);
+padding:9px 13px;
+border-radius:30px;
+font-size:13px;
+font-weight:bold;
+margin-bottom:14px;
+}
+
+.cta-row{
+display:flex;
+gap:10px;
+margin-top:18px;
+flex-wrap:wrap;
+}
+
+.btn{
+flex:1;
+min-width:145px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+padding:14px 12px;
+border-radius:18px;
+text-decoration:none;
+font-weight:bold;
+font-size:15px;
+}
+
+.btn-primary{
+background:white;
+color:#1877F2;
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+}
+
+.btn-dark{
+background:#071d33;
+color:white;
+box-shadow:0 8px 18px rgba(0,0,0,0.18);
+}
+
+.section{
+background:white;
+border-radius:24px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border:1px solid rgba(255,255,255,0.8);
+}
+
+.section h2{
+font-size:22px;
+line-height:28px;
+margin-bottom:12px;
+color:#111;
+}
+
+.section p{
+font-size:15px;
+line-height:25px;
+color:#4d5662;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2, minmax(0,1fr));
+gap:12px;
+margin-top:12px;
+}
+
+.card{
+background:#f8f9fb;
+border-radius:20px;
+padding:15px;
+min-height:125px;
+border:1px solid #edf1f7;
+}
+
+.card i{
+width:40px;
+height:40px;
+border-radius:15px;
+background:#1877F2;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+margin-bottom:12px;
+box-shadow:0 6px 14px rgba(24,119,242,0.22);
+}
+
+.card h3{
+font-size:16px;
+margin-bottom:7px;
+color:#111;
+}
+
+.card p{
+font-size:13px;
+line-height:20px;
+color:#5d6673;
+}
+
+.list{
+list-style:none;
+margin-top:8px;
+}
+
+.list li{
+display:flex;
+gap:10px;
+font-size:15px;
+line-height:24px;
+margin-bottom:10px;
+color:#333;
+}
+
+.list i{
+color:#1877F2;
+margin-top:4px;
+}
+
+.price-box{
+background:linear-gradient(180deg,#ffffff,#f3f8ff);
+border:1px solid #d6e7ff;
+border-radius:24px;
+padding:20px;
+text-align:center;
+box-shadow:
+0 10px 24px rgba(24,119,242,0.10),
+inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.price{
+font-size:34px;
+font-weight:900;
+color:#1877F2;
+margin:8px 0;
+}
+
+.price span{
+font-size:15px;
+font-weight:bold;
+color:#555;
+}
+
+.image-box img{
+width:100%;
+border-radius:20px;
+display:block;
+margin-top:12px;
+background:#f8f9fb;
+}
+
+.video-frame{
+width:100%;
+height:220px;
+border:none;
+border-radius:20px;
+margin-top:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.steps{
+counter-reset:step;
+list-style:none;
+margin-top:8px;
+}
+
+.steps li{
+counter-increment:step;
+display:flex;
+gap:12px;
+align-items:flex-start;
+margin-bottom:14px;
+font-size:15px;
+line-height:24px;
+color:#333;
+}
+
+.steps li::before{
+content:counter(step);
+width:30px;
+height:30px;
+border-radius:50%;
+background:#1877F2;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+flex-shrink:0;
+box-shadow:0 5px 12px rgba(24,119,242,0.25);
+}
+
+.bottom-cta{
+position:sticky;
+bottom:86px;
+z-index:50;
+display:flex;
+gap:10px;
+padding:0 16px 10px;
+max-width:900px;
+margin:auto;
+}
+
+.bottom-cta a{
+min-height:52px;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+box-shadow:0 -2px 10px rgba(0,0,0,0.08);
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+z-index:999;
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:12px;
+color:#555;
+position:relative;
+cursor:pointer;
+}
+
+.nav-item i{
+font-size:20px;
+margin-bottom:5px;
+}
+
+.nav-item.active{
+color:#1877F2;
+}
+.bottom-nav,
+.nav-item,
+.nav-item span,
+.nav-item i{
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+touch-action:manipulation;
+}
+.cart-badge{
+position:absolute;
+top:-2px;
+right:8px;
+background:red;
+color:white;
+font-size:10px;
+width:18px;
+height:18px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+}
+
+.seller-pin-overlay{
+position:fixed;
+inset:0;
+background:rgba(15,23,42,0.46);
+z-index:9500;
+display:none;
+align-items:flex-end;
+justify-content:center;
+padding:16px 14px 92px;
+}
+
+.seller-pin-overlay.active{
+display:flex;
+}
+
+.seller-pin-box{
+width:100%;
+max-width:430px;
+background:linear-gradient(180deg,#ffffff,#f3f8ff);
+border:1px solid #d6e7ff;
+border-radius:26px;
+padding:20px;
+box-shadow:0 18px 45px rgba(0,0,0,0.22),0 8px 22px rgba(24,119,242,0.18);
+}
+
+.seller-pin-title{
+font-size:24px;
+font-weight:900;
+line-height:30px;
+color:#071d33;
+text-align:center;
+}
+
+.seller-pin-text{
+font-size:14px;
+font-weight:700;
+line-height:22px;
+color:#5d6673;
+text-align:center;
+margin:8px 0 16px;
+}
+
+.seller-pin-input{
+width:100%;
+height:54px;
+border-radius:18px;
+border:1px solid #d6e7ff;
+background:white;
+outline:none;
+text-align:center;
+font-size:24px;
+font-weight:900;
+letter-spacing:8px;
+color:#071d33;
+}
+
+.seller-pin-actions{
+display:flex;
+gap:10px;
+margin-top:14px;
+}
+
+.seller-pin-actions button{
+flex:1;
+height:52px;
+border-radius:16px;
+font-size:15px;
+font-weight:900;
+cursor:pointer;
+}
+
+.seller-pin-cancel{
+background:white;
+color:#1877F2;
+border:1px solid #b9d7ff;
+}
+
+.seller-pin-open{
+background:linear-gradient(135deg,#1877F2,#0f6be8);
+color:white;
+border:none;
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
+}
+
+.grow-toast{
+position:fixed;
+left:16px;
+right:16px;
+bottom:98px;
+max-width:430px;
+min-height:54px;
+margin:auto;
+border-radius:18px;
+background:white;
+box-shadow:0 12px 30px rgba(24,119,242,0.22),0 6px 16px rgba(0,0,0,0.10);
+z-index:9600;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:12px 16px;
+font-size:15px;
+font-weight:900;
+line-height:21px;
+color:#071d33;
+opacity:0;
+transform:translateY(22px);
+pointer-events:none;
+transition:0.28s ease;
+}
+
+.grow-toast.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:420px){
+.hero h1{
+font-size:30px;
+line-height:36px;
+}
+
+.grid{
+gap:10px;
+}
+
+.card{
+padding:13px;
+}
+
+.video-frame{
+height:200px;
+}
+}
+</style>
+
+<script src="config.js"></script>
+<script src="common.js" defer></script>
+</head>
+
+<body>
+
+<div class="header">
+<div id="welcome"></div>
+<div class="right-header">
+<div class="brand">Purple Fashion</div>
+<div class="profile-btn" onclick="toggleProfileMenu()">
+<i class="fa-solid fa-user"></i>
+</div>
+<div id="profileMenu">
+<button onclick="logout()" style="border:none;background:#1877F2;color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
+</div>
+</div>
+</div>
+
+<div class="container">
+
+<div class="hero">
+<div class="hero-badge">
+<i class="fa-solid fa-chart-line"></i>
+Business Growth
+</div>
+<h1>Local to National</h1>
+<p>Turn your local shop into a National shop (all over India) and create powerful online business with your own digital app.</p>
+<p><b>More orders. More customers. More growth.</b></p>
+
+<div class="cta-row">
+<a class="btn btn-primary" href="#" data-config-whatsapp>
+<i class="fa-brands fa-whatsapp"></i>
+Start Your App
+</a>
+<a class="btn btn-dark" href="#" data-config-call>
+<i class="fa-solid fa-phone"></i>
+Call Us
+</a>
+</div>
+</div>
+
+<div class="section">
+<h2>Still Running Only Offline?</h2>
+<ul class="list">
+<li><i class="fa-solid fa-circle-xmark"></i><span>Customers miss your shop after closing</span></li>
+<li><i class="fa-solid fa-circle-xmark"></i><span>No online orders</span></li>
+<li><i class="fa-solid fa-circle-xmark"></i><span>Limited local reach</span></li>
+<li><i class="fa-solid fa-circle-xmark"></i><span>Losing sales every day</span></li>
+</ul>
+<p><b>Your competitors are already going digital.</b></p>
+</div>
+
+<div class="section">
+<h2>We Build Your Digital Shop</h2>
+<div class="grid">
+<div class="card">
+<i class="fa-solid fa-mobile-screen-button"></i>
+<h3>Ordering App</h3>
+<p>Your own app-like online shop for customers.</p>
+</div>
+<div class="card">
+<i class="fa-brands fa-whatsapp"></i>
+<h3>WhatsApp Orders</h3>
+<p>Receive customer orders directly and quickly.</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-qrcode"></i>
+<h3>UPI Setup</h3>
+<p>Make payment collection easier for customers.</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-chart-simple"></i>
+<h3>More Reach</h3>
+<p>Grow beyond your local area with digital presence.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Why Go Digital?</h2>
+<div class="grid">
+<div class="card">
+<i class="fa-solid fa-arrow-trend-up"></i>
+<h3>More Orders</h3>
+<p>Customers can order anytime from mobile.</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-location-dot"></i>
+<h3>More Customers</h3>
+<p>Reach people outside your nearby area.</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-wallet"></i>
+<h3>More Income</h3>
+<p>More visibility can bring more sales.</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-medal"></i>
+<h3>Professional Look</h3>
+<p>Build trust with a modern app experience.</p>
+</div>
+</div>
+
+<iframe class="video-frame" src="https://www.youtube.com/embed/9RcZBlBcUbA" allowfullscreen></iframe>
+</div>
+
+<div class="section price-box">
+<h2>Simple Lifetime Price</h2>
+<div class="price">Rs 8999 <span>Lifetime</span></div>
+<p>No technical skills needed. Fast setup. Full support.</p>
+</div>
+
+<div class="section image-box">
+<h2>Real Business, Real Growth</h2>
+<p>Your customers already use mobile daily. Let your shop reach them there.</p>
+<img src="https://res.cloudinary.com/dh6npc54z/image/upload/f_auto,q_auto/Real_nqambb" alt="Digital business growth">
+</div>
+
+<div class="section">
+<h2>How It Works</h2>
+<ol class="steps">
+<li>Contact us on WhatsApp or call</li>
+<li>Share your shop and product details</li>
+<li>Get your app ready within 1 week</li>
+</ol>
+</div>
+
+<div class="section">
+<h2>Why Choose Us</h2>
+<ul class="list">
+<li><i class="fa-solid fa-check-circle"></i><span>Easy setup</span></li>
+<li><i class="fa-solid fa-check-circle"></i><span>Low cost lifetime plan</span></li>
+<li><i class="fa-solid fa-check-circle"></i><span>No technical skills needed</span></li>
+<li><i class="fa-solid fa-check-circle"></i><span>Fast delivery</span></li>
+<li><i class="fa-solid fa-check-circle"></i><span>Full support</span></li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Ready to Go National?</h2>
+<p>Start your digital shop today and grow beyond your local market.</p>
+<div class="cta-row">
+<a class="btn btn-primary" href="#" data-config-whatsapp>
+<i class="fa-brands fa-whatsapp"></i>
+Chat on WhatsApp
+</a>
+<a class="btn btn-dark" href="#" data-config-call>
+<i class="fa-solid fa-phone"></i>
+Call Now
+</a>
+</div>
+</div>
+
+</div>
+
+<div class="bottom-cta">
+<a class="btn btn-primary" href="#" data-config-whatsapp>
+<i class="fa-brands fa-whatsapp"></i>
+WhatsApp
+</a>
+<a class="btn btn-dark" href="#" data-config-call>
+<i class="fa-solid fa-phone"></i>
+Call
+</a>
+</div>
+
+<div class="bottom-nav">
+<div class="nav-item" onclick="window.location.href='home.html'"><i class="fa-solid fa-house"></i><span>Home</span></div>
+<div class="nav-item" onclick="window.location.href='products.html'"><i class="fa-solid fa-box"></i><span>Product</span></div>
+<div class="nav-item" onclick="window.location.href='cart.html'"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><div class="cart-badge" id="cartCount">0</div></div>
+<div class="nav-item" onclick="window.location.href='track.html'"><i class="fa-solid fa-truck"></i><span>Track</span></div>
+<div class="nav-item active" onclick="handleGrowNavTap()"><i class="fa-solid fa-chart-line"></i><span>Grow</span></div>
+</div>
+
+<div class="seller-pin-overlay" id="sellerPinOverlay">
+<div class="seller-pin-box">
+<div class="seller-pin-title">Status Control</div>
+<div class="seller-pin-text">Enter PIN to update order status.</div>
+<input class="seller-pin-input" id="sellerPinInput" type="tel" inputmode="numeric" maxlength="4" placeholder="PIN" oninput="this.value=this.value.replace(/\D/g,'').slice(0,4)">
+<div class="seller-pin-actions">
+<button class="seller-pin-cancel" onclick="closeSellerPin()">Cancel</button>
+<button class="seller-pin-open" onclick="openStatusControl()">Open</button>
+</div>
+</div>
+</div>
+
+<div class="grow-toast" id="growToast"></div>
+
+<script>
+const SCRIPT_API = APP_CONFIG.scriptApi;
+let growNavTapCount = 0;
+let growNavTapTimer = null;
+let growToastTimer = null;
+
+let user = localStorage.getItem("user");
+if(!user){
+window.location.replace("login.html");
+}
+
+window.addEventListener("pageshow", function(){
+if(!localStorage.getItem("user")){
+window.location.replace("login.html");
+}
+});
+
+let hour = new Date().getHours();
+let greeting = "";
+if(hour < 12){
+greeting = "Good Morning";
+}
+else if(hour < 17){
+greeting = "Good Afternoon";
+}
+else{
+greeting = "Good Evening";
+}
+
+document.getElementById("welcome").innerText = greeting + ", " + user;
+
+function logout(){
+localStorage.removeItem("user");
+sessionStorage.setItem("purpleFashionLoggedOut","yes");
+window.location.replace("login.html?logout=1");
+}
+
+function toggleProfileMenu(){
+let menu = document.getElementById("profileMenu");
+menu.style.display = menu.style.display == "block" ? "none" : "block";
+}
+
+function showGrowToast(message){
+let toast = document.getElementById("growToast");
+toast.innerText = message;
+toast.classList.add("show");
+
+if(growToastTimer){
+clearTimeout(growToastTimer);
+}
+
+growToastTimer = setTimeout(function(){
+toast.classList.remove("show");
+},1800);
+}
+
+function handleGrowNavTap(){
+growNavTapCount++;
+
+if(growNavTapTimer){
+clearTimeout(growNavTapTimer);
+}
+
+growNavTapTimer = setTimeout(function(){
+growNavTapCount = 0;
+},1800);
+
+if(growNavTapCount >= 5){
+growNavTapCount = 0;
+openSellerPin();
+}
+}
+
+function openSellerPin(){
+let overlay = document.getElementById("sellerPinOverlay");
+let input = document.getElementById("sellerPinInput");
+
+overlay.classList.add("active");
+input.value = "";
+setTimeout(function(){
+input.focus();
+},100);
+}
+
+function closeSellerPin(){
+document.getElementById("sellerPinOverlay").classList.remove("active");
+}
+
+function adminLogin(pin){
+return fetch(SCRIPT_API,{
+method:"POST",
+body:JSON.stringify({
+type:"adminLogin",
+pin:pin,
+page:"status",
+deviceId:getAdminDeviceId()
+})
+}).then(res=>res.json());
+}
+
+function getAdminDeviceId(){
+let key = "purpleFashionAdminDeviceId";
+let deviceId = localStorage.getItem(key);
+
+if(!deviceId){
+deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2,10);
+localStorage.setItem(key,deviceId);
+}
+
+return deviceId;
+}
+
+function showSecurityModal(title,message,icon){
+let existing = document.getElementById("adminSecurityModal");
+
+if(existing){
+existing.remove();
+}
+
+let modal = document.createElement("div");
+modal.id = "adminSecurityModal";
+modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
+modal.innerHTML = `
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
+<div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showAdminLoginMessage(result){
+if(result && result.code === "warning"){
+showSecurityModal("Warning",result.message || "One more wrong PIN will block seller access for 24 hours.","triangle-exclamation");
+return true;
+}
+
+if(result && result.code === "blocked"){
+showSecurityModal("Access Blocked",result.message || "Try again after 24 hours.","lock");
+return true;
+}
+
+return false;
+}
+
+function openStatusControl(){
+let pin = document.getElementById("sellerPinInput").value.trim();
+
+showGrowToast("Checking PIN");
+
+adminLogin(pin).then(function(result){
+if(!(result && result.success && result.token)){
+if(showAdminLoginMessage(result)){
+return;
+}
+
+showGrowToast(result && result.message ? result.message : "Wrong PIN");
+return;
+}
+
+sessionStorage.setItem("purpleFashionAdminToken",result.token);
+sessionStorage.setItem("purpleFashionStatusUnlocked","yes");
+window.location.href = "status.html";
+}).catch(function(){
+showGrowToast("Login server error");
+});
+}
+
+function updateCartCount(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.getElementById("cartCount").innerText = cart.length;
+}
+
+updateCartCount();
+
+document.getElementById("sellerPinInput").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+openStatusControl();
+}
+});
+</script>
+
+</body>
+</html>
+
+
+
