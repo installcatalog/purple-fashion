@@ -90,18 +90,31 @@
     style.textContent = `
       .header{
         display:grid!important;
-        grid-template-columns:1fr auto 58px!important;
+        grid-template-columns:118px 1fr 56px!important;
         align-items:center!important;
-        gap:10px!important;
+        gap:8px!important;
         background:rgba(255,255,255,0.96)!important;
         backdrop-filter:blur(10px)!important;
       }
 
       #welcome{
-        font-size:15px!important;
+        width:118px!important;
+        max-width:118px!important;
+        font-size:13px!important;
+        font-weight:800!important;
+        font-family:Georgia,serif!important;
+        line-height:19px!important;
+        color:#8a2be2!important;
+        overflow:hidden!important;
+        display:-webkit-box!important;
+        -webkit-line-clamp:2!important;
+        -webkit-box-orient:vertical!important;
+        text-align:left!important;
+      }
+
+      #welcome::first-line{
         font-weight:900!important;
-        line-height:22px!important;
-        color:var(--theme,#8a2be2)!important;
+        font-family:Georgia,serif!important;
       }
 
       .right-header{
@@ -109,10 +122,10 @@
       }
 
       .brand{
-        font-size:24px!important;
+        font-size:25px!important;
         font-weight:900!important;
-        line-height:26px!important;
-        letter-spacing:0.3px!important;
+        line-height:28px!important;
+        letter-spacing:0.2px!important;
         color:#5b1a9c!important;
         font-family:Georgia,serif!important;
         white-space:nowrap!important;
@@ -142,6 +155,30 @@
         object-fit:cover!important;
         border-radius:50%!important;
         display:block!important;
+      }
+
+      @media(max-width:380px){
+        .header{
+          grid-template-columns:104px 1fr 52px!important;
+          gap:6px!important;
+        }
+
+        #welcome{
+          width:104px!important;
+          max-width:104px!important;
+          font-size:12.5px!important;
+          line-height:18px!important;
+        }
+
+        .brand{
+          font-size:23px!important;
+          line-height:25px!important;
+        }
+
+        .profile-btn{
+          width:48px!important;
+          height:48px!important;
+        }
       }
     `;
 
