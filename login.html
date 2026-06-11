@@ -31,7 +31,7 @@ body{
 min-height:100vh;
 background:#f6f2ff;
 overflow-x:hidden;
-color:#071d33;
+color:#101827;
 }
 
 .login-page{
@@ -114,7 +114,7 @@ margin:0 auto;
 text-align:center;
 font-size:30px;
 font-weight:900;
-color:#061a2e;
+color:#101827;
 line-height:36px;
 letter-spacing:0.1px;
 }
@@ -163,7 +163,7 @@ min-width:0;
 display:block;
 font-size:15px;
 font-weight:900;
-color:#061a2e;
+color:#101827;
 margin-bottom:4px;
 }
 
@@ -173,7 +173,7 @@ border:none;
 outline:none;
 background:transparent;
 font-size:15px;
-color:#071d33;
+color:#101827;
 font-weight:800;
 }
 
@@ -306,7 +306,7 @@ box-shadow:0 18px 45px rgba(0,0,0,0.24);
 font-size:24px;
 font-weight:900;
 text-align:center;
-color:#071d33;
+color:#101827;
 margin-bottom:8px;
 }
 
@@ -377,7 +377,7 @@ text-align:center;
 padding:12px 16px;
 font-size:15px;
 font-weight:900;
-color:#071d33;
+color:#101827;
 z-index:10000;
 opacity:0;
 pointer-events:none;
@@ -445,7 +445,7 @@ min-width:0;
 .install-title{
 font-size:22px;
 font-weight:900;
-color:#071d33;
+color:#101827;
 line-height:28px;
 }
 
@@ -558,7 +558,7 @@ display:none;
 font-size:24px;
 line-height:30px;
 font-weight:900;
-color:#071d33;
+color:#101827;
 }
 
 .install-status-message{
@@ -589,7 +589,7 @@ box-shadow:inset 0 1px 4px rgba(24,119,242,0.10);
 .install-progress-bar{
 width:0%;
 height:100%;
-background:linear-gradient(90deg,#8a2be2,#4e9cff);
+background:linear-gradient(90deg,#8a2be2,#d4af37);
 border-radius:999px;
 transition:width 0.35s ease;
 }
@@ -801,7 +801,7 @@ New user? <span onclick="openSignupFromMain()">Sign up</span>
 </div>
 
 <script>
-const SCRIPT_API = "const SCRIPT_API = "https://script.google.com/macros/s/AKfycbwMQr_bHsvXvDGC0isJS1KLeHzVwMQtcLMlnvW9QONHxh1JP6BXEygmwku_P7YuA3rz2g/exec";;
+const SCRIPT_API = "https://script.google.com/macros/s/AKfycbwMQr_bHsvXvDGC0isJS1KLeHzVwMQtcLMlnvW9QONHxh1JP6BXEygmwku_P7YuA3rz2g/exec";
 const USER_API = SCRIPT_API + "?type=users";
 
 let toastTimer = null;
@@ -820,7 +820,7 @@ return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
 function canShowInstallBanner(){
-let laterUntil = Number(localStorage.getItem("dishariInstallLaterUntil")) || 0;
+let laterUntil = Number(localStorage.getItem("purpleFashionInstallLaterUntil")) || 0;
 return !isStandaloneApp() && Date.now() > laterUntil;
 }
 
@@ -848,7 +848,7 @@ function hideInstallBanner(minutes,showReminder){
 let banner = document.getElementById("installBanner");
 
 if(minutes){
-localStorage.setItem("dishariInstallLaterUntil",String(Date.now() + (minutes * 60 * 1000)));
+localStorage.setItem("purpleFashionInstallLaterUntil",String(Date.now() + (minutes * 60 * 1000)));
 }
 
 if(banner){
@@ -976,7 +976,7 @@ overlay.classList.remove("complete");
 }
 }
 
-function installPurpleFashioniApp(){
+function installPurpleFashionApp(){
 if(deferredInstallPrompt){
 setInstallLoading(true);
 deferredInstallPrompt.prompt();
