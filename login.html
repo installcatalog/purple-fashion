@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Purple Fashion Login</title>
+<title>Dishari Login</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#8a2be2">
+<meta name="theme-color" content="#1877F2">
 <link rel="apple-touch-icon" href="icon-192.png">
 
 <style>
@@ -29,113 +29,128 @@ user-select:text;
 
 body{
 min-height:100vh;
-min-height:100svh;
-background:#f6ecff;
+background:#eaf3ff;
 overflow-x:hidden;
-color:var(--ink,#101827);
+color:#071d33;
 }
 
 .login-page{
 min-height:100vh;
-min-height:100svh;
-position:relative;
-overflow:hidden;
-display:flex;
-align-items:flex-end;
-justify-content:center;
-padding:22px 18px 30px;
-background:
-linear-gradient(180deg,rgba(255,255,255,0.00) 0%,rgba(255,255,255,0.02) 48%,rgba(90,22,135,0.18) 100%),
-url("shop-login.png") center/cover no-repeat,
-linear-gradient(145deg,#fbf4ff,#ead9ff);
-}
-
-.login-page:before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(42,8,74,0.00) 0%,rgba(255,255,255,0.03) 52%,rgba(255,255,255,0.14) 100%);
-pointer-events:none;
+background:#eaf3ff;
 }
 
 .hero{
-position:absolute;
-inset:0;
-height:auto;
-min-height:0;
-padding:0;
-background:none;
-display:block;
-pointer-events:none;
+height:43vh;
+min-height:290px;
+padding:34px 28px;
+background:
+linear-gradient(180deg,rgba(7,29,51,0.32),rgba(7,29,51,0.72)),
+url("shop-login.jpg");
+background-size:cover;
+background-position:center;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
 .logo-mark{
-display:none;
+width:58px;
+height:58px;
+border:2px solid rgba(255,255,255,0.82);
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:27px;
+margin-bottom:10px;
+box-shadow:0 8px 22px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.18);
 }
 
 .brand{
-display:none;
+font-size:38px;
+font-weight:900;
+letter-spacing:0.3px;
+line-height:42px;
+text-shadow:0 3px 14px rgba(0,0,0,0.28);
 }
 
 .hero h1{
-display:none;
+font-size:26px;
+line-height:34px;
+font-weight:900;
+margin-top:24px;
+letter-spacing:0.1px;
+text-shadow:0 3px 14px rgba(0,0,0,0.32);
 }
 
 .hero p{
-display:none;
+font-size:14px;
+line-height:22px;
+opacity:0.98;
+margin-top:6px;
+font-weight:600;
+text-shadow:0 2px 10px rgba(0,0,0,0.28);
 }
 
 .login-panel{
-width:min(620px,100%);
-min-height:0;
-margin:0 auto 24px;
-background:rgba(255,255,255,0.74);
-border:1px solid rgba(255,255,255,0.78);
-border-radius:34px;
-padding:26px 22px 22px;
-box-shadow:0 24px 58px rgba(77,20,117,0.30);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
+min-height:57vh;
+margin-top:-36px;
+background:linear-gradient(180deg,#f7fbff 0%,#eaf3ff 100%);
+border-top-left-radius:38px;
+border-top-right-radius:38px;
+padding:30px 22px 28px;
+box-shadow:0 -12px 32px rgba(7,29,51,0.12);
 position:relative;
 z-index:2;
 }
 
 .panel-inner{
-max-width:520px;
+max-width:480px;
 margin:0 auto;
 }
 
 .login-title{
-display:none;
+text-align:center;
+font-size:30px;
+font-weight:900;
+color:#061a2e;
+line-height:36px;
+letter-spacing:0.1px;
 }
 
 .login-subtitle{
-display:none;
+text-align:center;
+font-size:15px;
+color:#536274;
+margin-top:6px;
+margin-bottom:24px;
+font-weight:800;
 }
 
 .input-card{
-height:72px;
-background:rgba(255,255,255,0.94);
-border:1px solid rgba(var(--theme-rgb,138,43,226),0.14);
-border-radius:24px;
+height:76px;
+background:rgba(255,255,255,0.86);
+border:1px solid #d6e7ff;
+border-radius:18px;
 display:flex;
 align-items:center;
-gap:16px;
-padding:0 18px;
-margin-bottom:16px;
-box-shadow:0 10px 26px rgba(80,24,120,0.09);
+gap:14px;
+padding:0 16px;
+margin-bottom:14px;
+box-shadow:0 7px 18px rgba(24,119,242,0.10);
 }
 
 .input-icon{
-width:56px;
-height:56px;
+width:48px;
+height:48px;
 border-radius:50%;
-background:linear-gradient(180deg,#fbf5ff,#f0dcff);
-color:var(--theme,#8a2be2);
+background:#eaf3ff;
+color:#1877F2;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:23px;
+font-size:22px;
 flex-shrink:0;
 }
 
@@ -146,7 +161,7 @@ min-width:0;
 
 .input-content label{
 display:block;
-font-size:16px;
+font-size:15px;
 font-weight:900;
 color:#061a2e;
 margin-bottom:4px;
@@ -157,7 +172,7 @@ width:100%;
 border:none;
 outline:none;
 background:transparent;
-font-size:16px;
+font-size:15px;
 color:#071d33;
 font-weight:800;
 }
@@ -171,15 +186,15 @@ font-weight:700;
 width:100%;
 height:66px;
 border:none;
-border-radius:24px;
-margin-top:20px;
-background:linear-gradient(135deg,#a020e8,#7b18bd);
+border-radius:18px;
+margin-top:18px;
+background:linear-gradient(135deg,#1877F2,#0f6be8);
 color:white;
 font-size:20px;
 font-weight:900;
 letter-spacing:0.1px;
 cursor:pointer;
-box-shadow:0 16px 34px rgba(116,19,168,0.34);
+box-shadow:0 10px 24px rgba(24,119,242,0.32);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -188,11 +203,11 @@ position:relative;
 
 .sign-btn .arrow-circle{
 position:absolute;
-right:15px;
-width:48px;
-height:48px;
+right:16px;
+width:44px;
+height:44px;
 border-radius:50%;
-background:rgba(255,255,255,0.16);
+background:rgba(255,255,255,0.14);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -203,10 +218,10 @@ font-size:20px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-margin:24px 0 4px;
+margin:24px 0 22px;
 font-size:14px;
 font-weight:900;
-color:#7413a8;
+color:#0f6be8;
 }
 
 .forgot-row span{
@@ -218,23 +233,40 @@ text-align:center;
 .forgot-divider{
 width:1px;
 height:20px;
-background:rgba(var(--theme-rgb,138,43,226),0.18);
+background:#d6e7ff;
 }
 
 .bottom-line{
-display:none;
+height:1px;
+background:#d6e7ff;
+position:relative;
+margin:22px 0 18px;
 }
 
 .bottom-line:after{
-display:none;
+content:"";
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:22px;
+height:22px;
+border-radius:50%;
+background:#eaf3ff;
+border:1px solid #d6e7ff;
 }
 
 .signup-note{
-display:none;
+text-align:center;
+font-size:14px;
+color:#5d6673;
+font-weight:700;
 }
 
 .signup-note span{
-display:none;
+color:#1877F2;
+font-weight:900;
+cursor:pointer;
 }
 
 .msg{
@@ -242,7 +274,7 @@ min-height:22px;
 text-align:center;
 font-size:14px;
 font-weight:900;
-color:var(--theme,#8a2be2);
+color:#1877F2;
 margin-top:12px;
 }
 
@@ -264,7 +296,7 @@ display:flex;
 .popup-box{
 width:100%;
 max-width:460px;
-background:linear-gradient(180deg,#ffffff,var(--theme-soft,#f5edff));
+background:linear-gradient(180deg,#f7fbff,#eaf3ff);
 border-radius:28px;
 padding:24px 18px 20px;
 box-shadow:0 18px 45px rgba(0,0,0,0.24);
@@ -317,13 +349,13 @@ margin-right:8px;
 }
 
 .primary-action{
-background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
+background:linear-gradient(135deg,#1877F2,#0f6be8);
 color:white;
 }
 
 .secondary-action{
 background:white;
-color:var(--theme,#8a2be2);
+color:#1877F2;
 border:1px solid #b9d7ff!important;
 }
 
@@ -337,7 +369,7 @@ margin:auto;
 min-height:54px;
 background:white;
 border-radius:18px;
-box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.20);
+box-shadow:0 12px 30px rgba(24,119,242,0.20);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -378,7 +410,7 @@ display:flex;
 width:100%;
 max-width:460px;
 background:rgba(255,255,255,0.98);
-border:1px solid rgba(var(--theme-rgb,138,43,226),0.12);
+border:1px solid rgba(24,119,242,0.12);
 border-radius:28px;
 box-shadow:0 22px 52px rgba(7,29,51,0.28);
 padding:22px 18px 18px;
@@ -395,14 +427,14 @@ gap:14px;
 width:64px;
 height:64px;
 border-radius:20px;
-background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme,#8a2be2));
+background:linear-gradient(135deg,#2b92ff,#1877F2);
 color:white;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:28px;
 flex-shrink:0;
-box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.24);
+box-shadow:0 8px 18px rgba(24,119,242,0.24);
 }
 
 .install-text{
@@ -444,13 +476,13 @@ flex:1;
 
 .install-later{
 background:#eef5ff;
-color:var(--theme,#8a2be2);
+color:#1877F2;
 }
 
 .install-now{
-background:var(--theme,#8a2be2);
+background:#1877F2;
 color:white;
-box-shadow:0 7px 14px rgba(var(--theme-rgb,138,43,226),0.20);
+box-shadow:0 7px 14px rgba(24,119,242,0.20);
 }
 
 .install-now:disabled{
@@ -478,7 +510,7 @@ display:flex;
 width:100%;
 max-width:390px;
 background:rgba(255,255,255,0.98);
-border:1px solid rgba(var(--theme-rgb,138,43,226),0.14);
+border:1px solid rgba(24,119,242,0.14);
 border-radius:28px;
 padding:30px 24px;
 text-align:center;
@@ -489,8 +521,8 @@ box-shadow:0 24px 60px rgba(7,29,51,0.32);
 width:66px;
 height:66px;
 border-radius:50%;
-border:6px solid var(--theme-soft,#f5edff);
-border-top-color:var(--theme,#8a2be2);
+border:6px solid #eaf3ff;
+border-top-color:#1877F2;
 margin:0 auto 18px;
 animation:installSpin 0.85s linear infinite;
 }
@@ -499,14 +531,14 @@ animation:installSpin 0.85s linear infinite;
 width:66px;
 height:66px;
 border-radius:50%;
-background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
+background:linear-gradient(135deg,#1877F2,#0f6be8);
 color:white;
 display:none;
 align-items:center;
 justify-content:center;
 font-size:28px;
 margin:0 auto 18px;
-box-shadow:0 10px 24px rgba(var(--theme-rgb,138,43,226),0.26);
+box-shadow:0 10px 24px rgba(24,119,242,0.26);
 }
 
 .install-status-overlay.complete .install-status-spinner{
@@ -541,23 +573,23 @@ margin-top:8px;
 font-size:26px;
 line-height:32px;
 font-weight:900;
-color:var(--theme,#8a2be2);
+color:#1877F2;
 margin-top:18px;
 }
 
 .install-progress{
 height:12px;
-background:var(--theme-soft,#f5edff);
+background:#eaf3ff;
 border-radius:999px;
 overflow:hidden;
 margin-top:10px;
-box-shadow:inset 0 1px 4px rgba(var(--theme-rgb,138,43,226),0.10);
+box-shadow:inset 0 1px 4px rgba(24,119,242,0.10);
 }
 
 .install-progress-bar{
 width:0%;
 height:100%;
-background:linear-gradient(90deg,var(--theme,#8a2be2),var(--theme2,#a855f7));
+background:linear-gradient(90deg,#1877F2,#4e9cff);
 border-radius:999px;
 transition:width 0.35s ease;
 }
@@ -593,838 +625,6 @@ height:68px;
 height:58px;
 }
 }
-
-/* Purple Fashion image login override */
-body{
-min-height:100vh;
-background:#f5edff;
-}
-
-.login-page{
-min-height:100vh;
-padding:0 18px 34px;
-display:flex;
-align-items:flex-end;
-justify-content:center;
-position:relative;
-overflow:hidden;
-background:
-linear-gradient(180deg,rgba(52,12,78,0.04) 0%,rgba(52,12,78,0.08) 100%),
-url("shop-login.png") center top / cover no-repeat;
-}
-
-.login-page:before{
-content:"";
-position:absolute;
-inset:0;
-background:
-linear-gradient(180deg,rgba(255,255,255,0.02) 0%,rgba(255,255,255,0.04) 48%,rgba(106,32,150,0.14) 100%);
-pointer-events:none;
-}
-
-.login-page .hero{
-position:absolute;
-inset:0;
-height:auto;
-min-height:0;
-padding:0;
-background:none;
-box-shadow:none;
-pointer-events:none;
-}
-
-.login-page .logo-mark,
-.login-page .brand,
-.login-page .hero h1,
-.login-page .hero p,
-.login-page .login-title,
-.login-page .login-subtitle,
-.login-page .bottom-line,
-.login-page .signup-note{
-display:none!important;
-}
-
-.login-page .login-panel{
-width:min(640px,100%);
-margin:0 auto;
-padding:28px 22px 24px;
-border-radius:34px;
-background:rgba(255,255,255,0.74);
-border:1px solid rgba(255,255,255,0.72);
-box-shadow:0 24px 60px rgba(87,18,128,0.30), inset 0 1px 0 rgba(255,255,255,0.82);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-position:relative;
-z-index:2;
-}
-
-.login-page .panel-inner{
-max-width:560px;
-margin:0 auto;
-}
-
-.login-page .login-panel .input-card{
-height:72px;
-border-radius:24px;
-padding:8px 18px;
-background:rgba(255,255,255,0.95);
-border:1px solid rgba(142,44,202,0.12);
-box-shadow:0 10px 28px rgba(93,30,140,0.10), inset 0 1px 0 rgba(255,255,255,0.95);
-}
-
-.login-page .login-panel .input-icon{
-width:54px;
-height:54px;
-border-radius:20px;
-background:linear-gradient(180deg,#fbf2ff,#efd8ff);
-color:#9d2dd8;
-font-size:22px;
-box-shadow:none;
-}
-
-.login-page .login-panel .input-content label{
-font-size:16px;
-line-height:20px;
-font-weight:900;
-color:#251433;
-}
-
-.login-page .login-panel .input-content input{
-font-size:18px;
-line-height:24px;
-font-weight:800;
-color:#261435;
-}
-
-.login-page .login-panel .input-content input::placeholder{
-color:#8f879b;
-font-weight:700;
-}
-
-.login-page .login-panel .sign-btn{
-height:68px;
-border-radius:24px;
-background:linear-gradient(135deg,#a722e2 0%,#7c1bc2 100%);
-box-shadow:0 18px 36px rgba(118,29,183,0.34);
-font-size:23px;
-}
-
-.login-page .login-panel .sign-btn .arrow-circle{
-width:58px;
-height:58px;
-right:7px;
-background:rgba(255,255,255,0.17);
-font-size:24px;
-}
-
-.login-page .forgot-row{
-margin-top:26px;
-padding:0 12px;
-}
-
-.login-page .forgot-row button{
-color:#7e1fc0;
-font-size:16px;
-font-weight:900;
-}
-
-.login-page .divider{
-background:rgba(126,31,192,0.16);
-}
-
-@media(max-width:420px){
-.login-page{
-padding:0 16px 30px;
-background-position:center top;
-}
-
-.login-page .login-panel{
-padding:24px 18px 22px;
-border-radius:30px;
-}
-
-.login-page .login-panel .input-card{
-height:68px;
-border-radius:22px;
-}
-
-.login-page .login-panel .sign-btn{
-height:64px;
-border-radius:22px;
-}
-
-.login-page .login-panel .sign-btn .arrow-circle{
-width:54px;
-height:54px;
-}
-}
-
-@media(max-height:720px){
-.login-page{
-padding-bottom:20px;
-}
-
-.login-page .login-panel{
-padding-top:20px;
-}
-
-.login-page .login-panel .input-card{
-height:62px;
-}
-
-.login-page .login-panel .sign-btn{
-height:60px;
-}
-
-.login-page .forgot-row{
-margin-top:18px;
-}
-}
-/* Purple Fashion full-screen login design */
-html,
-body{
-min-height:100%;
-}
-
-body{
-background:#2b0f3e;
-padding:0;
-}
-
-.login-page{
-min-height:100svh;
-width:100%;
-padding:0 18px max(26px, env(safe-area-inset-bottom));
-display:flex;
-flex-direction:column;
-justify-content:flex-end;
-align-items:center;
-position:relative;
-overflow:hidden;
-background:url("shop-login.png") center center / cover no-repeat;
-}
-
-.login-page:before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(60,10,84,0.00),rgba(54,7,73,0.10));
-pointer-events:none;
-}
-
-.login-page .hero{
-display:none!important;
-}
-
-.login-page .login-panel{
-position:relative;
-z-index:1;
-width:min(650px,calc(100% - 10px));
-margin:0 auto clamp(30px,7vh,80px);
-padding:0;
-background:transparent;
-border-radius:0;
-box-shadow:none;
-}
-
-.login-page .panel-inner{
-width:100%;
-padding:34px 26px 30px;
-border-radius:34px;
-background:linear-gradient(180deg,rgba(255,255,255,0.78),rgba(252,240,255,0.74));
-border:1px solid rgba(255,255,255,0.72);
-box-shadow:0 28px 70px rgba(61,9,86,0.30),inset 0 1px 0 rgba(255,255,255,0.95);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-}
-
-.login-page .login-title,
-.login-page .login-subtitle,
-.login-page .bottom-line,
-.login-page .signup-note{
-display:none!important;
-}
-
-.login-page .login-panel .input-card{
-background:rgba(255,255,255,0.96);
-border:1px solid rgba(137,67,184,0.13);
-border-radius:22px;
-min-height:78px;
-box-shadow:0 12px 30px rgba(94,28,126,0.10);
-}
-
-.login-page .login-panel .input-icon{
-background:linear-gradient(180deg,#f7eaff,#f1dcff);
-color:#8f2bd6;
-box-shadow:none;
-}
-
-.login-page .login-panel .input-content label{
-color:#51445d;
-}
-
-.login-page .login-panel .input-content input{
-color:#1d1229;
-}
-
-.login-page .login-panel .input-content input::placeholder{
-color:#8a8196;
-opacity:1;
-}
-
-.login-page .login-panel .sign-btn{
-margin-top:22px;
-min-height:70px;
-border-radius:24px;
-background:linear-gradient(135deg,#a72de3,#7f16c1);
-box-shadow:0 18px 36px rgba(134,29,199,0.30);
-}
-
-.login-page .login-panel .sign-btn .arrow-circle{
-background:rgba(255,255,255,0.16);
-}
-
-.login-page .forgot-row{
-margin-top:28px;
-}
-
-.login-page .forgot-row button,
-.login-page .forgot-row a,
-.login-page .forgot-row span{
-color:#7b19ba!important;
-font-weight:900;
-}
-
-.toast{
-background:rgba(255,255,255,0.95);
-color:#1d1229;
-border:1px solid rgba(137,67,184,0.12);
-box-shadow:0 18px 44px rgba(61,9,86,0.20);
-}
-
-@media(max-width:520px){
-.login-page{
-padding-left:14px;
-padding-right:14px;
-background-position:center top;
-}
-
-.login-page .login-panel{
-width:100%;
-margin-bottom:clamp(28px,6vh,58px);
-}
-
-.login-page .panel-inner{
-border-radius:28px;
-padding:26px 18px 24px;
-}
-
-.login-page .login-panel .input-card{
-min-height:68px;
-border-radius:18px;
-}
-
-.login-page .login-panel .sign-btn{
-min-height:62px;
-border-radius:20px;
-}
-}
-</style>
-
-<script src="config.js"></script>
-<script src="common.js" defer></script>
-<style id="purple-fashion-login-visual">
-:root{
-  --pf-login-primary:#8d25d2;
-  --pf-login-secondary:#b22be7;
-  --pf-login-deep:#4d126f;
-  --pf-login-ink:#21052f;
-  --pf-login-muted:#75677d;
-}
-
-html,
-body{
-  min-height:100%;
-}
-
-body{
-  min-height:100svh;
-  background:#4d126f url("shop-login.png") center center/cover no-repeat fixed!important;
-  color:var(--pf-login-ink);
-  overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 54% 35%,rgba(255,255,255,.18),rgba(255,255,255,.05) 34%,rgba(61,0,88,.28) 100%),
-    linear-gradient(180deg,rgba(72,0,100,.02) 0%,rgba(88,6,128,.14) 52%,rgba(46,0,68,.30) 100%);
-}
-
-.login-page,
-.auth-page,
-.login-wrapper,
-.auth-wrapper,
-.page-wrap,
-.page,
-.login-screen,
-.login-container,
-.main-login{
-  min-height:100svh!important;
-  background:transparent!important;
-}
-
-.header,
-.topbar,
-.login-header{
-  background:transparent!important;
-  box-shadow:none!important;
-}
-
-.login-hero,
-.hero,
-.auth-hero,
-.login-top,
-.brand-area,
-.brand-section,
-.brand-panel{
-  min-height:auto!important;
-  height:auto!important;
-  margin:0!important;
-  padding:clamp(46px,9vh,90px) 26px 8px!important;
-  border-radius:0!important;
-  background:transparent!important;
-  background-image:none!important;
-  box-shadow:none!important;
-  text-align:center!important;
-}
-
-.login-hero::before,
-.hero::before,
-.auth-hero::before,
-.brand-section::before,
-.brand-panel::before,
-.login-top::before{
-  display:none!important;
-}
-
-.brand-icon,
-.logo-icon,
-.hero-icon{
-  background:rgba(255,255,255,.14)!important;
-  border:2px solid rgba(255,255,255,.78)!important;
-  box-shadow:0 14px 38px rgba(70,0,100,.26)!important;
-}
-
-.brand-icon i,
-.logo-icon i,
-.hero-icon i{
-  color:white!important;
-}
-
-.brand,
-.brand-title,
-.hero-title,
-.brand-name,
-.logo-text,
-.login-hero h1,
-.hero h1,
-.auth-hero h1,
-.brand-panel h1{
-  color:white!important;
-  font-size:clamp(40px,9vw,64px)!important;
-  line-height:1.02!important;
-  font-weight:900!important;
-  letter-spacing:0!important;
-  text-shadow:0 12px 34px rgba(42,0,67,.42)!important;
-}
-
-.login-hero h2,
-.hero h2,
-.auth-hero h2,
-.brand-panel h2{
-  color:white!important;
-  font-size:clamp(25px,6vw,40px)!important;
-  line-height:1.16!important;
-  font-weight:900!important;
-  letter-spacing:0!important;
-  text-shadow:0 10px 30px rgba(42,0,67,.36)!important;
-}
-
-.hero p,
-.login-hero p,
-.auth-hero p,
-.brand-panel p,
-.tagline,
-.subtitle{
-  color:rgba(255,255,255,.95)!important;
-  font-size:clamp(14px,3.7vw,20px)!important;
-  text-shadow:0 8px 22px rgba(42,0,67,.28)!important;
-}
-
-.login-card,
-.auth-card,
-.form-card,
-.login-panel,
-.form-panel,
-.signin-card,
-.login-box,
-.form-box{
-  width:calc(100% - 56px)!important;
-  max-width:430px!important;
-  margin:18px auto 30px!important;
-  padding:26px 22px 24px!important;
-  border-radius:34px!important;
-  background:linear-gradient(180deg,rgba(255,255,255,.91),rgba(253,239,255,.82))!important;
-  border:1px solid rgba(255,255,255,.72)!important;
-  box-shadow:0 28px 72px rgba(72,6,104,.34)!important;
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
-
-.login-card h1,
-.auth-card h1,
-.form-card h1,
-.login-panel h1,
-.signin-card h1,
-.login-box h1,
-.form-box h1{
-  margin:0 0 8px!important;
-  color:var(--pf-login-ink)!important;
-  text-align:center!important;
-  font-size:clamp(34px,8vw,46px)!important;
-  line-height:1.05!important;
-  font-weight:900!important;
-}
-
-.login-card p,
-.auth-card p,
-.form-card p,
-.login-panel p,
-.signin-card p,
-.login-box p,
-.form-box p{
-  color:var(--pf-login-muted)!important;
-  text-align:center!important;
-  font-weight:700!important;
-}
-
-.input-box,
-.input-card,
-.input-group,
-.field,
-.login-input-wrap,
-.form-field,
-.input-row{
-  min-height:72px!important;
-  border-radius:22px!important;
-  background:rgba(255,255,255,.98)!important;
-  border:1px solid rgba(142,32,214,.13)!important;
-  box-shadow:0 12px 30px rgba(88,16,124,.12)!important;
-}
-
-.input-box i,
-.input-card i,
-.input-group i,
-.field i,
-.login-input-wrap i,
-.form-field i,
-.input-row i{
-  color:var(--pf-login-primary)!important;
-  background:#f6e2ff!important;
-}
-
-input,
-textarea{
-  color:var(--pf-login-ink)!important;
-}
-
-input::placeholder,
-textarea::placeholder{
-  color:#877b8f!important;
-  opacity:1!important;
-}
-
-.signin-btn,
-.login-btn,
-#signInBtn,
-button[type="submit"]{
-  background:linear-gradient(135deg,var(--pf-login-secondary),#8015c5)!important;
-  color:white!important;
-  border:none!important;
-  box-shadow:0 18px 38px rgba(142,32,214,.36)!important;
-}
-
-.signin-btn i,
-.login-btn i,
-#signInBtn i,
-button[type="submit"] i{
-  color:white!important;
-}
-
-.forgot-row a,
-.forgot-link,
-.login-links a{
-  color:#7814b7!important;
-  font-weight:900!important;
-}
-
-.toast,
-.order-toast,
-.message,
-.error-toast,
-.success-toast{
-  border-radius:24px!important;
-  box-shadow:0 18px 42px rgba(77,10,111,.22)!important;
-}
-
-@media(max-width:520px){
-  body{
-    background-position:center top!important;
-  }
-
-  .login-hero,
-  .hero,
-  .auth-hero,
-  .login-top,
-  .brand-area,
-  .brand-section,
-  .brand-panel{
-    padding-top:clamp(42px,8vh,78px)!important;
-    padding-left:24px!important;
-    padding-right:24px!important;
-  }
-
-  .login-card,
-  .auth-card,
-  .form-card,
-  .login-panel,
-  .form-panel,
-  .signin-card,
-  .login-box,
-  .form-box{
-    width:calc(100% - 48px)!important;
-    margin-top:12px!important;
-    border-radius:32px!important;
-  }
-}
-</style>
-<style id="purple-fashion-login-final-visual">
-:root{
-  --pf-purple:#9828d7;
-  --pf-purple-deep:#5f168f;
-  --pf-purple-soft:#fbf0ff;
-  --pf-ink:#170625;
-}
-
-html,
-body{
-  min-height:100%;
-}
-
-body{
-  min-height:100vh;
-  background:
-    linear-gradient(180deg,rgba(50,0,74,.06) 0%,rgba(86,15,124,.05) 42%,rgba(253,241,255,.82) 76%,#fbf0ff 100%),
-    url("shop-login.png") center top/cover no-repeat fixed !important;
-  color:var(--pf-ink);
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:linear-gradient(180deg,rgba(60,0,90,.08),rgba(255,244,255,.20) 46%,rgba(252,241,255,.78) 100%);
-  pointer-events:none;
-  z-index:0;
-}
-
-body>*{
-  position:relative;
-  z-index:1;
-}
-
-.login-page,
-.auth-page,
-.login-screen,
-.auth-screen{
-  min-height:100vh;
-  background:transparent!important;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:28px 14px max(28px,env(safe-area-inset-bottom));
-}
-
-.hero,
-.login-hero,
-.auth-hero,
-.brand-hero,
-.top-hero{
-  background:transparent!important;
-  box-shadow:none!important;
-  min-height:0!important;
-  padding:0!important;
-  margin:0!important;
-}
-
-.hero::before,
-.login-hero::before,
-.auth-hero::before,
-.brand-hero::before,
-.top-hero::before{
-  display:none!important;
-}
-
-.brand,
-.brand-name,
-.logo-title,
-.hero-title,
-.hero h1,
-.login-hero h1,
-.auth-hero h1{
-  color:#fff!important;
-  text-shadow:0 12px 32px rgba(64,0,88,.45);
-}
-
-.welcome,
-.welcome-title,
-.login-title,
-.auth-title,
-.login-card h1,
-.auth-card h1,
-.form-card h1,
-.login-panel h1,
-.auth-box h1{
-  color:var(--pf-purple-deep)!important;
-  text-align:center;
-  font-weight:900!important;
-  letter-spacing:0!important;
-}
-
-.login-card,
-.auth-card,
-.form-card,
-.login-panel,
-.form-panel,
-.auth-box,
-.card:has(input){
-  width:min(100%,440px);
-  margin:0 auto 10px!important;
-  padding:28px 20px 24px!important;
-  border-radius:30px!important;
-  background:rgba(255,255,255,.70)!important;
-  border:1px solid rgba(255,255,255,.72)!important;
-  box-shadow:0 26px 70px rgba(94,25,130,.25), inset 0 1px 0 rgba(255,255,255,.75)!important;
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-
-.input-box,
-.input-row,
-.field-box,
-.field,
-.form-row,
-.login-field,
-.auth-field,
-.input-wrap{
-  background:rgba(255,255,255,.92)!important;
-  border:1px solid rgba(143,55,188,.12)!important;
-  border-radius:22px!important;
-  min-height:74px;
-  box-shadow:0 10px 26px rgba(109,34,150,.10)!important;
-}
-
-.input-box i,
-.input-row i,
-.field-box i,
-.field i,
-.form-row i,
-.login-field i,
-.auth-field i,
-.input-icon,
-.fa-user,
-.fa-phone,
-.fa-mobile-screen{
-  color:var(--pf-purple)!important;
-}
-
-input{
-  color:var(--pf-ink)!important;
-  caret-color:var(--pf-purple);
-}
-
-input::placeholder{
-  color:#7e7189!important;
-}
-
-.login-btn,
-.sign-btn,
-.primary-btn,
-.submit-btn,
-button[type="submit"]{
-  background:linear-gradient(135deg,#b229e3,#7f19c7)!important;
-  color:#fff!important;
-  border:none!important;
-  border-radius:22px!important;
-  box-shadow:0 18px 34px rgba(128,25,199,.28)!important;
-}
-
-.login-btn::after,
-.sign-btn::after,
-.primary-btn::after,
-.submit-btn::after{
-  background:rgba(255,255,255,.16)!important;
-}
-
-.forgot-row,
-.forgot-links{
-  color:var(--pf-purple-deep)!important;
-}
-
-.forgot-row a,
-.forgot-links a,
-.forgot-phone,
-.forgot-name{
-  color:var(--pf-purple-deep)!important;
-  font-weight:800!important;
-}
-
-.toast,
-.message,
-.alert{
-  border-radius:20px!important;
-  box-shadow:0 18px 42px rgba(94,25,130,.18)!important;
-}
-
-@media (min-width:720px){
-  body{
-    background-position:center center!important;
-  }
-
-  .login-page,
-  .auth-page,
-  .login-screen,
-  .auth-screen{
-    align-items:center;
-    justify-content:center;
-    padding:34px;
-  }
-
-  .login-card,
-  .auth-card,
-  .form-card,
-  .login-panel,
-  .form-panel,
-  .auth-box,
-  .card:has(input){
-    max-width:470px;
-  }
-}
 </style>
 </head>
 
@@ -1436,8 +636,8 @@ button[type="submit"]{
 <div class="logo-mark">
 <i class="fa-solid fa-bag-shopping"></i>
 </div>
-<div class="brand">Purple Fashion</div>
-<h1>Welcome to Purple Fashion</h1>
+<div class="brand">Dishari</div>
+<h1>Welcome to Dishari</h1>
 <p>Shop your favourite fashion collection</p>
 </div>
 
@@ -1576,13 +776,13 @@ New user? <span onclick="openSignupFromMain()">Sign up</span>
 <i class="fa-solid fa-bag-shopping"></i>
 </div>
 <div class="install-text">
-<div class="install-title">Install Purple Fashion</div>
-<div class="install-subtitle" id="installSubtitle">For faster shopping and order tracking, add Purple Fashion to your home screen.</div>
+<div class="install-title">Install Dishari App</div>
+<div class="install-subtitle" id="installSubtitle">For faster shopping and order tracking, add Dishari to your home screen.</div>
 </div>
 </div>
 <div class="install-actions">
 <button class="install-later" id="installLaterBtn" onclick="hideInstallBanner(2,true)">Later</button>
-<button class="install-now" id="installNowBtn" onclick="installSellerApp()">Install App</button>
+<button class="install-now" id="installNowBtn" onclick="installDishariApp()">Install App</button>
 </div>
 </div>
 </div>
@@ -1591,8 +791,8 @@ New user? <span onclick="openSignupFromMain()">Sign up</span>
 <div class="install-status-card">
 <div class="install-status-spinner"></div>
 <div class="install-status-check"><i class="fa-solid fa-check"></i></div>
-<div class="install-status-title" id="installStatusTitle">Installing Purple Fashion...</div>
-<div class="install-status-message" id="installStatusMessage">Please wait while Purple Fashion is being added to your home screen.</div>
+<div class="install-status-title" id="installStatusTitle">Installing Dishari...</div>
+<div class="install-status-message" id="installStatusMessage">Please wait while Dishari is being added to your home screen.</div>
 <div class="install-percent" id="installPercent">0%</div>
 <div class="install-progress">
 <div class="install-progress-bar" id="installProgressBar"></div>
@@ -1601,7 +801,7 @@ New user? <span onclick="openSignupFromMain()">Sign up</span>
 </div>
 
 <script>
-const SCRIPT_API = APP_CONFIG.scriptApi;
+const SCRIPT_API = "https://script.google.com/macros/s/AKfycbxsMa2lo42bcs36DvEyR-_EFM24tYnB8OuBvlRU94Y7jNcz0cxbcvbX7ripAeFwsVApug/exec";
 const USER_API = SCRIPT_API + "?type=users";
 
 let toastTimer = null;
@@ -1620,7 +820,7 @@ return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
 function canShowInstallBanner(){
-let laterUntil = Number(localStorage.getItem("purpleFashionInstallLaterUntil")) || 0;
+let laterUntil = Number(localStorage.getItem("dishariInstallLaterUntil")) || 0;
 return !isStandaloneApp() && Date.now() > laterUntil;
 }
 
@@ -1648,7 +848,7 @@ function hideInstallBanner(minutes,showReminder){
 let banner = document.getElementById("installBanner");
 
 if(minutes){
-localStorage.setItem("purpleFashionInstallLaterUntil",String(Date.now() + (minutes * 60 * 1000)));
+localStorage.setItem("dishariInstallLaterUntil",String(Date.now() + (minutes * 60 * 1000)));
 }
 
 if(banner){
@@ -1656,7 +856,7 @@ banner.classList.remove("show");
 }
 
 if(showReminder){
-showToast("For better experience, install Purple Fashion");
+showToast("For better experience, install Dishari app");
 }
 
 scheduleInstallReminder((minutes || 2) * 60 * 1000);
@@ -1681,7 +881,7 @@ else{
 btn.innerHTML = "Install App";
 btn.disabled = false;
 later.disabled = false;
-subtitle.innerText = "For faster shopping and order tracking, add Purple Fashion to your home screen.";
+subtitle.innerText = "For faster shopping and order tracking, add Dishari to your home screen.";
 }
 }
 
@@ -1701,13 +901,13 @@ overlay.classList.remove("complete");
 if(type === "complete"){
 overlay.classList.add("complete");
 title.innerText = "Installation Complete";
-message.innerText = "Purple Fashion is now on your home screen.";
+message.innerText = "Dishari App is now on your home screen.";
 percent.innerText = "100%";
 progress.style.width = "100%";
 }
 else{
-title.innerText = "Installing Purple Fashion...";
-message.innerText = "Please wait while Purple Fashion is being added to your home screen.";
+title.innerText = "Installing Dishari...";
+message.innerText = "Please wait while Dishari is being added to your home screen.";
 percent.innerText = "0%";
 progress.style.width = "0%";
 }
@@ -1776,7 +976,7 @@ overlay.classList.remove("complete");
 }
 }
 
-function installSellerApp(){
+function installDishariApp(){
 if(deferredInstallPrompt){
 setInstallLoading(true);
 deferredInstallPrompt.prompt();
@@ -1784,7 +984,7 @@ deferredInstallPrompt.userChoice.then(function(choice){
 deferredInstallPrompt = null;
 
 if(choice.outcome === "accepted"){
-localStorage.setItem("purpleFashionInstallLaterUntil",String(Date.now() + (24 * 60 * 60 * 1000)));
+localStorage.setItem("dishariInstallLaterUntil",String(Date.now() + (24 * 60 * 60 * 1000)));
 hideInstallBanner(30);
 showInstallStatus("installing");
 }
@@ -2027,7 +1227,7 @@ return sameName(u,username) && samePhone(u,phone);
 
 if(exactMatch){
 localStorage.setItem("user",username);
-localStorage.setItem("purpleFashionUserPhone",phone);
+localStorage.setItem("dishariUserPhone",phone);
 window.location.replace("home.html");
 return;
 }
@@ -2087,7 +1287,7 @@ return sameName(u,username) && samePhone(u,phone);
 
 if(exactMatch){
 localStorage.setItem("user",username);
-localStorage.setItem("purpleFashionUserPhone",phone);
+localStorage.setItem("dishariUserPhone",phone);
 window.location.replace("home.html");
 return;
 }
@@ -2120,7 +1320,7 @@ dateTime:makeDateTime()
 .then(function(){
 showToast("Sign up success");
 localStorage.setItem("user",username);
-localStorage.setItem("purpleFashionUserPhone",phone);
+localStorage.setItem("dishariUserPhone",phone);
 
 setTimeout(function(){
 window.location.replace("home.html");
@@ -2205,7 +1405,3 @@ showToast("Server error. Try again.");
 
 </body>
 </html>
-
-
-
-
