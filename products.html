@@ -15,7 +15,7 @@
 <title>Purple Fashion Products</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1877F2">
+<meta name="theme-color" content="#8a2be2">
 <link rel="apple-touch-icon" href="icon-192.png">
 
 <style>
@@ -49,7 +49,7 @@ box-shadow:0 2px 10px rgba(0,0,0,0.08);
 #welcome{
 font-size:15px;
 font-weight:bold;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 line-height:22px;
 }
 
@@ -63,7 +63,7 @@ position:relative;
 .brand{
 font-size:28px;
 font-weight:bold;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .profile-btn{
@@ -75,7 +75,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:18px;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 cursor:pointer;
 }
 
@@ -105,7 +105,7 @@ box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
 .search-box i{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-right:10px;
 }
 
@@ -153,7 +153,7 @@ transition:0.3s;
 }
 
 .category-btn.active{
-background:#1877F2;
+background:var(--theme,#8a2be2);
 color:white;
 }
 
@@ -176,15 +176,15 @@ cursor:pointer;
 font-size:13px;
 font-weight:bold;
 color:#333;
-border:1px solid rgba(24,119,242,0.08);
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.08);
 transition:0.3s;
 }
 
 .price-filter-btn.active{
-background:#1877F2;
+background:var(--theme,#8a2be2);
 color:white;
-border-color:#1877F2;
-box-shadow:0 6px 14px rgba(24,119,242,0.22);
+border-color:var(--theme,#8a2be2);
+box-shadow:0 6px 14px rgba(var(--theme-rgb,138,43,226),0.22);
 }
 
 .category-skeleton{
@@ -218,7 +218,7 @@ height:430px;
 background:rgba(255,255,255,0.96);
 border-radius:24px;
 padding:12px;
-box-shadow:0 8px 22px rgba(0,0,0,0.08),0 2px 8px rgba(24,119,242,0.08);
+box-shadow:0 8px 22px rgba(0,0,0,0.08),0 2px 8px rgba(var(--theme-rgb,138,43,226),0.08);
 display:flex;
 flex-direction:column;
 cursor:pointer;
@@ -266,7 +266,7 @@ overflow:hidden;
 .product-price{
 font-size:22px;
 font-weight:800;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-top:6px;
 }
 
@@ -287,13 +287,13 @@ margin-top:14px;
 width:100%;
 padding:14px;
 border:none;
-background:linear-gradient(135deg,#1877F2,#4e9cff);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme2,#a855f7));
 color:white;
 border-radius:18px;
 font-weight:bold;
 font-size:16px;
 cursor:pointer;
-box-shadow:0 6px 15px rgba(24,119,242,0.25);
+box-shadow:0 6px 15px rgba(var(--theme-rgb,138,43,226),0.25);
 }
 
 .cart-btn:disabled,
@@ -372,7 +372,7 @@ margin-bottom:5px;
 }
 
 .nav-item.active{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 .bottom-nav,
 .nav-item,
@@ -529,7 +529,7 @@ background:#ccc;
 }
 
 .dot.active{
-background:#1877F2;
+background:var(--theme,#8a2be2);
 }
 
 .popup-content{
@@ -556,7 +556,7 @@ letter-spacing:0;
 .popup-price{
 font-size:26px;
 font-weight:bold;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-top:12px;
 }
 
@@ -582,9 +582,9 @@ margin-top:18px;
 background:linear-gradient(180deg,#ffffff,#f3f8ff);
 padding:18px;
 border-radius:22px;
-border:1px solid #d6e7ff;
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
 box-shadow:
-0 10px 24px rgba(24,119,242,0.10),
+0 10px 24px rgba(var(--theme-rgb,138,43,226),0.10),
 inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
@@ -597,20 +597,20 @@ font-size:15px;
 .offer-price{
 font-size:28px;
 font-weight:bold;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-top:6px;
 }
 
 .offer-tag{
 display:inline-block;
 margin-top:12px;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 padding:8px 14px;
 border-radius:30px;
 font-size:13px;
 font-weight:800;
-box-shadow:0 6px 14px rgba(24,119,242,0.24);
+box-shadow:0 6px 14px rgba(var(--theme-rgb,138,43,226),0.24);
 }
 
 .review-box{
@@ -658,7 +658,7 @@ background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%);
 color:#0f5fcb;
 border:1.5px solid #9fc6ff;
 box-shadow:
-0 10px 24px rgba(24,119,242,0.14),
+0 10px 24px rgba(var(--theme-rgb,138,43,226),0.14),
 0 2px 6px rgba(15,95,203,0.10),
 inset 0 1px 0 rgba(255,255,255,0.95);
 }
@@ -666,15 +666,15 @@ inset 0 1px 0 rgba(255,255,255,0.95);
 .more-btn:active{
 transform:scale(0.98);
 box-shadow:
-0 5px 14px rgba(24,119,242,0.12),
-inset 0 2px 4px rgba(24,119,242,0.08);
+0 5px 14px rgba(var(--theme-rgb,138,43,226),0.12),
+inset 0 2px 4px rgba(var(--theme-rgb,138,43,226),0.08);
 }
 
 .add-btn{
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
-border:1px solid #1877F2;
-box-shadow:0 8px 18px rgba(24,119,242,0.28);
+border:1px solid var(--theme,#8a2be2);
+box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.28);
 }
 
 .new-badge{
@@ -727,18 +727,18 @@ user-select:none;
 -webkit-tap-highlight-color:transparent;}
 
 .size-btn.available{
-background:#eaf3ff;
-color:#1877F2;
+background:var(--theme-soft,#f5edff);
+color:var(--theme,#8a2be2);
 border-color:#b9d7ff;
-box-shadow:0 5px 12px rgba(24,119,242,0.10);
+box-shadow:0 5px 12px rgba(var(--theme-rgb,138,43,226),0.10);
 cursor:pointer;
 }
 
 .size-btn.selected{
-background:#1877F2;
+background:var(--theme,#8a2be2);
 color:white;
-border-color:#1877F2;
-box-shadow:0 5px 12px rgba(24,119,242,0.25);
+border-color:var(--theme,#8a2be2);
+box-shadow:0 5px 12px rgba(var(--theme-rgb,138,43,226),0.25);
 cursor:pointer;
 }
 
@@ -757,13 +757,13 @@ transform:translate(-50%,30px);
 width:calc(100% - 32px);
 max-width:430px;
 background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%);
-border:1px solid #d6e7ff;
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
 border-radius:20px;
 padding:12px 14px;
 display:flex;
 align-items:center;
 gap:12px;
-box-shadow:0 12px 30px rgba(24,119,242,0.22),0 6px 16px rgba(0,0,0,0.10);
+box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.22),0 6px 16px rgba(0,0,0,0.10);
 z-index:7000;
 opacity:0;
 pointer-events:none;
@@ -779,14 +779,14 @@ transform:translate(-50%,0);
 width:42px;
 height:42px;
 border-radius:50%;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:17px;
 flex-shrink:0;
-box-shadow:0 7px 16px rgba(24,119,242,0.25);
+box-shadow:0 7px 16px rgba(var(--theme-rgb,138,43,226),0.25);
 }
 
 .size-toast-text{
@@ -824,7 +824,7 @@ transform:translate(-50%,0);
 width:38px;
 height:38px;
 border-radius:50%;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 display:flex;
 align-items:center;
@@ -841,7 +841,7 @@ font-weight:600;
 }
 
 .order-toast-text b{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .install-overlay{
@@ -864,7 +864,7 @@ display:flex;
 width:100%;
 max-width:460px;
 background:rgba(255,255,255,0.98);
-border:1px solid rgba(24,119,242,0.12);
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.12);
 border-radius:28px;
 box-shadow:0 22px 52px rgba(7,29,51,0.28);
 padding:22px 18px 18px;
@@ -881,14 +881,14 @@ gap:14px;
 width:64px;
 height:64px;
 border-radius:20px;
-background:linear-gradient(135deg,#2b92ff,#1877F2);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme,#8a2be2));
 color:white;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:28px;
 flex-shrink:0;
-box-shadow:0 8px 18px rgba(24,119,242,0.24);
+box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.24);
 }
 
 .install-text{
@@ -930,13 +930,13 @@ flex:1;
 
 .install-later{
 background:#eef5ff;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .install-now{
-background:#1877F2;
+background:var(--theme,#8a2be2);
 color:white;
-box-shadow:0 7px 14px rgba(24,119,242,0.20);
+box-shadow:0 7px 14px rgba(var(--theme-rgb,138,43,226),0.20);
 }
 
 .install-now:disabled{
@@ -964,7 +964,7 @@ display:flex;
 width:100%;
 max-width:390px;
 background:rgba(255,255,255,0.98);
-border:1px solid rgba(24,119,242,0.14);
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.14);
 border-radius:28px;
 padding:30px 24px;
 text-align:center;
@@ -975,8 +975,8 @@ box-shadow:0 24px 60px rgba(7,29,51,0.32);
 width:66px;
 height:66px;
 border-radius:50%;
-border:6px solid #eaf3ff;
-border-top-color:#1877F2;
+border:6px solid var(--theme-soft,#f5edff);
+border-top-color:var(--theme,#8a2be2);
 margin:0 auto 18px;
 animation:installSpin 0.85s linear infinite;
 }
@@ -985,14 +985,14 @@ animation:installSpin 0.85s linear infinite;
 width:66px;
 height:66px;
 border-radius:50%;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 display:none;
 align-items:center;
 justify-content:center;
 font-size:28px;
 margin:0 auto 18px;
-box-shadow:0 10px 24px rgba(24,119,242,0.26);
+box-shadow:0 10px 24px rgba(var(--theme-rgb,138,43,226),0.26);
 }
 
 .install-status-overlay.complete .install-status-spinner{
@@ -1027,23 +1027,23 @@ margin-top:8px;
 font-size:26px;
 line-height:32px;
 font-weight:900;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-top:18px;
 }
 
 .install-progress{
 height:12px;
-background:#eaf3ff;
+background:var(--theme-soft,#f5edff);
 border-radius:999px;
 overflow:hidden;
 margin-top:10px;
-box-shadow:inset 0 1px 4px rgba(24,119,242,0.10);
+box-shadow:inset 0 1px 4px rgba(var(--theme-rgb,138,43,226),0.10);
 }
 
 .install-progress-bar{
 width:0%;
 height:100%;
-background:linear-gradient(90deg,#1877F2,#4e9cff);
+background:linear-gradient(90deg,var(--theme,#8a2be2),var(--theme2,#a855f7));
 border-radius:999px;
 transition:width 0.35s ease;
 }
@@ -1072,7 +1072,7 @@ display:flex;
 width:100%;
 max-width:360px;
 background:linear-gradient(180deg,#ffffff,#f3f8ff);
-border:1px solid #d6e7ff;
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
 border-radius:24px;
 padding:20px;
 box-shadow:0 18px 44px rgba(7,29,51,0.25);
@@ -1097,7 +1097,7 @@ margin-top:8px;
 .seller-pin-input{
 width:100%;
 height:58px;
-border:1px solid #d6e7ff;
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
 border-radius:18px;
 margin-top:16px;
 background:white;
@@ -1126,15 +1126,15 @@ cursor:pointer;
 
 .seller-pin-cancel{
 background:white;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 border:1px solid #b9d7ff;
 }
 
 .seller-pin-open{
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 border:none;
-box-shadow:0 8px 18px rgba(24,119,242,0.24);
+box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.24);
 }
 </style>
 
@@ -1151,7 +1151,7 @@ box-shadow:0 8px 18px rgba(24,119,242,0.24);
 <i class="fa-solid fa-user"></i>
 </div>
 <div id="profileMenu">
-<button onclick="logout()" style="border:none;background:#1877F2;color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
+<button onclick="logout()" style="border:none;background:var(--theme,#8a2be2);color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
 </div>
 </div>
 </div>
@@ -1764,11 +1764,11 @@ let modal = document.createElement("div");
 modal.id = "adminSecurityModal";
 modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
 modal.innerHTML = `
-<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
-<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(var(--theme-rgb,138,43,226),.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
 <div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
 <div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
-<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));color:white;font-size:16px;font-weight:900;">OK</button>
 </div>
 `;
 document.body.appendChild(modal);
