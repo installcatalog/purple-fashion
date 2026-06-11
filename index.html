@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Purple Fashion</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1877F2">
+<meta name="theme-color" content="#8a2be2">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -49,14 +49,14 @@ background:#ffffff;
 width:118px;
 height:118px;
 border-radius:31px;
-background:linear-gradient(135deg,#2b92ff,#1877F2);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme,#8a2be2));
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
 font-size:48px;
 box-shadow:
-0 20px 42px rgba(24,119,242,0.24),
+0 20px 42px rgba(var(--theme-rgb,138,43,226),0.24),
 inset 0 1px 0 rgba(255,255,255,0.35);
 }
 
@@ -82,7 +82,7 @@ width:48px;
 height:48px;
 border-radius:50%;
 border:5px solid #d9ebff;
-border-top-color:#1877F2;
+border-top-color:var(--theme,#8a2be2);
 margin-top:32px;
 animation:spin 0.85s linear infinite;
 }
@@ -91,7 +91,7 @@ animation:spin 0.85s linear infinite;
 font-size:14px;
 line-height:21px;
 font-weight:900;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-top:14px;
 }
 
