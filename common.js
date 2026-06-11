@@ -58,25 +58,104 @@
 
     var style = document.createElement("style");
     style.id = "commonNoSelectStyle";
-    style.textContent = [
-      ".no-select-mode,",
-      ".no-select-mode *{",
-      "user-select:none;",
-      "-webkit-user-select:none;",
-      "-webkit-touch-callout:none;",
-      "}",
-      ".no-select-mode input,",
-      ".no-select-mode textarea,",
-      ".no-select-mode select,",
-      ".no-select-mode option,",
-      ".no-select-mode [contenteditable='true']{",
-      "user-select:text;",
-      "-webkit-user-select:text;",
-      "-webkit-touch-callout:default;",
-      "}"
-    ].join("");
+    style.textContent = `
+      .no-select-mode,
+      .no-select-mode *{
+        user-select:none;
+        -webkit-user-select:none;
+        -webkit-touch-callout:none;
+      }
+
+      .no-select-mode input,
+      .no-select-mode textarea,
+      .no-select-mode select,
+      .no-select-mode option,
+      .no-select-mode [contenteditable='true']{
+        user-select:text;
+        -webkit-user-select:text;
+        -webkit-touch-callout:default;
+      }
+    `;
 
     document.head.appendChild(style);
+  }
+
+  function applyPremiumHeader(){
+    if(document.getElementById("premiumHeaderStyle")){
+      return;
+    }
+
+    var style = document.createElement("style");
+    style.id = "premiumHeaderStyle";
+    style.textContent = `
+      .header{
+        display:grid!important;
+        grid-template-columns:1fr auto 58px!important;
+        align-items:center!important;
+        gap:10px!important;
+        background:rgba(255,255,255,0.96)!important;
+        backdrop-filter:blur(10px)!important;
+      }
+
+      #welcome{
+        font-size:15px!important;
+        font-weight:900!important;
+        line-height:22px!important;
+        color:var(--theme,#8a2be2)!important;
+      }
+
+      .right-header{
+        display:contents!important;
+      }
+
+      .brand{
+        font-size:24px!important;
+        font-weight:900!important;
+        line-height:26px!important;
+        letter-spacing:0.3px!important;
+        color:#5b1a9c!important;
+        font-family:Georgia,serif!important;
+        white-space:nowrap!important;
+        text-align:center!important;
+        text-shadow:0 1px 0 rgba(212,175,55,0.25)!important;
+      }
+
+      .profile-btn{
+        width:52px!important;
+        height:52px!important;
+        border-radius:50%!important;
+        background:#f5edff!important;
+        display:flex!important;
+        align-items:center!important;
+        justify-content:center!important;
+        overflow:hidden!important;
+        box-shadow:0 6px 16px rgba(138,43,226,0.16)!important;
+      }
+
+      .profile-btn i{
+        display:none!important;
+      }
+
+      .profile-btn img{
+        width:100%!important;
+        height:100%!important;
+        object-fit:cover!important;
+        border-radius:50%!important;
+        display:block!important;
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function applyProfileLogo(){
+    var buttons = document.querySelectorAll(".profile-btn");
+
+    buttons.forEach(function(btn){
+      if(!btn.querySelector("img")){
+        btn.innerHTML = '<img src="icon-192.png" alt="Purple Fashion">';
+      }
+    });
   }
 
   function applyCommonUi(){
@@ -89,6 +168,8 @@
       document.body.classList.add("no-select-mode");
     }
 
+    applyPremiumHeader();
+    applyProfileLogo();
     applyConfigLinks(config);
   }
 
