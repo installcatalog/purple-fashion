@@ -6,7 +6,7 @@
 <title>Purple Fashion Track</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1877F2">
+<meta name="theme-color" content="#8a2be2">
 <link rel="apple-touch-icon" href="icon-192.png">
 
 <style>
@@ -41,7 +41,7 @@ box-shadow:0 2px 10px rgba(0,0,0,0.08);
 #welcome{
 font-size:15px;
 font-weight:bold;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 line-height:22px;
 }
 
@@ -55,7 +55,7 @@ position:relative;
 .brand{
 font-size:28px;
 font-weight:bold;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .profile-btn{
@@ -67,7 +67,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:18px;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 cursor:pointer;
 }
 
@@ -130,7 +130,7 @@ padding:0 14px;
 }
 
 .phone-box i{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 font-size:18px;
 }
 
@@ -158,7 +158,7 @@ min-height:54px;
 border:none;
 border-radius:16px;
 margin-top:14px;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 font-size:16px;
 font-weight:900;
@@ -166,7 +166,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:9px;
-box-shadow:0 8px 18px rgba(24,119,242,0.28);
+box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.28);
 cursor:pointer;
 }
 
@@ -222,9 +222,9 @@ min-height:38px;
 box-shadow:0 6px 14px rgba(0,0,0,0.08);
 }
 
-.status-processing{background:#eff6ff;color:#1877F2;border:1px solid #bfdbfe;}
+.status-processing{background:#eff6ff;color:var(--theme,#8a2be2);border:1px solid #bfdbfe;}
 .status-payment{background:#fff7ed;color:#f97316;border:1px solid #fed7aa;}
-.status-confirmed{background:#eff6ff;color:#1877F2;border:1px solid #bfdbfe;}
+.status-confirmed{background:#eff6ff;color:var(--theme,#8a2be2);border:1px solid #bfdbfe;}
 .status-packing{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;}
 .status-delivery{background:#ecfeff;color:#0891b2;border:1px solid #a5f3fc;}
 .status-delivered{background:#ecfdf5;color:#16a34a;border:1px solid #bbf7d0;}
@@ -247,7 +247,7 @@ text-align:right;
 
 .detail-line.total strong{
 font-size:20px;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .timeline{
@@ -298,13 +298,13 @@ color:#111;
 }
 
 .timeline-step.current .step-dot{
-background:#1877F2;
+background:var(--theme,#8a2be2);
 color:white;
-box-shadow:0 6px 14px rgba(24,119,242,0.25);
+box-shadow:0 6px 14px rgba(var(--theme-rgb,138,43,226),0.25);
 }
 
 .timeline-step.current .step-title{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .cancel-box{
@@ -351,7 +351,7 @@ overflow:hidden;
 .previous-total{
 font-size:15px;
 font-weight:900;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin-top:8px;
 }
 
@@ -393,7 +393,7 @@ width:70px;
 height:70px;
 border-radius:22px;
 background:#f3f8ff;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -437,15 +437,15 @@ border-radius:24px;
 padding:28px 18px;
 text-align:center;
 box-shadow:0 18px 45px rgba(0,0,0,0.22);
-border:1px solid #d6e7ff;
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
 }
 
 .connect-spinner{
 width:46px;
 height:46px;
 border-radius:50%;
-border:4px solid #d6e7ff;
-border-top-color:#1877F2;
+border:4px solid rgba(var(--theme-rgb,138,43,226),0.18);
+border-top-color:var(--theme,#8a2be2);
 animation:spin 0.8s linear infinite;
 margin:0 auto 16px;
 }
@@ -475,13 +475,13 @@ bottom:95px;
 height:56px;
 max-width:900px;
 margin:auto;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 border-radius:16px;
 padding:0 15px;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 8px 18px rgba(24,119,242,0.28);
+box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.28);
 z-index:9000;
 opacity:0;
 pointer-events:none;
@@ -529,7 +529,7 @@ margin-bottom:5px;
 }
 
 .nav-item.active{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .bottom-nav,
@@ -599,7 +599,7 @@ font-size:13px;
 <i class="fa-solid fa-user"></i>
 </div>
 <div id="profileMenu">
-<button onclick="logout()" style="border:none;background:#1877F2;color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
+<button onclick="logout()" style="border:none;background:var(--theme,#8a2be2);color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
 </div>
 </div>
 </div>
