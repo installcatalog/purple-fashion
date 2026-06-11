@@ -777,12 +777,12 @@ New user? <span onclick="openSignupFromMain()">Sign up</span>
 </div>
 <div class="install-text">
 <div class="install-title">Install Dishari App</div>
-<div class="install-subtitle" id="installSubtitle">For faster shopping and order tracking, add Dishari to your home screen.</div>
+<div class="install-subtitle" id="installSubtitle">For faster shopping and order tracking, add Purple Fashion to your home screen.</div>
 </div>
 </div>
 <div class="install-actions">
 <button class="install-later" id="installLaterBtn" onclick="hideInstallBanner(2,true)">Later</button>
-<button class="install-now" id="installNowBtn" onclick="installDishariApp()">Install App</button>
+<button class="install-now" id="installNowBtn" onclick="installPurpleFashionApp()">Install App</button>
 </div>
 </div>
 </div>
@@ -791,8 +791,8 @@ New user? <span onclick="openSignupFromMain()">Sign up</span>
 <div class="install-status-card">
 <div class="install-status-spinner"></div>
 <div class="install-status-check"><i class="fa-solid fa-check"></i></div>
-<div class="install-status-title" id="installStatusTitle">Installing Dishari...</div>
-<div class="install-status-message" id="installStatusMessage">Please wait while Dishari is being added to your home screen.</div>
+<div class="install-status-title" id="installStatusTitle">Installing Purple Fashion...</div>
+<div class="install-status-message" id="installStatusMessage">Please wait while Purple Fashion is being added to your home screen.</div>
 <div class="install-percent" id="installPercent">0%</div>
 <div class="install-progress">
 <div class="install-progress-bar" id="installProgressBar"></div>
@@ -856,7 +856,7 @@ banner.classList.remove("show");
 }
 
 if(showReminder){
-showToast("For better experience, install Dishari app");
+showToast("For better experience, install Purple Fashion app");
 }
 
 scheduleInstallReminder((minutes || 2) * 60 * 1000);
@@ -881,7 +881,7 @@ else{
 btn.innerHTML = "Install App";
 btn.disabled = false;
 later.disabled = false;
-subtitle.innerText = "For faster shopping and order tracking, add Dishari to your home screen.";
+subtitle.innerText = "For faster shopping and order tracking, add Purple Fashion to your home screen.";
 }
 }
 
@@ -901,13 +901,13 @@ overlay.classList.remove("complete");
 if(type === "complete"){
 overlay.classList.add("complete");
 title.innerText = "Installation Complete";
-message.innerText = "Dishari App is now on your home screen.";
+message.innerText = "Purple Fashion is now on your home screen.";
 percent.innerText = "100%";
 progress.style.width = "100%";
 }
 else{
-title.innerText = "Installing Dishari...";
-message.innerText = "Please wait while Dishari is being added to your home screen.";
+title.innerText = "Installing Purple Fashion...";
+message.innerText = "Please wait while Purple Fashion is being added to your home screen.";
 percent.innerText = "0%";
 progress.style.width = "0%";
 }
@@ -976,7 +976,7 @@ overlay.classList.remove("complete");
 }
 }
 
-function installDishariApp(){
+function installPurpleFashioniApp(){
 if(deferredInstallPrompt){
 setInstallLoading(true);
 deferredInstallPrompt.prompt();
@@ -984,7 +984,7 @@ deferredInstallPrompt.userChoice.then(function(choice){
 deferredInstallPrompt = null;
 
 if(choice.outcome === "accepted"){
-localStorage.setItem("dishariInstallLaterUntil",String(Date.now() + (24 * 60 * 60 * 1000)));
+localStorage.setItem("PurpleFashionInstallLaterUntil",String(Date.now() + (24 * 60 * 60 * 1000)));
 hideInstallBanner(30);
 showInstallStatus("installing");
 }
