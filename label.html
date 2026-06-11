@@ -30,7 +30,7 @@ margin:auto;
 .top-title{
 font-size:32px;
 font-weight:900;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 margin:12px 0 18px;
 }
 
@@ -61,7 +61,7 @@ padding:0 15px;
 }
 
 .input-box i{
-color:#1877F2;
+color:var(--theme,#8a2be2);
 font-size:20px;
 }
 
@@ -82,7 +82,7 @@ min-height:58px;
 margin-top:14px;
 border:none;
 border-radius:18px;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 font-size:17px;
 font-weight:900;
@@ -91,7 +91,7 @@ align-items:center;
 justify-content:center;
 gap:10px;
 cursor:pointer;
-box-shadow:0 8px 18px rgba(24,119,242,0.26);
+box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.26);
 }
 
 .action-btn i{
@@ -100,7 +100,7 @@ font-size:20px;
 
 .secondary-btn{
 background:#f3f8ff;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 border:1px solid #b9d7ff;
 box-shadow:none;
 }
@@ -123,7 +123,7 @@ bottom:22px;
 height:54px;
 max-width:760px;
 margin:auto;
-background:linear-gradient(135deg,#1877F2,#0f6be8);
+background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));
 color:white;
 border-radius:16px;
 display:flex;
@@ -169,7 +169,7 @@ margin-bottom:10px;
 .brand{
 font-size:30px;
 font-weight:900;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 line-height:32px;
 }
 
@@ -230,7 +230,7 @@ line-height:24px;
 .total{
 font-size:22px;
 font-weight:900;
-color:#1877F2;
+color:var(--theme,#8a2be2);
 }
 
 .print-row{
@@ -476,11 +476,11 @@ let modal = document.createElement("div");
 modal.id = "adminSecurityModal";
 modal.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(7,29,51,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;";
 modal.innerHTML = `
-<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid #d6e7ff;">
-<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(24,119,242,.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
+<div style="width:100%;max-width:380px;background:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 22px 52px rgba(7,29,51,.24);border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);">
+<div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));color:white;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 12px 26px rgba(var(--theme-rgb,138,43,226),.28);"><i class="fa-solid fa-${icon || "lock"}"></i></div>
 <div style="font-size:24px;line-height:31px;font-weight:900;color:#071d33;">${title}</div>
 <div style="margin-top:10px;font-size:15px;line-height:22px;font-weight:800;color:#607086;">${message}</div>
-<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,#1877F2,#0f6be8);color:white;font-size:16px;font-weight:900;">OK</button>
+<button onclick="document.getElementById('adminSecurityModal').remove()" style="margin-top:18px;width:100%;height:52px;border:none;border-radius:16px;background:linear-gradient(135deg,var(--theme,#8a2be2),var(--theme-dark,#5b1a9c));color:white;font-size:16px;font-weight:900;">OK</button>
 </div>
 `;
 document.body.appendChild(modal);
