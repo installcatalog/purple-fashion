@@ -800,7 +800,7 @@ display:flex;
 align-items:center;
 gap:14px;
 box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.22);
-z-index:9000;
+z-index:999999;
 opacity:0;
 pointer-events:none;
 transition:0.35s ease;
@@ -822,6 +822,24 @@ align-items:center;
 justify-content:center;
 font-size:20px;
 flex-shrink:0;
+}
+
+
+.size-inline-error{
+display:none;
+margin-top:10px;
+padding:11px 13px;
+border-radius:14px;
+background:#fff2f6;
+border:1px solid #ffc7d6;
+color:#c1121f;
+font-size:14px;
+font-weight:900;
+line-height:20px;
+}
+
+.size-inline-error.show{
+display:block;
 }
 
 .home-size-toast-text{
@@ -1292,6 +1310,7 @@ transition:width 0.35s ease;
 <div class="size-section">
 <div class="size-title">Select Size</div>
 <div class="size-boxes" id="popupSize"></div>
+<div class="size-inline-error" id="sizeInlineError">Please select a size</div>
 </div>
 <div class="popup-desc" id="popupDesc"></div>
 <div class="review-box" id="reviewBox"></div>
@@ -2205,23 +2224,39 @@ return sizeValue.replace(/\s+/g,"").toUpperCase().split(",")[0] || "Free Size";
 }
 
 function showHomeCartToast(message){
+let finalMessage = message || "Please select a size";
 let toast = document.getElementById("homeSizeToast");
 let text = document.getElementById("homeSizeToastText");
 
-if(!toast){
-return;
-}
-
 if(text){
-text.innerHTML = message;
+text.innerHTML = finalMessage;
 }
 
+if(toast){
+toast.style.zIndex = "999999";
+toast.classList.remove("show");
+
+setTimeout(function(){
 toast.classList.add("show");
+},20);
+
 setTimeout(function(){
 toast.classList.remove("show");
-},1800);
+},2200);
+}
 }
 
+function showSizeInlineError(message){
+let finalMessage = message || "Please select a size";
+let inlineError = document.getElementById("sizeInlineError");
+
+if(inlineError){
+inlineError.innerText = finalMessage;
+inlineError.classList.add("show");
+}
+
+showHomeCartToast(finalMessage);
+}
 function saveProductToCart(product,size){
 if(!isProductInStock(product)){
 return;
@@ -2301,17 +2336,27 @@ return;
 }
 
 let sizeValue = String(currentProduct["Size"] || "Free Size").trim();
-let isFreeSize = sizeValue.toLowerCase() === "free size" || sizeValue.toLowerCase() === "standard size";
+let sizeLower = sizeValue.toLowerCase();
+let isFreeSize = sizeLower === "free size" || sizeLower === "standard" || sizeLower === "standard size";
+
+if(isFreeSize){
+selectedPopupSize = sizeValue;
+}
 
 if(!isFreeSize && !selectedPopupSize){
-showHomeCartToast("Please select a size");
+showSizeInlineError("Please select a size");
+
+let sizeBox = document.getElementById("popupSize");
+if(sizeBox){
+sizeBox.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
 return;
 }
 
 saveProductToCart(currentProduct,selectedPopupSize || getDefaultSize(currentProduct));
 window.location.href = "cart.html";
  }
-
 function updateCartCount(){
 let cart = [];
 
@@ -2845,6 +2890,11 @@ return;
 }
 
 selectedPopupSize = size;
+
+let inlineError = document.getElementById("sizeInlineError");
+if(inlineError){
+inlineError.classList.remove("show");
+}
 document.querySelectorAll("#popupSize .size-btn").forEach(btn=>btn.classList.remove("active"));
 el.classList.add("active");
 }
@@ -2859,6 +2909,11 @@ reviewHTML += `<div class="review">&#10004; ${review}</div>`;
 document.getElementById("reviewBox").innerHTML = reviewHTML;
  
 currentProduct = product;
+
+let resetSizeInlineError = document.getElementById("sizeInlineError");
+if(resetSizeInlineError){
+resetSizeInlineError.classList.remove("show");
+}
 
 let images = [
 product["Image Url"],
