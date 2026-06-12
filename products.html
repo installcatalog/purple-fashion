@@ -2161,7 +2161,10 @@ requestProductAvailability(currentProduct);
 return;
 }
 
-if(!selectedPopupSize){
+let sizeValue = String(currentProduct["Size"] || "Free Size").trim();
+let isFreeSize = sizeValue.toLowerCase() === "free size" || sizeValue.toLowerCase() === "standard size";
+
+if(!isFreeSize && !selectedPopupSize){
 showSizeToastMessage("Please select a size");
 return;
 }
