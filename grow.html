@@ -313,14 +313,7 @@ box-shadow:0 5px 12px rgba(var(--theme-rgb,138,43,226),0.25);
 }
 
 .bottom-cta{
-position:sticky;
-bottom:86px;
-z-index:50;
-display:flex;
-gap:10px;
-padding:0 16px 10px;
-max-width:900px;
-margin:auto;
+display:none;
 }
 
 .bottom-cta a{
@@ -520,21 +513,93 @@ padding:13px;
 height:200px;
 }
 }
+
+/* Grow page custom ad header */
+body.grow-ad-page .header{
+display:flex!important;
+justify-content:center!important;
+align-items:center!important;
+position:sticky!important;
+top:0!important;
+z-index:999!important;
+background:rgba(255,255,255,0.96)!important;
+backdrop-filter:blur(10px)!important;
+padding:18px 14px!important;
+box-shadow:0 2px 10px rgba(0,0,0,0.08)!important;
+overflow:hidden!important;
+}
+
+body.grow-ad-page #welcome,
+body.grow-ad-page .profile-btn,
+body.grow-ad-page #profileMenu{
+display:none!important;
+}
+
+body.grow-ad-page .right-header{
+display:flex!important;
+align-items:center!important;
+justify-content:center!important;
+width:100%!important;
+position:relative!important;
+}
+
+body.grow-ad-page .brand{
+font-size:30px!important;
+font-weight:900!important;
+line-height:34px!important;
+color:#5b1a9c!important;
+font-family:Georgia,serif!important;
+text-align:center!important;
+white-space:nowrap!important;
+letter-spacing:0.2px!important;
+text-shadow:0 1px 0 rgba(212,175,55,0.25)!important;
+}
+
+body.grow-ad-page .grow-header-spacer{
+display:none!important;
+}
+
+body.grow-ad-page .container{
+padding-top:16px!important;
+}
+
+body.grow-ad-page .cta-row{
+display:flex!important;
+gap:10px!important;
+flex-wrap:nowrap!important;
+}
+
+body.grow-ad-page .cta-row .btn{
+min-width:0!important;
+width:50%!important;
+font-size:15px!important;
+padding:14px 8px!important;
+}
+
+@media(max-width:420px){
+body.grow-ad-page .brand{
+font-size:27px!important;
+line-height:31px!important;
+}
+
+body.grow-ad-page .cta-row .btn{
+font-size:14px!important;
+}
+}
+
 </style>
 
 <script src="config.js"></script>
 <script src="common.js" defer></script>
 </head>
 
-<body>
+<body class="grow-ad-page">
 
 <div class="header">
 <div id="welcome"></div>
 <div class="right-header">
-<div class="brand">Purple Fashion</div>
-<div class="profile-btn" onclick="toggleProfileMenu()">
-<i class="fa-solid fa-user"></i>
-</div>
+<div class="brand" id="growBrand">Make Your Own App</div>
+<div class="grow-header-spacer"></div>
 <div id="profileMenu">
 <button onclick="logout()" style="border:none;background:var(--theme,#8a2be2);color:white;padding:10px 18px;border-radius:12px;font-weight:bold;cursor:pointer;">Logout</button>
 </div>
@@ -895,8 +960,18 @@ openStatusControl();
 });
 </script>
 
+
+<script>
+(function(){
+  var fullName = localStorage.getItem("user") || "";
+  var firstName = String(fullName).trim().split(/\s+/)[0] || "";
+  var brand = document.getElementById("growBrand");
+
+  if(brand){
+    brand.textContent = firstName ? firstName + ", Make Your Own App" : "Make Your Own App";
+  }
+})();
+</script>
+
 </body>
 </html>
-
-
-
