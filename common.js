@@ -171,6 +171,20 @@
         box-shadow:0 12px 32px rgba(0,0,0,0.18)!important;
       }
 
+      body.popup-open .header{
+        display:none!important;
+      }
+
+      body.popup-open .popup{
+        top:0!important;
+        z-index:999999!important;
+      }
+
+      body.popup-open .popup-header{
+        top:10px!important;
+        z-index:1000000!important;
+      }
+
       .bottom-nav{
         position:fixed!important;
         left:0!important;
@@ -241,6 +255,40 @@
     });
   }
 
+  function setupPopupHeaderFix(){
+    var originalOpenPopup = window.openPopup;
+    var originalClosePopup = window.closePopup;
+
+    if(typeof originalOpenPopup === "function" && !originalOpenPopup.__popupHeaderFixed){
+      window.openPopup = function(){
+        document.body.classList.add("popup-open");
+        return originalOpenPopup.apply(this, arguments);
+      };
+      window.openPopup.__popupHeaderFixed = true;
+    }
+
+    if(typeof originalClosePopup === "function" && !originalClosePopup.__popupHeaderFixed){
+      window.closePopup = function(){
+        document.body.classList.remove("popup-open");
+        return originalClosePopup.apply(this, arguments);
+      };
+      window.closePopup.__popupHeaderFixed = true;
+    }
+
+    document.addEventListener("click", function(){
+      setTimeout(function(){
+        var popup = document.querySelector(".popup");
+
+        if(popup && popup.classList.contains("active")){
+          document.body.classList.add("popup-open");
+        }
+        else{
+          document.body.classList.remove("popup-open");
+        }
+      },50);
+    }, true);
+  }
+
   function applyCommonUi(){
     var config = getConfig();
 
@@ -254,6 +302,7 @@
     applyPremiumHeader();
     applyProfileLogo();
     applyConfigLinks(config);
+    setupPopupHeaderFix();
   }
 
   function buildWhatsAppLink(number,message){
@@ -297,4 +346,6 @@
   else{
     applyCommonUi();
   }
+
+  window.addEventListener("load", setupPopupHeaderFix);
 })();
