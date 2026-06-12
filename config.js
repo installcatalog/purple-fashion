@@ -22,9 +22,9 @@ const APP_CONFIG = {
   scriptApi: "https://script.google.com/macros/s/AKfycbwMQr_bHsvXvDGC0isJS1KLeHzVwMQtcLMlnvW9QONHxh1JP6BXEygmwku_P7YuA3rz2g/exec",
 
   // Seller contact
-  sellerWhatsApp: "919836697502",
+  sellerWhatsApp: "918777076542",
   growContactWhatsApp: "919836697502",
-  sellerPhone: "9836697502",
+  sellerPhone: "8777076542",
   sellerEmail: "",
   shopAddress: "C/231 survey park , Kolkata, India, 700075",
   businessHours: "10 AM - 9 PM",
