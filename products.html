@@ -762,29 +762,31 @@ cursor:not-allowed;
 opacity:1;
 }
 .size-toast{
-position:fixed;
-left:50%;
-bottom:104px;
-transform:translate(-50%,30px);
-width:calc(100% - 32px);
-max-width:430px;
-background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%);
-border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
-border-radius:20px;
-padding:12px 14px;
-display:flex;
-align-items:center;
-gap:12px;
-box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.22),0 6px 16px rgba(0,0,0,0.10);
-z-index:7000;
-opacity:0;
-pointer-events:none;
-transition:0.35s ease;
+position:fixed!important;
+left:50%!important;
+bottom:118px!important;
+transform:translate(-50%,30px)!important;
+width:calc(100% - 32px)!important;
+max-width:430px!important;
+background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%)!important;
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18)!important;
+border-radius:20px!important;
+padding:12px 14px!important;
+display:flex!important;
+align-items:center!important;
+gap:12px!important;
+box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.22),0 6px 16px rgba(0,0,0,0.10)!important;
+z-index:999999!important;
+opacity:0!important;
+visibility:hidden!important;
+pointer-events:none!important;
+transition:0.35s ease!important;
 }
 
 .size-toast.show{
-opacity:1;
-transform:translate(-50%,0);
+opacity:1!important;
+visibility:visible!important;
+transform:translate(-50%,0)!important;
 }
 
 .size-toast-icon{
@@ -2125,10 +2127,25 @@ return stock === "yes" || stock === "in stock";
 }
 
 function showSizeToastMessage(message){
+let toast = document.getElementById("sizeToast");
 let text = document.getElementById("sizeToastText");
 
+if(!toast){
+toast = document.createElement("div");
+toast.id = "sizeToast";
+toast.className = "size-toast";
+toast.innerHTML = `
+<div class="size-toast-icon">
+<i class="fa-solid fa-circle-exclamation"></i>
+</div>
+<div class="size-toast-text" id="sizeToastText"></div>
+`;
+document.body.appendChild(toast);
+text = document.getElementById("sizeToastText");
+}
+
 if(text){
-text.innerText = message;
+text.innerText = message || "Please select a size";
 }
 
 showSizeToast();
@@ -2141,7 +2158,12 @@ if(!toast){
 return;
 }
 
+toast.style.zIndex = "999999";
+toast.classList.remove("show");
+
+setTimeout(function(){
 toast.classList.add("show");
+},20);
 
 if(sizeToastTimer){
 clearTimeout(sizeToastTimer);
@@ -2149,7 +2171,7 @@ clearTimeout(sizeToastTimer);
 
 sizeToastTimer = setTimeout(function(){
 toast.classList.remove("show");
-},2000);
+},2200);
 }
 function popupAddToCart(){
 if(!currentProduct){
@@ -2162,7 +2184,12 @@ return;
 }
 
 let sizeValue = String(currentProduct["Size"] || "Free Size").trim();
-let isFreeSize = sizeValue.toLowerCase() === "free size" || sizeValue.toLowerCase() === "standard size";
+let sizeLower = sizeValue.toLowerCase();
+let isFreeSize = sizeLower === "free size" || sizeLower === "standard size";
+
+if(isFreeSize){
+selectedPopupSize = sizeValue;
+}
 
 if(!isFreeSize && !selectedPopupSize){
 showSizeToastMessage("Please select a size");
@@ -2192,7 +2219,7 @@ name: currentProduct["Product Name"] || "",
 price: price,
 finalPrice: finalPrice,
 image: imageUrl,
-size: selectedPopupSize,
+size: selectedPopupSize || sizeValue || "Free Size",
 quantity: 1
 };
 
@@ -2214,7 +2241,6 @@ updateCartCount();
 
 window.location.href = "cart.html";
 }
-
 function updateCartCount(){
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 document.getElementById("cartCount").innerText = cart.length;
@@ -2824,7 +2850,15 @@ popupCartButton.disabled = requested;
 popupCartButton.innerText = isInStock ? "Add To Cart" : (requested ? "Request Sent" : "Check Availability");
 }
 
+let sizeValueForPopup = String(product["Size"] || "Free Size").trim();
+let sizeLowerForPopup = sizeValueForPopup.toLowerCase();
+
+if(sizeLowerForPopup === "free size" || sizeLowerForPopup === "standard size"){
+selectedPopupSize = sizeValueForPopup;
+}
+else{
 selectedPopupSize = "";
+}
 
 let sizeValue = (product["Size"] || "Free Size").trim();
 let popupSizeHTML = "";
