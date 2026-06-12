@@ -100,64 +100,76 @@
       }
 
       .header{
-  display:grid!important;
-  grid-template-columns:105px 1fr 50px!important;
-  align-items:center!important;
-  gap:6px!important;
-  background:rgba(255,255,255,0.96)!important;
-  backdrop-filter:blur(10px)!important;
-  width:100%!important;
-  overflow:hidden!important;
-  padding:14px 12px!important;
-}
+        display:grid!important;
+        grid-template-columns:105px 1fr 50px!important;
+        align-items:center!important;
+        gap:6px!important;
+        background:rgba(255,255,255,0.96)!important;
+        backdrop-filter:blur(10px)!important;
+        width:100%!important;
+        overflow:visible!important;
+        padding:14px 12px!important;
+        z-index:99999!important;
+      }
 
-#welcome{
-  width:105px!important;
-  max-width:105px!important;
-  font-size:14px!important;
-  font-weight:800!important;
-  font-family:Georgia,serif!important;
-  line-height:20px!important;
-  color:#8a2be2!important;
-  overflow:hidden!important;
-  text-align:left!important;
-}
+      #welcome{
+        width:105px!important;
+        max-width:105px!important;
+        font-size:14px!important;
+        font-weight:800!important;
+        font-family:Georgia,serif!important;
+        line-height:20px!important;
+        color:#8a2be2!important;
+        overflow:hidden!important;
+        text-align:left!important;
+      }
 
-.right-header{
-  display:contents!important;
-}
+      .right-header{
+        display:contents!important;
+      }
 
-.brand{
-  font-size:25px!important;
-  font-weight:900!important;
-  line-height:28px!important;
-  color:#5b1a9c!important;
-  font-family:Georgia,serif!important;
-  white-space:nowrap!important;
-  text-align:center!important;
-}
+      .brand{
+        font-size:25px!important;
+        font-weight:900!important;
+        line-height:28px!important;
+        color:#5b1a9c!important;
+        font-family:Georgia,serif!important;
+        white-space:nowrap!important;
+        text-align:center!important;
+      }
 
-.profile-btn{
-  width:46px!important;
-  height:46px!important;
-  border-radius:50%!important;
-  background:#f5edff!important;
-  overflow:hidden!important;
-  justify-self:end!important;
-  box-shadow:0 6px 16px rgba(138,43,226,0.16)!important;
-}
+      .profile-btn{
+        width:46px!important;
+        height:46px!important;
+        border-radius:50%!important;
+        background:#f5edff!important;
+        overflow:hidden!important;
+        justify-self:end!important;
+        box-shadow:0 6px 16px rgba(138,43,226,0.16)!important;
+      }
 
-.profile-btn i{
-  display:none!important;
-}
+      .profile-btn i{
+        display:none!important;
+      }
 
-.profile-btn img{
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  border-radius:50%!important;
-  display:block!important;
-}
+      .profile-btn img{
+        width:100%!important;
+        height:100%!important;
+        object-fit:cover!important;
+        border-radius:50%!important;
+        display:block!important;
+      }
+
+      #profileMenu{
+        position:absolute!important;
+        top:62px!important;
+        right:12px!important;
+        z-index:999999!important;
+        background:white!important;
+        padding:12px!important;
+        border-radius:16px!important;
+        box-shadow:0 12px 32px rgba(0,0,0,0.18)!important;
+      }
 
       .bottom-nav{
         position:fixed!important;
@@ -193,14 +205,14 @@
 
       @media(max-width:380px){
         .header{
-          grid-template-columns:104px 1fr 52px!important;
+          grid-template-columns:100px 1fr 48px!important;
           gap:6px!important;
         }
 
         #welcome{
-          width:104px!important;
-          max-width:104px!important;
-          font-size:12.5px!important;
+          width:100px!important;
+          max-width:100px!important;
+          font-size:13px!important;
           line-height:18px!important;
         }
 
@@ -210,8 +222,8 @@
         }
 
         .profile-btn{
-          width:48px!important;
-          height:48px!important;
+          width:46px!important;
+          height:46px!important;
         }
       }
     `;
