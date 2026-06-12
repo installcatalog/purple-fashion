@@ -762,31 +762,29 @@ cursor:not-allowed;
 opacity:1;
 }
 .size-toast{
-position:fixed!important;
-left:50%!important;
-bottom:118px!important;
-transform:translate(-50%,30px)!important;
-width:calc(100% - 32px)!important;
-max-width:430px!important;
-background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%)!important;
-border:1px solid rgba(var(--theme-rgb,138,43,226),0.18)!important;
-border-radius:20px!important;
-padding:12px 14px!important;
-display:flex!important;
-align-items:center!important;
-gap:12px!important;
-box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.22),0 6px 16px rgba(0,0,0,0.10)!important;
-z-index:999999!important;
-opacity:0!important;
-visibility:hidden!important;
-pointer-events:none!important;
-transition:0.35s ease!important;
+position:fixed;
+left:50%;
+bottom:104px;
+transform:translate(-50%,30px);
+width:calc(100% - 32px);
+max-width:430px;
+background:linear-gradient(180deg,#ffffff 0%,#f3f8ff 100%);
+border:1px solid rgba(var(--theme-rgb,138,43,226),0.18);
+border-radius:20px;
+padding:12px 14px;
+display:flex;
+align-items:center;
+gap:12px;
+box-shadow:0 12px 30px rgba(var(--theme-rgb,138,43,226),0.22),0 6px 16px rgba(0,0,0,0.10);
+z-index:999999;
+opacity:0;
+pointer-events:none;
+transition:0.35s ease;
 }
 
 .size-toast.show{
-opacity:1!important;
-visibility:visible!important;
-transform:translate(-50%,0)!important;
+opacity:1;
+transform:translate(-50%,0);
 }
 
 .size-toast-icon{
@@ -801,6 +799,24 @@ justify-content:center;
 font-size:17px;
 flex-shrink:0;
 box-shadow:0 7px 16px rgba(var(--theme-rgb,138,43,226),0.25);
+}
+
+
+.size-inline-error{
+display:none;
+margin-top:10px;
+padding:11px 13px;
+border-radius:14px;
+background:#fff2f6;
+border:1px solid #ffc7d6;
+color:#c1121f;
+font-size:14px;
+font-weight:900;
+line-height:20px;
+}
+
+.size-inline-error.show{
+display:block;
 }
 
 .size-toast-text{
@@ -1273,6 +1289,7 @@ box-shadow:0 8px 18px rgba(var(--theme-rgb,138,43,226),0.24);
 <div class="size-section">
 <div class="size-title">Select Size</div>
 <div class="size-boxes" id="popupSize"></div>
+<div class="size-inline-error" id="sizeInlineError">Please select a size</div>
 </div>
 <div class="popup-desc" id="popupDesc"></div>
 <div class="review-box" id="reviewBox"></div>
@@ -2127,25 +2144,18 @@ return stock === "yes" || stock === "in stock";
 }
 
 function showSizeToastMessage(message){
-let toast = document.getElementById("sizeToast");
-let text = document.getElementById("sizeToastText");
+let finalMessage = message || "Please select a size";
+let inlineError = document.getElementById("sizeInlineError");
 
-if(!toast){
-toast = document.createElement("div");
-toast.id = "sizeToast";
-toast.className = "size-toast";
-toast.innerHTML = `
-<div class="size-toast-icon">
-<i class="fa-solid fa-circle-exclamation"></i>
-</div>
-<div class="size-toast-text" id="sizeToastText"></div>
-`;
-document.body.appendChild(toast);
-text = document.getElementById("sizeToastText");
+if(inlineError){
+inlineError.innerText = finalMessage;
+inlineError.classList.add("show");
 }
 
+let text = document.getElementById("sizeToastText");
+
 if(text){
-text.innerText = message || "Please select a size";
+text.innerText = finalMessage;
 }
 
 showSizeToast();
@@ -2185,7 +2195,7 @@ return;
 
 let sizeValue = String(currentProduct["Size"] || "Free Size").trim();
 let sizeLower = sizeValue.toLowerCase();
-let isFreeSize = sizeLower === "free size" || sizeLower === "standard size";
+let isFreeSize = sizeLower === "free size" || sizeLower === "standard" || sizeLower === "standard size";
 
 if(isFreeSize){
 selectedPopupSize = sizeValue;
@@ -2193,6 +2203,12 @@ selectedPopupSize = sizeValue;
 
 if(!isFreeSize && !selectedPopupSize){
 showSizeToastMessage("Please select a size");
+
+let sizeBox = document.getElementById("popupSize");
+if(sizeBox){
+sizeBox.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
 return;
 }
 
@@ -2748,6 +2764,11 @@ return;
 
 selectedPopupSize = size;
 
+let inlineError = document.getElementById("sizeInlineError");
+if(inlineError){
+inlineError.classList.remove("show");
+}
+
 document.querySelectorAll("#popupSize .size-btn").forEach(btn=>{
 if(btn.classList.contains("selected")){
 btn.classList.remove("selected");
@@ -2768,6 +2789,11 @@ reviewHTML += `<div class="review">&#10004; ${review}</div>`;
 document.getElementById("reviewBox").innerHTML = reviewHTML;
 
 currentProduct = product;
+
+let resetSizeInlineError = document.getElementById("sizeInlineError");
+if(resetSizeInlineError){
+resetSizeInlineError.classList.remove("show");
+}
 
 let images = [
 product["Image Url"],
@@ -2850,15 +2876,7 @@ popupCartButton.disabled = requested;
 popupCartButton.innerText = isInStock ? "Add To Cart" : (requested ? "Request Sent" : "Check Availability");
 }
 
-let sizeValueForPopup = String(product["Size"] || "Free Size").trim();
-let sizeLowerForPopup = sizeValueForPopup.toLowerCase();
-
-if(sizeLowerForPopup === "free size" || sizeLowerForPopup === "standard size"){
-selectedPopupSize = sizeValueForPopup;
-}
-else{
 selectedPopupSize = "";
-}
 
 let sizeValue = (product["Size"] || "Free Size").trim();
 let popupSizeHTML = "";
